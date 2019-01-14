@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
 
-import Header from './src/components/header';
-import PropertyList from './src/components/PropertyList';
+import Header from './components/header';
+import PropertyList from './components/PropertyList';
+
+import Router from './Router';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -14,11 +16,8 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-    return ( // flex 1 -> expand this component to fill entire content area of device
-      <View style={{ flex: 1 }}>
-        <Header headerText={'Home Square'} />
-        <PropertyList />
-      </View>
+    return (
+      <Router />
     );
   }
 }
