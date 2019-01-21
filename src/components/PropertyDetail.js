@@ -5,12 +5,10 @@ import CardSection from './CardSection';
 import Button from './Button';
 
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import Property from './Property';
-
 
 const PropertyDetail = ({ propertyProp }) => { // destructure
     // Pull title, artist and thumbnail_image from album
-    const { title, artist, thumbnail_image, pImage, image, url } = propertyProp;
+    const { pId, title, artist, thumbnail_image, pImage, image, url } = propertyProp;
     const { thumbnailStyle, headerContentStyle, thumbnailContainerStyle, headerTextStyle, imageStyle } = styles;
 
     if(pImage){
@@ -31,7 +29,7 @@ const PropertyDetail = ({ propertyProp }) => { // destructure
                 <Image style={imageStyle} source={{ uri: img }} />
             </CardSection>
             <CardSection>
-                <Button onPress={() => Actions.propertyView()}>
+                <Button onPress={() => Actions.propertyView({ id: pId })}>
                     View Property
                 </Button>
             </CardSection>
