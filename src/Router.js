@@ -6,21 +6,26 @@ import PropertyList from './components/PropertyList';
 import Property from './components/Property';
 //import PropertyDetail from './src/components/PropertyDetail';
 
+import Icon from 'react-native-vector-icons/Ionicons';
+const properties = (<Icon name="ios-home" size={30} color="#808080" />)
+const agents = (<Icon name="md-contacts" size={30} color="#808080" />)
+const profile = (<Icon name="md-person" size={30} color="#808080" />)
+
 const Properties = ({ selected, title }) => {
     return (
-      <Text style={{color: selected ? 'red' :'black'}}>{title}</Text>
+      <Text style={{color: selected ? 'red' :'black'}}>{properties}</Text>
     );
 }
 
 const Agents = ({ selected, title }) => {
     return (
-        <Text style={{color: selected ? 'red' :'black'}}>{title}</Text>
+        <Text style={{color: selected ? 'red' :'black'}}>{agents}</Text>
     );
 }
 
 const Profile = ({ selected, title }) => {
     return (
-        <Text style={{color: selected ? 'red' :'black'}}>{title}</Text>
+        <Text style={{color: selected ? 'red' :'black'}}>{profile}</Text>
     );
 }
 
