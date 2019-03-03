@@ -12,9 +12,9 @@ const PropertyDetail = ({ propertyProp }) => { // destructure
     const { thumbnailStyle, headerContentStyle, thumbnailContainerStyle, headerTextStyle, imageStyle } = styles;
 
     if(pImage){
-        var img = `http://ec2-34-209-228-103.us-west-2.compute.amazonaws.com${pImage}`;
+        var img = `https://naszpolskidom.azurewebsites.net${pImage}`;
     } else {
-        var img = "http://ec2-34-209-228-103.us-west-2.compute.amazonaws.com/dashboard/img/house.gif";
+        var img = "https://naszpolskidom.azurewebsites.net/dashboard/img/house.gif";
     }
 
     return (

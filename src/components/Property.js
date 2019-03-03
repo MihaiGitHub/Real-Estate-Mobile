@@ -23,7 +23,7 @@ class Property extends Component {
 
     componentWillMount = () => {
         
-        axios.get(`http://ec2-34-209-228-103.us-west-2.compute.amazonaws.com/properties.php?data=propertyDetail&id=${this.props.id}`)
+        axios.get(`https://naszpolskidom.azurewebsites.net/properties.php?data=propertyDetail&id=${this.props.id}`)
             .then(response => this.setState({ url: response.data.property[0].pImage, description: response.data.property[0].description }))
             .catch(function (error) { alert('failed');
                 console.log(error);
@@ -62,7 +62,7 @@ class Property extends Component {
       console.log(this.state.url);
       console.log('this.props ', this.props)
 
-        let img = `http://ec2-34-209-228-103.us-west-2.compute.amazonaws.com${this.state.url}`;
+        let img = `https://naszpolskidom.azurewebsites.net${this.state.url}`;
 
         return (
             <ScrollView>

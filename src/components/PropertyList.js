@@ -15,7 +15,7 @@ class PropertyList extends Component {
 
         axios({
             method: 'post',
-            url: 'http://ec2-34-209-228-103.us-west-2.compute.amazonaws.com/properties.php',
+            url: 'https://naszpolskidom.azurewebsites.net/properties.php',
             data: bodyFormData,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
             })
