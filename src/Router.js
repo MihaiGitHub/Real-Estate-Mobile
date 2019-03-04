@@ -5,6 +5,8 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 import PropertyList from './components/PropertyList';
 import Property from './components/Property';
 //import PropertyDetail from './src/components/PropertyDetail';
+import AgentList from './components/AgentList';
+import MyProfile from './components/MyProfile';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 const properties = (<Icon name="ios-home" size={30} color="#808080" />)
@@ -43,12 +45,12 @@ const RouterComponent = () => {
 
                     {/* Tab and it's scenes */}
                     <Scene key="um" title="Agents" icon={Agents}>
-                        <Scene key="agentList" component={PropertyList} title="Agent List" />
+                        <Scene key="agentList" component={AgentList} title="Agent List" />
                     </Scene>
 
                     {/* Tab and it's scenes */}
                     <Scene key="vu" title="My HomeSquare" icon={Profile}>
-                        <Scene key="profile" component={PropertyList} title="My HomeSquare" />
+                        <Scene key="profile" component={MyProfile} title="My HomeSquare" />
                     </Scene>
                 </Scene>
             </Scene>
