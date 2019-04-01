@@ -1,14 +1,14 @@
 import React from 'react';
 import { Text } from 'react-native';
-
 import { Scene, Router, Actions } from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import PropertyList from './components/PropertyList';
 import Property from './components/Property';
-//import PropertyDetail from './src/components/PropertyDetail';
 import AgentList from './components/AgentList';
 import MyProfile from './components/MyProfile';
+import About from './components/About';
 
-import Icon from 'react-native-vector-icons/Ionicons';
 const properties = (<Icon name="ios-home" size={30} color="#808080" />)
 const agents = (<Icon name="md-contacts" size={30} color="#808080" />)
 const profile = (<Icon name="md-person" size={30} color="#808080" />)
@@ -51,6 +51,7 @@ const RouterComponent = () => {
                     {/* Tab and it's scenes */}
                     <Scene key="vu" title="My HomeSquare" icon={Profile}>
                         <Scene key="profile" component={MyProfile} title="My HomeSquare" />
+                        <Scene key="about" component={About} title="About" />
                     </Scene>
                 </Scene>
             </Scene>

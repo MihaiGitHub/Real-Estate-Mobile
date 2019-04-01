@@ -4,8 +4,8 @@ import axios from 'axios';
 
 import getDirections from 'react-native-google-maps-directions'
 
-import Card from './Card';
-import CardSection from './CardSection';
+//import Card from './Card';
+//import CardSection from './CardSection';
 
 
 class Property extends Component {
@@ -19,7 +19,6 @@ class Property extends Component {
             description: ''
         }
     }
-    
 
     componentWillMount = () => {
         
@@ -66,7 +65,7 @@ class Property extends Component {
 
         return (
             <ScrollView>
-                <Card>
+             {/*}   <Card>
                     <CardSection>
                         <Image style={styles.imageStyle} source={{ uri: img }} />
                     </CardSection>
@@ -80,7 +79,7 @@ class Property extends Component {
                             <Text>{this.state.description}</Text>
                         </View>
                     </CardSection>
-                </Card>
+                </Card> */ }
             </ScrollView>
         );
     }

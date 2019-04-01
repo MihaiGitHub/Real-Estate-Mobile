@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import axios from 'axios';
-import PropertyDetail from './PropertyDetail';
+
+import { Avatar, Badge, Icon, withBadge, Tile, Grid, Row } from 'react-native-elements'
+import { Scene, Router, Actions } from 'react-native-router-flux';
 
 class PropertyList extends Component {
     // Initialize state
@@ -26,16 +28,40 @@ class PropertyList extends Component {
     }
 
     renderProperties() {
-        // Map over array of properties and return one item detail component
         return this.state.properties.map(property => 
-            <PropertyDetail key={property.title} propertyProp={property} />
+            <Tile key={property.title} onPress={() => Actions.propertyView({ id: property.pId })}
+                imageContainerStyle={{ height: 230 }}
+                imageSrc={{uri: property.pImage == null ? "https://naszpolskidom.azurewebsites.net/dashboard/img/house.gif" : `https://naszpolskidom.azurewebsites.net${property.pImage}`}}
+                title={`$${property.price}`}
+                contentContainerStyle={{ height: 130 }}
+                height={240}
+                titleStyle={{ color: property.pImage == null ? 'black' : 'white' }}
+            >
+                <View style={{
+                            flex: 1,
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'stretch',
+                }}>
+                        <View style={{ height: 20 }}>
+                            <Text style={{ color: property.pImage == null ? 'black' : 'white' }}>
+                                {property.bedroom} Beds   {property.bathroom} Baths   {property.land_area} land area
+                            </Text>
+                        </View>
+                        <View style={{ height: 20 }}>
+                            <Text style={{ color: property.pImage == null ? 'black' : 'white' }}>
+                                {property.location}
+                            </Text>
+                        </View>
+                </View>
+            </Tile>
         );
     }
 
     render() {
         console.log(this.state);
 
-        return ( // Everything inside this view is scrollable
+        return (
             <ScrollView>
                 {this.renderProperties()}
             </ScrollView>

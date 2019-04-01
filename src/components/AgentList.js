@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView, Text, FlatList } from 'react-native';
 import axios from 'axios';
-import AgentItem from './AgentItem';
+import { ListItem } from 'react-native-elements'
 
 class AgentList extends Component {
     state = { agents: [] };
 
-    // Anytime that the component is about to render this lifecycle method will be called
     componentWillMount() {
         // Returns a promise that .then will be called once the http call is complete
         axios.get('https://naszpolskidom.azurewebsites.net/agents-list.php')
@@ -16,18 +15,24 @@ class AgentList extends Component {
             });
     }
 
-    renderAgents() {
-        console.log('render agents', this.state)
-       // Map over array of properties and return one item detail component
-        return this.state.agents.map(agent => 
-            <AgentItem key={agent.id} agentProp={agent} />
-        );        
-    }
+   keyExtractor = (item, index) => index.toString()
+
+   renderItem = ({ item }) => (
+     <ListItem
+       title={`${item.fname} ${item.lname}`}
+       subtitle={"Certified Agent"}
+       leftAvatar={{ source: { uri: "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg" } }}
+     />
+   )
 
     render() {
-        return ( // Everything inside this view is scrollable
+        return (
             <ScrollView>
-                {this.renderAgents()}
+                <FlatList
+                    keyExtractor={this.keyExtractor}
+                    data={this.state.agents}
+                    renderItem={this.renderItem}
+                />
             </ScrollView>
         );
     }
