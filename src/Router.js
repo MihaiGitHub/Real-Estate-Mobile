@@ -4,7 +4,7 @@ import { Scene, Router, Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import PropertyList from './components/PropertyList';
-import Property from './components/Property';
+import PropertyDetail from './components/PropertyDetail';
 import AgentList from './components/AgentList';
 import MyProfile from './components/MyProfile';
 import About from './components/About';
@@ -40,7 +40,7 @@ const RouterComponent = () => {
                     {/* Tab and it's scenes */}
                     <Scene key="osu" title="Properties" icon={Properties}>
                         <Scene initial key="propertyList" component={PropertyList} title="Property List" />
-                        <Scene key="propertyView" component={Property} title="View Property" />
+                        <Scene key="propertyView" component={PropertyDetail} title="View Property" />
                     </Scene>
 
                     {/* Tab and it's scenes */}
