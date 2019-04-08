@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import PropertyList from './components/PropertyList';
 import PropertyDetail from './components/PropertyDetail';
 import AgentList from './components/AgentList';
+import AgentDetail from './components/AgentDetail';
 import MyProfile from './components/MyProfile';
 import About from './components/About';
 
@@ -46,6 +47,7 @@ const RouterComponent = () => {
                     {/* Tab and it's scenes */}
                     <Scene key="um" title="Agents" icon={Agents}>
                         <Scene key="agentList" component={AgentList} title="Agent List" />
+                        <Scene key="agentDetail" component={AgentDetail} title="Agent Detail" />
                     </Scene>
 
                     {/* Tab and it's scenes */}
