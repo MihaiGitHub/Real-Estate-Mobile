@@ -9,6 +9,8 @@ import AgentList from './components/AgentList';
 import AgentDetail from './components/AgentDetail';
 import MyProfile from './components/MyProfile';
 import About from './components/About';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsUse from './components/TermsUse';
 
 const properties = (<Icon name="ios-home" size={30} color="#808080" />)
 const agents = (<Icon name="md-contacts" size={30} color="#808080" />)
@@ -54,6 +56,8 @@ const RouterComponent = () => {
                     <Scene key="vu" title="My HomeSquare" icon={Profile}>
                         <Scene key="profile" component={MyProfile} title="My HomeSquare" />
                         <Scene key="about" component={About} title="About" />
+                        <Scene key="privacy" component={PrivacyPolicy} title="Privacy Policy" />
+                        <Scene key="terms" component={TermsUse} title="Terms of Use" />
                     </Scene>
                 </Scene>
             </Scene>
