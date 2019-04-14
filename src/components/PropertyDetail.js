@@ -3,6 +3,7 @@ import { ScrollView, Text, Image, View } from 'react-native';
 import axios from 'axios';
 import getDirections from 'react-native-google-maps-directions'
 import { Card, ListItem, Button, Icon, Tile } from 'react-native-elements'
+import {Grid, Row} from 'react-native-elements';
 import GLOBALS from './common/Globals';
 
 class PropertyDetail extends Component {
@@ -11,18 +12,14 @@ class PropertyDetail extends Component {
         super(props);
 
         this.state = {
-            property: [],
-            url: '',
-            description: ''
+            property: {}
         }
     }
 
     componentWillMount = () => {
-        
         axios.get(`${GLOBALS.BASE_URL}/properties.php?data=propertyDetail&id=${this.props.id}`)
-            .then(response => this.setState({ 
-                url: response.data.property[0].pImage, 
-                description: response.data.property[0].description
+            .then(response => this.setState({
+                property: response.data.property[0]
             }))
             .catch(function (error) {
                 console.log(error);
@@ -31,22 +28,18 @@ class PropertyDetail extends Component {
 
     handleGetDirections = () => {
         const data = {
-           source: {
-            latitude: -33.8356372,
-            longitude: 18.6947617
-          },
           destination: {
-            latitude: -33.8600024,
-            longitude: 18.697459
+            latitude: parseFloat(this.state.property.latitude, 10),
+            longitude: parseFloat(this.state.property.longitude, 10)
           },
           params: [
             {
               key: "travelmode",
-              value: "driving"        // may be "walking", "bicycling" or "transit" as well
+              value: "driving" // may be "walking", "bicycling" or "transit" as well
             },
             {
               key: "dir_action",
-              value: "navigate"       // this instantly initializes navigation using the given travel mode 
+              value: "navigate" // this instantly initializes navigation using the given travel mode 
             }
           ]
         }
@@ -55,20 +48,16 @@ class PropertyDetail extends Component {
       }   
 
     render() {
-     
-      console.log(this.state.url);
-      console.log('this.props ', this.props)
 
-        let img = `${GLOBALS.BASE_URL}${this.state.url}`;
+        let img = `${GLOBALS.BASE_URL}${this.state.property.pImage}`;
 
         return (
-            <ScrollView>
+            <View>
                 <Tile
                     imageContainerStyle={{ height: 230 }}
                     imageSrc={{ uri: img }}
-                //    title="title"
-                    contentContainerStyle={{ height: 100 }}
-                    height={300}
+                    contentContainerStyle={{ height: 65 }}
+                    height={370}
                     titleStyle={{ color: 'black'  }}
                 >
                     <View style={{
@@ -77,25 +66,27 @@ class PropertyDetail extends Component {
                                 justifyContent: 'center',
                                 alignItems: 'stretch',
                     }}>
-                            <View style={{ height: 20 }}>
+                            <View>
+                                <Button onPress={this.handleGetDirections} title="Get Directions" />
+                            </View>
+                            <View>
                                 <Text style={{ color: 'black' }}>
-                                    Beds  Baths land area
-                                </Text>
-                        {/*       <Button onPress={this.handleGetDirections} title="Get Directions" /> */}
-                            </View>
-                            <View style={{ height: 20 }}>
-                                <Text style={{ color:'black' }}>
-                                    location
+                                    {this.state.property.bedroom} Beds {this.state.property.bathroom} Baths
                                 </Text>
                             </View>
-                            <View style={{ height: 20 }}>
+                            <View>
                                 <Text style={{ color:'black' }}>
-                                    {this.state.description}
+                                    {this.state.property.location}
+                                </Text>
+                            </View>
+                            <View>
+                                <Text style={{ color:'black' }}>
+                                    {this.state.property.description}
                                 </Text>
                             </View>
                     </View>
                 </Tile>
-            </ScrollView>
+            </View>
         );
     }
 }
