@@ -3,7 +3,6 @@ import { ScrollView, Text, Image, View } from 'react-native';
 import axios from 'axios';
 import getDirections from 'react-native-google-maps-directions'
 import { Card, ListItem, Button, Icon, Tile } from 'react-native-elements'
-import {Grid, Row} from 'react-native-elements';
 import GLOBALS from './common/Globals';
 
 class PropertyDetail extends Component {
@@ -67,7 +66,11 @@ class PropertyDetail extends Component {
                                 alignItems: 'stretch',
                     }}>
                             <View>
-                                <Button onPress={this.handleGetDirections} title="Get Directions" />
+                                <Button 
+                                    icon={<Icon name='directions' color='#ffffff' />}
+                                    onPress={this.handleGetDirections} 
+                                    title=" Directions" 
+                                />
                             </View>
                             <View>
                                 <Text style={{ color: 'black' }}>
