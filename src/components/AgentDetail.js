@@ -3,6 +3,7 @@ import { ScrollView, Text, Image, View } from 'react-native';
 import axios from 'axios';
 import { Card, ListItem, Button, Icon, Tile } from 'react-native-elements'
 import call from 'react-native-phone-call';
+import GLOBALS from './common/Globals';
 
 class AgentDetail extends Component {
     
@@ -15,7 +16,7 @@ class AgentDetail extends Component {
     }
 
     componentWillMount = () => {        
-        axios.get(`https://naszpolskidom.azurewebsites.net/agents-api.php?data=agentDetail&id=${this.props.id}`)
+        axios.get(`${GLOBALS.BASE_URL}/agents-api.php?data=agentDetail&id=${this.props.id}`)
             .then(response => this.setState({
                 agent: response.data.agent
             }))
@@ -34,10 +35,11 @@ class AgentDetail extends Component {
     };
 
     render() {
+        // Show loading while state agent picture not there
         if(this.state.agent.picture){
-            var img = `https://naszpolskidom.azurewebsites.net/${this.state.agent.picture}`;
+            var img = `${GLOBALS.BASE_URL}/${this.state.agent.picture}`;
         } else {
-            var img = "https://naszpolskidom.azurewebsites.net/dashboard/img/profile.jpg";
+            var img = `${GLOBALS.BASE_URL}/dashboard/img/profile.jpg`;
         }
 
         return (

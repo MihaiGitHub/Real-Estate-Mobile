@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import axios from 'axios';
-
 import { Avatar, Badge, Icon, withBadge, Tile, Grid, Row } from 'react-native-elements'
 import { Scene, Router, Actions } from 'react-native-router-flux';
+import GLOBALS from './common/Globals';
 
 class PropertyList extends Component {
-    // Initialize state
-    state = { properties: [] };
 
-    // Anytime that the component is about to render this lifecycle method will be called
+    state = { 
+        properties: []
+    };
+
     componentWillMount() {
         // Returns a promise that .then will be called once the http call is complete
         var bodyFormData = new FormData();
@@ -17,7 +18,7 @@ class PropertyList extends Component {
 
         axios({
             method: 'post',
-            url: 'https://naszpolskidom.azurewebsites.net/properties.php',
+            url: `${GLOBALS.BASE_URL}/properties.php`,
             data: bodyFormData,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
             })
@@ -31,7 +32,7 @@ class PropertyList extends Component {
         return this.state.properties.map(property => 
             <Tile key={property.title} onPress={() => Actions.propertyView({ id: property.pId })}
                 imageContainerStyle={{ height: 230 }}
-                imageSrc={{uri: property.pImage == null ? "https://naszpolskidom.azurewebsites.net/dashboard/img/house.gif" : `https://naszpolskidom.azurewebsites.net${property.pImage}`}}
+                imageSrc={{uri: property.pImage == null ? `${GLOBALS.BASE_URL}/dashboard/img/house.gif` : `${GLOBALS.BASE_URL}${property.pImage}`}}
                 title={`$${property.price}`}
                 contentContainerStyle={{ height: 130 }}
                 height={240}
@@ -59,8 +60,6 @@ class PropertyList extends Component {
     }
 
     render() {
-        console.log(this.state);
-
         return (
             <ScrollView>
                 {this.renderProperties()}

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, Image, View } from 'react-native';
 import axios from 'axios';
-
 import getDirections from 'react-native-google-maps-directions'
 import { Card, ListItem, Button, Icon, Tile } from 'react-native-elements'
+import GLOBALS from './common/Globals';
 
 class PropertyDetail extends Component {
     
@@ -15,20 +15,18 @@ class PropertyDetail extends Component {
             url: '',
             description: ''
         }
-
     }
 
     componentWillMount = () => {
         
-        axios.get(`https://naszpolskidom.azurewebsites.net/properties.php?data=propertyDetail&id=${this.props.id}`)
+        axios.get(`${GLOBALS.BASE_URL}/properties.php?data=propertyDetail&id=${this.props.id}`)
             .then(response => this.setState({ 
                 url: response.data.property[0].pImage, 
                 description: response.data.property[0].description
             }))
-            .catch(function (error) { alert('failed');
+            .catch(function (error) {
                 console.log(error);
-            });
-            
+            });  
     }
 
     handleGetDirections = () => {
@@ -61,7 +59,7 @@ class PropertyDetail extends Component {
       console.log(this.state.url);
       console.log('this.props ', this.props)
 
-        let img = `https://naszpolskidom.azurewebsites.net${this.state.url}`;
+        let img = `${GLOBALS.BASE_URL}${this.state.url}`;
 
         return (
             <ScrollView>
