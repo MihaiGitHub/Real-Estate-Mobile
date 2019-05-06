@@ -6,6 +6,7 @@ import { ListItem } from 'react-native-elements'
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import GLOBALS from './common/Globals';
 import { agentsFetch } from '../actions';
+import { Spinner } from './common/Spinner';
 
 class AgentList extends Component {
 
@@ -32,13 +33,17 @@ class AgentList extends Component {
         return (
             <FlatList
                 keyExtractor={this.keyExtractor}
-                data={this.props.agents}
+                data={this.props.list}
                 renderItem={this.renderItem}
             />
         );
     }
 
     render() {
+        if(this.props.loading){
+            return <Spinner size="large" />;
+        }
+
         return (
             <ScrollView>
                 {this.renderAgents()}
@@ -48,11 +53,9 @@ class AgentList extends Component {
 }
 
 const mapStateToProps = state => {
-    const agents = _.map(state.agents, (val, uid) => {
-        return { ...val, uid };
-    });
+    const { list, loading } = state.agents;
 
-    return { agents };
+    return { list, loading };
 };
 
 // Anytime state updates, connect helper will rerun mapStateToProps to make it available as props in component

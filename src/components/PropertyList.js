@@ -6,14 +6,15 @@ import { Avatar, Badge, Icon, withBadge, Tile, Grid, Row } from 'react-native-el
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import GLOBALS from './common/Globals';
 import { propertiesFetch } from '../actions';
+import { Spinner } from './common/Spinner';
 
 class PropertyList extends Component {
     componentWillMount() {
         this.props.propertiesFetch();
     }
 
-    renderProperties() {        
-        return this.props.properties.map((property, index) =>
+    renderProperties() {
+        return this.props.list.map((property, index) =>
             <Tile 
                 key={index} 
                 onPress={() => Actions.propertyView({ id: property.pId })}
@@ -41,11 +42,15 @@ class PropertyList extends Component {
                             </Text>
                         </View>
                 </View>
-            </Tile>
-        );        
+            </Tile> 
+        );
     }
 
-    render() {
+    render() {        
+        if(this.props.loading){
+            return <Spinner size="large" />;
+        }
+
         return (
             <ScrollView>
               {this.renderProperties()}
@@ -55,11 +60,9 @@ class PropertyList extends Component {
 }
 
 const mapStateToProps = state => {
-    const properties = _.map(state.properties, (val, uid) => {
-        return { ...val, uid };
-    });
+    const { list, loading } = state.properties;
 
-    return { properties };
+    return { list, loading };
 };
 
 // Anytime state updates, connect helper will rerun mapStateToProps to make it available as props in component
