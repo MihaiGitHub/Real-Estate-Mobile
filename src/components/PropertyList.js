@@ -1,49 +1,56 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
-import { ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Avatar, Badge, Icon, withBadge, Tile, Grid, Row } from 'react-native-elements'
 import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Image } from 'react-native';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body, Right } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import GLOBALS from './common/Globals';
 import { propertiesFetch } from '../actions';
 import { Spinner } from './common/Spinner';
 
 class PropertyList extends Component {
+
     componentWillMount() {
         this.props.propertiesFetch();
     }
 
-    renderProperties() {
-        return this.props.list.map((property, index) =>
-            <Tile 
-                key={index} 
-                onPress={() => Actions.propertyView({ id: property.pId })}
-                imageContainerStyle={{ height: 230 }}
-                imageSrc={{uri: property.pImage == null ? `${GLOBALS.BASE_URL}/dashboard/img/house.gif` : `${GLOBALS.BASE_URL}${property.pImage}`}}
-                title={`$${property.price}`}
-                contentContainerStyle={{ height: 130 }}
-                height={240}
-                titleStyle={{ color: property.pImage == null ? 'black' : 'white' }}
-            >
-                <View style={{
-                    flex: 1,
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'stretch',
-                }}>
-                        <View style={{ height: 20 }}>
-                            <Text style={{ color: property.pImage == null ? 'black' : 'white' }}>
-                                {property.bedroom} Beds   {property.bathroom} Baths   {property.land_area} land area
-                            </Text>
-                        </View>
-                        <View style={{ height: 20 }}>
-                            <Text style={{ color: property.pImage == null ? 'black' : 'white' }}>
-                                {property.location}
-                            </Text>
-                        </View>
-                </View>
-            </Tile> 
-        );
+    renderProperties(){
+        return this.props.list.map(property => {
+            return (
+                <Card key={property.pId}>
+                    <CardItem>
+                    <Left>
+                        <Body>
+                            <Text>${property.price}</Text>
+                            <Text note>{property.location}</Text>
+                        </Body>
+                    </Left>
+                    </CardItem>
+                    <CardItem cardBody button onPress={() => Actions.propertyView({ id: property.pId })}>
+                        <Image 
+                            source={{uri: property.pImage == null ? `${GLOBALS.BASE_URL}/dashboard/img/house.gif` : `${GLOBALS.BASE_URL}${property.pImage}`}} 
+                            style={{height: 200, width: null, flex: 1}} />
+                    </CardItem>
+                    <CardItem>
+                    <Left>
+                        <Button transparent>
+                        <Icon active name="bed" size={20} />
+                        <Text style={{ color: '#808080' }}>{property.bedroom} Beds</Text>
+                        </Button>
+                    </Left>
+                    <Body>
+ 
+                    </Body>
+                    <Right>
+                        <Button transparent>
+                            <Icon active name="bath" size={20} />
+                            <Text style={{ color: '#808080' }}>{property.bathroom} Baths</Text>
+                        </Button>
+                    </Right>
+                    </CardItem>
+                </Card>
+            );
+        });
     }
 
     render() {        
@@ -52,9 +59,11 @@ class PropertyList extends Component {
         }
 
         return (
-            <ScrollView>
-              {this.renderProperties()}
-            </ScrollView>
+            <Container>
+                <Content>
+                    {this.renderProperties()}
+                </Content>
+            </Container>
         );
     }
 }

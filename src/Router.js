@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import PropertyList from './components/PropertyList';
 import PropertyDetail from './components/PropertyDetail';
@@ -12,9 +12,9 @@ import About from './components/About';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsUse from './components/TermsUse';
 
-const properties = (<Icon name="ios-home" size={30} color="#808080" />)
-const agents = (<Icon name="md-contacts" size={30} color="#808080" />)
-const profile = (<Icon name="md-person" size={30} color="#808080" />)
+const properties = (<Icon name="home" size={30} color="#808080" />)
+const agents = (<Icon name="id-card" size={30} color="#808080" />)
+const profile = (<Icon name="user-tie" size={30} color="#808080" />)
 
 const Properties = ({ selected, title }) => {
     return (

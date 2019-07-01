@@ -9,9 +9,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
+    "native-base": "^2.12.1",
     "react": "16.8.3",
     "react-native": "0.59.8",
-    "react-native-elements": "^1.1.0",
     "react-native-google-maps-directions": "^2.1.0",
     "react-native-phone-call": "^1.0.9",
     "react-native-router-flux": "^4.0.6",

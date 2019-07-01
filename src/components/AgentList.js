@@ -1,12 +1,10 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
-import { ScrollView, Text, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem } from 'react-native-elements'
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import GLOBALS from './common/Globals';
 import { agentsFetch } from '../actions';
 import { Spinner } from './common/Spinner';
+import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 
 class AgentList extends Component {
 
@@ -14,29 +12,20 @@ class AgentList extends Component {
         this.props.agentsFetch();
     }
 
-    keyExtractor = (item, index) => index.toString()
-
-    renderItem = ({ item }) => (
-        <ListItem
-        title={`${item.fname} ${item.lname}`}
-        onPress={() => Actions.agentDetail({ id: item.id})}
-        subtitle={"Certified Agent"}
-        leftAvatar={{
-            source: {
-                uri: (item.picture == '') ? `${GLOBALS.BASE_URL}/dashboard/img/profile.jpg` : `${GLOBALS.BASE_URL}/${item.picture}`
-            }
-        }}
-        />
-    )
-
-    renderAgents(){
-        return (
-            <FlatList
-                keyExtractor={this.keyExtractor}
-                data={this.props.list}
-                renderItem={this.renderItem}
-            />
-        );
+    renderList() {
+        return this.props.list.map(agent => {
+            return (
+                <ListItem avatar key={agent.id} onPress={() => Actions.agentDetail({ id: agent.id})}>
+                    <Left>
+                        <Thumbnail source={{ uri: (agent.picture == '') ? `${GLOBALS.BASE_URL}/dashboard/img/profile.jpg` : `${GLOBALS.BASE_URL}/${agent.picture}` }} />
+                    </Left>
+                    <Body>
+                        <Text>{agent.fname} {agent.lname}</Text>
+                        <Text note>Certified Agent</Text>
+                    </Body>
+                </ListItem>
+            );
+        });
     }
 
     render() {
@@ -45,9 +34,13 @@ class AgentList extends Component {
         }
 
         return (
-            <ScrollView>
-                {this.renderAgents()}
-            </ScrollView>
+            <Container>
+                <Content>
+                    <List>
+                        {this.renderList()}
+                    </List>
+                </Content>
+            </Container>
         );
     }
 }

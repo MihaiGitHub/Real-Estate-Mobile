@@ -1,32 +1,48 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View, Button } from 'react-native';
-import { ListItem } from 'react-native-elements'
 import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Button, Container, Header, Content, List, ListItem, Text, Left, Body, Right, Switch } from 'native-base';
+import Icon from "react-native-vector-icons/Ionicons";
 
 class MyProfile extends Component {
-
     render() {
         return (
-            <View>
-                <ListItem
-                    key="1"
-                    title="About"
-                    leftIcon={{ name: "info" }}
-                    onPress={() => Actions.about()}
-                />
-                <ListItem
-                    key="2"
-                    title="Privacy Policy"
-                    leftIcon={{ name: "find-in-page" }}
-                    onPress={() => Actions.privacy()}
-                />
-                <ListItem
-                    key="3"
-                    title="Terms of Use"
-                    leftIcon={{ name: "description" }}
-                    onPress={() => Actions.terms()}
-                />
-            </View>
+            <Container>
+                <Content>
+                <ListItem icon onPress={() => Actions.about()}>
+                    <Left>
+                        <Icon name={"md-information-circle"} size={25} />
+                    </Left>
+                    <Body>
+                        <Text>About</Text>
+                    </Body>
+                    <Right>
+                        <Icon active name="md-arrow-forward" />
+                    </Right>
+                </ListItem>
+                <ListItem icon onPress={() => Actions.privacy()}>
+                    <Left>
+                        <Icon name={"md-paper"} size={25} />
+                    </Left>
+                    <Body>
+                        <Text>Privacy Policy</Text>
+                    </Body>
+                    <Right>
+                        <Icon active name="md-arrow-forward" />
+                    </Right>
+                </ListItem>
+                <ListItem icon onPress={() => Actions.terms()}>
+                    <Left>
+                        <Icon name={"md-book"} size={25} />
+                    </Left>
+                    <Body>
+                        <Text>Terms of Use</Text>
+                    </Body>
+                    <Right>
+                        <Icon active name="md-arrow-forward" />
+                    </Right>
+                </ListItem>
+                </Content>
+            </Container>
         );
     }
 }
