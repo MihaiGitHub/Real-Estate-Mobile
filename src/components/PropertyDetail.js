@@ -67,7 +67,6 @@ class PropertyDetail extends Component {
                 <Content>
                     <View style={{flex: 0}}>
                         <SliderBox
-                            circleLoop={true}
                             images={this.state.images}
                             sliderBoxHeight={200}
                             onCurrentImagePressed={index =>
