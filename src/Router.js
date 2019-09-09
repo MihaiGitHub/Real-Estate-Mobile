@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -11,51 +10,52 @@ import MyProfile from './components/MyProfile';
 import About from './components/About';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsUse from './components/TermsUse';
+import NavBarSearch from './components/common/NavBarSearch';
 
-const properties = (<Icon name="home" size={30} color="#808080" />)
-const agents = (<Icon name="id-card" size={30} color="#808080" />)
-const profile = (<Icon name="user-tie" size={30} color="#808080" />)
-
-const Properties = ({ selected, title }) => {
+const Properties = ({ navigation }) => {
     return (
-      <Text style={{color: selected ? 'red' :'black'}}>{properties}</Text>
+        <Icon style={{color: navigation.isFocused() ? '#3f51b5' :'#808080'}} name="home" size={30} />
     );
 }
 
-const Agents = ({ selected, title }) => {
+const Agents = ({ navigation }) => {
     return (
-        <Text style={{color: selected ? 'red' :'black'}}>{agents}</Text>
+        <Icon style={{color: navigation.isFocused() ? '#3f51b5' :'#808080'}} name="id-card" size={30} />
     );
 }
 
-const Profile = ({ selected, title }) => {
+const Profile = ({ navigation }) => {
     return (
-        <Text style={{color: selected ? 'red' :'black'}}>{profile}</Text>
+        <Icon style={{color: navigation.isFocused() ? '#3f51b5' :'#808080'}} name="user-tie" size={30} />
     );
 }
 
 const RouterComponent = () => {
     return (
-        <Router>
+        <Router 
+            backButtonTintColor="#ffffff"
+            backButtonTextStyle={{ color: '#ffffff' }}
+            titleStyle={{ color: '#ffffff', fontWeight: '200' }} 
+            navigationBarStyle={{ backgroundColor: '#3f51b5' }}>
             <Scene key="root" hideNavBar>{/* Hide extra header due to nested scenes */}
                 {/* Tab Container */}
-                <Scene key="tabbar" tabs={true} tabBarStyle={{ backgroundColor: '#FFFFFF' }}>
+                <Scene key="tabbar" tabs={true}>
                     {/* Tab and it's scenes */}
-                    <Scene key="osu" title="Properties" icon={Properties}>
-                        <Scene initial key="propertyList" component={PropertyList} title="Property List" />
-                        <Scene key="propertyView" component={PropertyDetail} title="View Property" />
+                    <Scene title="Properties" key="osu" icon={Properties}>
+                        <Scene navBar={NavBarSearch} initial key="propertyList" component={PropertyList} title="Property List" />
+                        <Scene hideNavBar key="propertyView" component={PropertyDetail} title="View Property" />
                     </Scene>
 
                     {/* Tab and it's scenes */}
-                    <Scene key="um" title="Agents" icon={Agents}>
+                    <Scene title="Agents" key="um" icon={Agents}>
                         <Scene key="agentList" component={AgentList} title="Agent List" />
-                        <Scene key="agentDetail" component={AgentDetail} title="Agent Detail" />
+                        <Scene key="agentDetail" component={AgentDetail} title="Agent Info" />
                     </Scene>
 
                     {/* Tab and it's scenes */}
-                    <Scene key="vu" title="My HomeSquare" icon={Profile}>
+                    <Scene title="My HomeSquare" key="vu" icon={Profile}>
                         <Scene key="profile" component={MyProfile} title="My HomeSquare" />
-                        <Scene key="about" component={About} title="About" />
+                        <Scene key="about" component={About} title="About HomeSquare" />
                         <Scene key="privacy" component={PrivacyPolicy} title="Privacy Policy" />
                         <Scene key="terms" component={TermsUse} title="Terms of Use" />
                     </Scene>

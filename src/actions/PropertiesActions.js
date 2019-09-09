@@ -1,6 +1,5 @@
-import { Actions } from 'react-native-router-flux';
 import {
-    PROPERTIES_FETCH_SUCCESS
+    PROPERTIES_FETCH_SUCCESS, PROPERTIES_FILTERED
 } from './types';
 import axios from 'axios';
 import GLOBALS from '../components/common/Globals';
@@ -25,5 +24,14 @@ export const propertiesFetch = () => {
             .catch(function (response) {
                 console.log(response);
             }); 
+    }
+}
+
+export const propertiesFiltered = properties => {
+    return (dispatch) => {
+        dispatch({ 
+            type: PROPERTIES_FILTERED,
+            payload: properties
+        });
     }
 }

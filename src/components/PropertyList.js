@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import { Image } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body, Right } from 'native-base';
+import { Container, Content, Card, CardItem, Text, Body } from 'native-base';
 import GLOBALS from './common/Globals';
 import { propertiesFetch } from '../actions';
 import { Spinner } from './common/Spinner';
@@ -14,7 +14,7 @@ class PropertyList extends Component {
     }
 
     renderProperties(){
-        return this.props.list.map(property => {
+        return this.props.listFiltered.map(property => {
             return (
                 <Card key={property.pId} style={{ flex: 0 }}>
                     <CardItem cardBody button onPress={() => Actions.propertyView({ id: property.pId })}>
@@ -50,9 +50,9 @@ class PropertyList extends Component {
 }
 
 const mapStateToProps = state => {
-    const { list, loading } = state.properties;
+    const { listFiltered, loading } = state.properties;
 
-    return { list, loading };
+    return { listFiltered, loading };
 };
 
 // Anytime state updates, connect helper will rerun mapStateToProps to make it available as props in component
