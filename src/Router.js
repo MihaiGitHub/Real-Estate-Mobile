@@ -2,14 +2,14 @@ import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import PropertyList from './components/PropertyList';
-import PropertyDetail from './components/PropertyDetail';
-import AgentList from './components/AgentList';
-import AgentDetail from './components/AgentDetail';
-import MyProfile from './components/MyProfile';
-import About from './components/About';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import TermsUse from './components/TermsUse';
+import PropertyList from './components/properties/PropertyList';
+import PropertyDetail from './components/properties/PropertyDetail';
+import AgentList from './components/agents/AgentList';
+import AgentDetail from './components/agents/AgentDetail';
+import MyProfile from './components/profile/MyProfile';
+import About from './components/profile/About';
+import PrivacyPolicy from './components/profile/PrivacyPolicy';
+import TermsUse from './components/profile/TermsUse';
 import NavBarSearch from './components/common/NavBarSearch';
 
 const Properties = ({ navigation }) => {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import GLOBALS from './common/Globals';
-import { agentsFetch } from '../actions';
-import { Spinner } from './common/Spinner';
+import GLOBALS from '../common/Globals';
+import { agentsFetch } from '../../actions';
+import { Spinner } from '../common/Spinner';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 
 class AgentList extends Component {

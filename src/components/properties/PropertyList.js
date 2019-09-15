@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Image } from 'react-native';
 import { Container, Content, Card, CardItem, Text, Body } from 'native-base';
-import GLOBALS from './common/Globals';
-import { propertiesFetch } from '../actions';
-import { Spinner } from './common/Spinner';
+import GLOBALS from '../common/Globals';
+import { propertiesFetch } from '../../actions';
+import { Spinner } from '../common/Spinner';
 
 class PropertyList extends Component {
 

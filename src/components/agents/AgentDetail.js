@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body } from 'native-base';
 import call from 'react-native-phone-call';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import GLOBALS from './common/Globals';
+import GLOBALS from '../common/Globals';
 import SCREEN_IMPORT from 'Dimensions'
   
 const SCREEN_WIDTH = SCREEN_IMPORT.get('window').width;

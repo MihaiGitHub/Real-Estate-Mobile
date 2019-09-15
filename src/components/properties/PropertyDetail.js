@@ -5,7 +5,7 @@ import getDirections from 'react-native-google-maps-directions';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { SliderBox } from 'react-native-image-slider-box';
-import GLOBALS from './common/Globals';
+import GLOBALS from '../common/Globals';
 import SCREEN_IMPORT from 'Dimensions';
 
 const SCREEN_WIDTH = SCREEN_IMPORT.get('window').width;

@@ -25,7 +25,6 @@ class NavBarSearch extends Component {
                 <CardSection>
                   
                   <SearchInput
-                    placeholder="Address or city" 
                     onChangeText={this.onTextChange.bind(this)} />
                   
                 </CardSection>
