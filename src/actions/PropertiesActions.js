@@ -1,5 +1,5 @@
 import {
-    PROPERTIES_FETCH_SUCCESS, PROPERTIES_FILTERED
+    PROPERTIES_FETCH_SUCCESS, PROPERTIES_FILTERED, PROPERTY_FETCH_SUCCESS
 } from './types';
 import axios from 'axios';
 import GLOBALS from '../components/common/Globals';
@@ -24,6 +24,21 @@ export const propertiesFetch = () => {
             .catch(function (response) {
                 console.log(response);
             }); 
+    }
+}
+
+export const propertyFetch = (id) => {
+    return (dispatch) => {        
+        axios.get(`${GLOBALS.BASE_URL}/properties.php?data=propertyDetail&id=${id}`)
+            .then(response => {
+                dispatch({ 
+                    type: PROPERTY_FETCH_SUCCESS,
+                    payload: response.data.property[0]
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 }
 

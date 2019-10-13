@@ -1,50 +1,42 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Image, View } from 'react-native';
-import axios from 'axios';
 import getDirections from 'react-native-google-maps-directions';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { SliderBox } from 'react-native-image-slider-box';
 import GLOBALS from '../common/Globals';
 import SCREEN_IMPORT from 'Dimensions';
+import { propertyFetch } from '../../actions';
+import { Spinner } from '../common/Spinner';
 
 const SCREEN_WIDTH = SCREEN_IMPORT.get('window').width;
 
 class PropertyDetail extends Component {
-    
-    state = {
-        property: {},
-        images: []
-    }
 
     componentWillMount = () => {
-        axios.get(`${GLOBALS.BASE_URL}/properties.php?data=propertyDetail&id=${this.props.id}`)
-            .then(response => {
-                if(response.data.property[0].pImage){
-                    arr = response.data.property[0].pImage.map(i => `${GLOBALS.BASE_URL}` + i);
+        this.props.propertyFetch(this.props.id); 
+    }
 
-                    this.setState({
-                        property: response.data.property[0],
-                        images: arr
-                    })
-                } else {
-                    this.setState({
-                        property: response.data.property[0],
-                        images: [`${GLOBALS.BASE_URL}/dashboard/img/house.gif`]
-                    })
-                }  
-                
-            })
-            .catch(function (error) {
-                console.log(error);
-            });  
+    handleFeatures = () => {
+        if(this.props.property.features){
+            let features = this.props.property.features.split(",");
+
+            return features.map(feature => {
+                return (
+                    <Text key={feature} style={{ paddingBottom: 5, minWidth: '50%', textAlign: 'left' }}>
+                        -{feature}
+                    </Text>
+                );
+            });
+        }
     }
 
     handleGetDirections = () => {
         const data = {
           destination: {
-            latitude: parseFloat(this.state.property.latitude, 10),
-            longitude: parseFloat(this.state.property.longitude, 10)
+            latitude: parseFloat(this.props.property.latitude, 10),
+            longitude: parseFloat(this.props.property.longitude, 10)
           },
           params: [
             {
@@ -62,39 +54,59 @@ class PropertyDetail extends Component {
     }
 
     render() {
+        if(this.props.loadingProperty){
+            return <Spinner size="large" />;
+        }
+        
+        if(this.props.property.pImage){
+            images = this.props.property.pImage.map(i => `${GLOBALS.BASE_URL}` + i);
+        } else {
+            images = [`${GLOBALS.BASE_URL}/dashboard/img/house.gif`];
+        }
+
         return (
             <Container>
                 <Content>
-                    <View style={{flex: 0}}>
-                        <SliderBox
-                            images={this.state.images}
-                            sliderBoxHeight={200}
-                            onCurrentImagePressed={index =>
-                                console.log(`image ${index} pressed`)
-                            }
-                            dotColor="#FFEE58"
-                            inactiveDotColor="#90A4AE"
-                        />
+                <View style={{flex: 0}}>
+                    <SliderBox
+                        images={images}
+                        sliderBoxHeight={200}
+                        onCurrentImagePressed={index =>
+                            console.log(`image ${index} pressed`)
+                        }
+                        dotColor="#FFEE58"
+                        inactiveDotColor="#90A4AE"
+                    />
                     </View>
                     <Card style={{flex: 0}}>
-                        <CardItem>
-                            <Body>
+                    <CardItem>
+                            <Body style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+                                <Text style={{ fontSize: 26, fontWeight: '500', minWidth: '65%' }}>
+                                    ${this.props.property.price}
+                                </Text>
+                                <Text style={{ marginTop: 5, minWidth: '35%', textAlign: 'right' }}>
+                                    {this.props.property.bedroom} Beds {this.props.property.bathroom} Baths
+                                </Text>
+                                <Text style={{ marginBottom: 5, minWidth: '100%' }}>
+                                    {this.props.property.location}
+                                </Text>
                                 <Button
                                     full
                                     info 
                                     onPress={this.handleGetDirections} 
-                                    style={{ marginBottom: 5 }}>
+                                    style={{ marginBottom: 5, minWidth: '100%' }}>
                                 <Icon active name="directions" size={25} color="#ffffff" />
                                 <Text>GET DIRECTIONS</Text>
                                 </Button>
-                                <Text style={{ marginTop: 5 }}>
-                                    {this.state.property.bedroom} Beds {this.state.property.bathroom} Baths
+                                <Text style={{ fontSize: 19, paddingBottom: 5, minWidth: '100%', fontWeight: '400' }}>
+                                    Features
                                 </Text>
-                                <Text style={{ marginBottom: 5 }}>
-                                    {this.state.property.location}
+                                {this.handleFeatures()}
+                                <Text style={{ fontSize: 19, paddingBottom: 5, paddingTop: 5, minWidth: '100%', fontWeight: '400' }}>
+                                    About this home
                                 </Text>
-                                <Text>
-                                    {this.state.property.description}
+                                <Text style={{ minWidth: '100%' }}>
+                                    {this.props.property.description}
                                 </Text>
                             </Body>
                         </CardItem>
@@ -105,4 +117,11 @@ class PropertyDetail extends Component {
     }
 }
 
-export default PropertyDetail;
+const mapStateToProps = state => {    
+    const { property, loadingProperty } = state.properties;
+
+    return { property, loadingProperty };
+};
+
+// Anytime state updates, connect helper will rerun mapStateToProps to make it available as props in component
+export default connect(mapStateToProps, { propertyFetch })(PropertyDetail);
