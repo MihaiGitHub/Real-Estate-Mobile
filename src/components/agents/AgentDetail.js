@@ -12,11 +12,6 @@ import { Spinner } from '../common/Spinner';
 const SCREEN_WIDTH = SCREEN_IMPORT.get('window').width;
 
 class AgentDetail extends Component {
-    
-    state = {
-        agent: {},
-        imgUrl: `${GLOBALS.BASE_URL}/dashboard/img/profile.jpg`
-    }
 
     componentWillMount = () => {
         this.props.agentFetch(this.props.id);
