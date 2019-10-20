@@ -10,6 +10,7 @@ import MyProfile from './components/profile/MyProfile';
 import About from './components/profile/About';
 import PrivacyPolicy from './components/profile/PrivacyPolicy';
 import TermsUse from './components/profile/TermsUse';
+import Settings from './components/profile/Settings';
 import NavBarSearch from './components/common/NavBarSearch';
 
 const Properties = ({ navigation }) => {
@@ -58,6 +59,7 @@ const RouterComponent = () => {
                         <Scene key="about" component={About} title="About HomeSquare" />
                         <Scene key="privacy" component={PrivacyPolicy} title="Privacy Policy" />
                         <Scene key="terms" component={TermsUse} title="Terms of Use" />
+                        <Scene key="settings" component={Settings} title="Settings" />
                     </Scene>
                 </Scene>
             </Scene>

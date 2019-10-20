@@ -27,7 +27,7 @@ class AgentDetail extends Component {
     };
 
     render() {
-        if(this.props.loadingProperty){
+        if(this.props.loadingAgent){
             return <Spinner size="large" />;
         }
 
