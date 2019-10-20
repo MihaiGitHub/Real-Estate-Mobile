@@ -8,7 +8,7 @@ class Settings extends Component {
         return (
         <Container>
             <Content>
-                <ListItem icon onPress={() => Actions.about()}>
+                <ListItem icon>
                     <Left>
                         <Icon name={"bell"} size={25} />
                     </Left>
