@@ -81,10 +81,10 @@ class PropertyDetail extends Component {
                     <Card style={{flex: 0}}>
                     <CardItem>
                             <Body style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-                                <Text style={{ fontSize: 26, fontWeight: '500', minWidth: '65%' }}>
+                                <Text style={{ fontSize: 26, fontWeight: '500', minWidth: '60%' }}>
                                     ${this.props.property.price}
                                 </Text>
-                                <Text style={{ marginTop: 5, minWidth: '35%', textAlign: 'right' }}>
+                                <Text style={{ marginTop: 5, minWidth: '40%', textAlign: 'right' }}>
                                     {this.props.property.bedroom} Beds {this.props.property.bathroom} Baths
                                 </Text>
                                 <Text style={{ marginBottom: 5, minWidth: '100%' }}>

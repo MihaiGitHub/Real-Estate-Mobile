@@ -1,3 +1,3 @@
 export default {
-    BASE_URL: 'https://naszpolskidom.azurewebsites.net'
+    BASE_URL: 'https://homesquare.000webhostapp.com'
 }

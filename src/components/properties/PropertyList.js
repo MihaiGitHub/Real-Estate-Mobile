@@ -1,41 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
-import { Image, View } from 'react-native';
-import { Container, Content, Card, CardItem, Text, Body, Picker, Icon } from 'native-base';
+import { Container, Content, Picker, Icon } from 'native-base';
 import GLOBALS from '../common/Globals';
 import { propertiesFetch } from '../../actions';
 import { Spinner } from '../common/Spinner';
+import PropertyItem from './PropertyItem';
 
 class PropertyList extends Component {
 
     state = {
-        selected: "key3"
+        selected: "key3",
+        imagesUpdated: false
     }
 
-    componentWillMount() {
+    componentDidMount(){
         this.props.propertiesFetch();
-    }
+    }    
 
-    renderProperties(){
-        return this.props.listFiltered.map(property => {
-            return (
-                <Card key={property.pId} style={{ flex: 0 }}>
-                    <CardItem cardBody button onPress={() => Actions.propertyView({ id: property.pId })}>
-                        <Image 
-                            source={{uri: property.pImage == null ? `${GLOBALS.BASE_URL}/dashboard/img/house.gif` : `${GLOBALS.BASE_URL}${property.pImage}`}} 
-                            style={{height: 200, width: null, flex: 1}} />
-                    </CardItem>
-                    <CardItem>
-                        <Body>
-                            <Text style={{ fontWeight: '600' }}>${property.price}</Text>
-                            <Text>{property.bedroom} beds   {property.bathroom} baths</Text>
-                            <Text>{property.location}</Text>
-                        </Body>
-                    </CardItem>
-                </Card>
-            );
-        });
+    static getDerivedStateFromProps(nextProps, prevState){
+        
+        if(!prevState.imagesUpdated){
+            if(nextProps.listFiltered.length > 0){
+
+                // Code executes only once, updates image URLs
+                // Update listFiltered array on the fly
+                nextProps.listFiltered.map(property => {
+
+                    if(property.pImage.length > 0){
+                        // Property has images
+                        // Update array items on the fly
+                        property.pImage.forEach((item, index, arr) => {
+                            arr[index] = `${GLOBALS.BASE_URL}${item}`;
+                        })
+
+                    } else {
+                       property.pImage.push(`${GLOBALS.BASE_URL}/dashboard/img/house.gif`)
+                    }
+
+                })
+
+                // Updating state from new lifecycle method: getDerivedStateFromProps
+                return { imagesUpdated: true }
+            } 
+        }
+        
+        return null;      
     }
 
     sortHandler = (value) => {
@@ -44,8 +53,12 @@ class PropertyList extends Component {
         }
         
         if (value === 'key2'){
-            this.props.listFiltered.sort((a, b) => (a.price < b.price) ? 1 : -1) 
-        }        
+            this.props.listFiltered.sort((a, b) => (a.price < b.price) ? 1 : -1)
+        }
+
+        if (value === 'key3'){
+            this.props.listFiltered.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1) 
+        }
 
         this.setState({ selected: value });
     }
@@ -60,23 +73,23 @@ class PropertyList extends Component {
                 <Content>
                     
                     <Picker
-                    mode="dropdown"
-                    placeholder="Sort Listings"
-                    iosIcon={<Icon name="arrow-down" />}
-                        style={{ 
-                        width: undefined,
-                        height: 30,
-                        color: '#3f51b5',
-                        }}
-                        selectedValue={this.state.selected}
-                        onValueChange={(value) => this.sortHandler(value)}
-                    >
-                    <Picker.Item label="Price (Low to High)" value="key1" />
-                    <Picker.Item label="Price (High to Low)" value="key2" />
-                    <Picker.Item label="Newest Listings" value="key3" />
+                        mode="dropdown"
+                        placeholder="Sort Listings"
+                        iosIcon={<Icon name="arrow-down" />}
+                            style={{ 
+                                width: undefined,
+                                height: 30,
+                            }}
+                            selectedValue={this.state.selected}
+                            onValueChange={(value) => this.sortHandler(value)}
+                        >
+                        <Picker.Item label="Price: Low to High" value="key1" />
+                        <Picker.Item label="Price: High to Low" value="key2" />
+                        <Picker.Item label="Newest listings" value="key3" />
                     </Picker>
-                    
-                    {this.renderProperties()}
+
+                    <PropertyItem {...this.props} />
+
                 </Content>
             </Container>
         );
