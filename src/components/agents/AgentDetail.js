@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body } from 'native-base';
-import call from 'react-native-phone-call';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { Container, Content, Card, CardItem, Text, Button, Left, Body } from 'native-base';
 import GLOBALS from '../common/Globals';
 import SCREEN_IMPORT from 'Dimensions';
 import { agentFetch } from '../../actions';
 import { Spinner } from '../common/Spinner';
-  
+import TextMessage from '../common/TextMessage';
+import PhoneCall from '../common/PhoneCall';
+
 const SCREEN_WIDTH = SCREEN_IMPORT.get('window').width;
 
 class AgentDetail extends Component {
@@ -16,15 +16,6 @@ class AgentDetail extends Component {
     componentWillMount = () => {
         this.props.agentFetch(this.props.id);
     }
-
-    call = () => {
-        //handler to make a call
-        const args = {
-          number: this.props.agent.phone,
-          prompt: false,
-        };
-        call(args).catch(console.error);
-    };
 
     render() {
         if(this.props.loadingAgent){
@@ -50,20 +41,30 @@ class AgentDetail extends Component {
                     </Left>
                     </CardItem>
                     <CardItem>
-                    <Body>
+                    <Body style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+
                         <Image 
                             source={{ uri: image }} 
-                            style={{ height: 300, width: SCREEN_WIDTH-40, flex: 1, marginBottom: 5 }} />
-                        <Button full info onPress={this.call} style={{ marginBottom: 5 }}>
-                            <Icon active name="phone-volume" size={25} color="#ffffff" />
-                            <Text>CALL AGENT</Text>
-                        </Button>
+                            style={{ height: 300, width: '100%', marginBottom: 5 }} />
+
+                        <TextMessage 
+                            {...this.props} 
+                            btnWidth="49%" 
+                            phoneNumber={this.props.agent.phone} />
+
+                        <PhoneCall 
+                            {...this.props} 
+                            btnWidth="49%" 
+                            phoneNumber={this.props.agent.phone} />
+
                         <Text style={{ fontSize: 19, paddingBottom: 5, paddingTop: 5, minWidth: '100%', fontWeight: '400' }}>
                             License #: {this.props.agent.license}
                         </Text>
+
                         <Text style={{ fontSize: 19, paddingBottom: 5, paddingTop: 5, minWidth: '100%', fontWeight: '400' }}>
                             About {this.props.agent.fname}
                         </Text>
+
                         <Text>
                             {this.props.agent.description}
                         </Text>
