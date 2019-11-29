@@ -9,4 +9,4 @@ Real-Estate-Mobile is built on React Native and therefore assumes you have Node.
 `git clone https://github.com/MihaiGitHub/Real-Estate-Mobile.git` <br>
 `cd Real-Estate-Mobile` <br>
 `npm install` <br>
-`react-native run-android`
+`npm run dev`
