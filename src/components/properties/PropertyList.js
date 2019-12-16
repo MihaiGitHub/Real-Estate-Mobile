@@ -9,19 +9,12 @@ import PropertyItem from './PropertyItem';
 class PropertyList extends Component {
 
     state = {
-        selected: "key3",
-        imagesUpdated: false
-    }
-
-    componentDidMount(){
-        this.props.propertiesFetch();
-    }    
+        selected: "key3"
+    }  
 
     static getDerivedStateFromProps(nextProps, prevState){
-        
-        if(!prevState.imagesUpdated){
+        if(Array.isArray(nextProps.listFiltered)){
             if(nextProps.listFiltered.length > 0){
-
                 // Code executes only once, updates image URLs
                 // Update listFiltered array on the fly
                 nextProps.listFiltered.map(property => {
@@ -30,21 +23,20 @@ class PropertyList extends Component {
                         // Property has images
                         // Update array items on the fly
                         property.pImage.forEach((item, index, arr) => {
-                            arr[index] = `${GLOBALS.BASE_URL}${item}`;
+                            if(arr[index].charAt(0) === '/')
+                                arr[index] = `${GLOBALS.BASE_URL}${item}`;
                         })
 
                     } else {
-                       property.pImage.push(`${GLOBALS.BASE_URL}/dashboard/img/house.gif`)
+                        property.pImage.push(`${GLOBALS.BASE_URL}/dashboard/img/house.gif`)
                     }
-
                 })
-
-                // Updating state from new lifecycle method: getDerivedStateFromProps
-                return { imagesUpdated: true }
-            } 
+            } else {
+                nextProps.propertiesFetch()
+            }
         }
-        
-        return null;      
+
+        return null;
     }
 
     sortHandler = (value) => {

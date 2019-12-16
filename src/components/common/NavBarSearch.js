@@ -1,34 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { propertiesFiltered } from '../../actions/PropertiesActions';
-
-import { Card } from './Card';
-import { CardSection } from './CardSection';
-import { SearchInput } from './SearchInput';
+import { Header, Item, Input, Icon } from 'native-base';
+import Icon2 from 'react-native-vector-icons/FontAwesome';
+import { Actions } from 'react-native-router-flux';
 
 class NavBarSearch extends Component {
-
-    onTextChange(text){
-        const { properties } = this.props;
-        
-        let search = text.toLowerCase();
-        const results = properties.list.filter(item => {
-             return item.location.toLowerCase().indexOf(search) > -1;
-        });
-
-        this.props.propertiesFiltered(results);
-    }
-
     render() {
         return (
-              <Card>
-                <CardSection>
-                  
-                  <SearchInput
-                    onChangeText={this.onTextChange.bind(this)} />
-                  
-                </CardSection>
-              </Card>
+          <Header searchBar rounded>
+              <Item>
+                <Icon name="ios-search" />
+                <Input 
+                  placeholder={this.props.properties.searchTerm}
+                  onFocus={() => Actions.propertySearch()} />
+                <Icon2 
+                  name="sliders"
+                  size={25}
+                  style={{ paddingRight: 10 }} />
+              </Item>
+          </Header>
         );
      }
 }

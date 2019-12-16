@@ -4,6 +4,9 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import PropertyList from './components/properties/PropertyList';
 import PropertyDetail from './components/properties/PropertyDetail';
+
+import PropertySearch from './components/properties/PropertySearch';
+
 import AgentList from './components/agents/AgentList';
 import AgentDetail from './components/agents/AgentDetail';
 import MyProfile from './components/profile/MyProfile';
@@ -45,6 +48,7 @@ const RouterComponent = () => {
                     <Scene title="Properties" key="osu" icon={Properties}>
                         <Scene navBar={NavBarSearch} initial key="propertyList" component={PropertyList} title="Property List" />
                         <Scene hideNavBar key="propertyView" component={PropertyDetail} title="View Property" />
+                        <Scene key="propertySearch" component={PropertySearch} title="Property Search" />
                     </Scene>
 
                     {/* Tab and it's scenes */}
