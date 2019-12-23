@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
+import { StyleProvider, Container, Header, Content, Card, CardItem, Text, Body } from "native-base";
+//import getTheme from '../../native-base-theme/components/index';
+//import material from './native-base-theme/variables/platform';
 
 class TermsUse extends Component {
 
@@ -9,11 +11,11 @@ class TermsUse extends Component {
                 <Content padder>
                 <Card>
                     <CardItem header bordered>
-                        <Text>Terms of Use</Text>
+                        <Text style={styles.text}>Terms of Use</Text>
                     </CardItem>
                     <CardItem bordered>
                     <Body>
-                        <Text>
+                        <Text style={styles.text}>
                         The HomeSquare Platform is an online marketplace that enables users to publish properties for sale or return
                         </Text>
                     </Body>
@@ -25,6 +27,12 @@ class TermsUse extends Component {
                 </Content>
             </Container>
         );
+    }
+}
+
+const styles = {
+    text: {
+        fontFamily: 'OpenSans-Regular'
     }
 }
 

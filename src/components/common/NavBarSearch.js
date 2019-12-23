@@ -17,11 +17,17 @@ class NavBarSearch extends Component {
                 <Icon2 
                   name="sliders"
                   size={25}
-                  style={{ paddingRight: 10 }} />
+                  style={styles.icon2} />
               </Item>
           </Header>
         );
      }
+}
+
+const styles = {
+    icon2: {
+      paddingRight: 10
+    }
 }
 
 const mapStateToProps = ({ properties }) => {

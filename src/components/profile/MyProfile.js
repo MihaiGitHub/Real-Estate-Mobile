@@ -14,7 +14,7 @@ class MyProfile extends Component {
                         <Icon name={"info-circle"} size={24} />
                     </Left>
                     <Body>
-                        <Text>About</Text>
+                        <Text style={styles.text}>About</Text>
                     </Body>
                     <Right>
                         <Ionicon active name="md-arrow-forward" />
@@ -25,7 +25,7 @@ class MyProfile extends Component {
                         <Icon name={"cog"} size={23} />
                     </Left>
                     <Body>
-                        <Text>Settings</Text>
+                        <Text style={styles.text}>Settings</Text>
                     </Body>
                     <Right>
                         <Ionicon active name="md-arrow-forward" />
@@ -36,7 +36,7 @@ class MyProfile extends Component {
                         <Icon name={"book"} size={21} />
                     </Left>
                     <Body>
-                        <Text>Privacy Policy</Text>
+                        <Text style={styles.text}>Privacy Policy</Text>
                     </Body>
                     <Right>
                         <Ionicon active name="md-arrow-forward" />
@@ -47,7 +47,7 @@ class MyProfile extends Component {
                         <Icon name={"list-alt"} size={19} />
                     </Left>
                     <Body>
-                        <Text>Terms of Use</Text>
+                        <Text style={styles.text}>Terms of Use</Text>
                     </Body>
                     <Right>
                         <Ionicon active name="md-arrow-forward" />
@@ -56,6 +56,12 @@ class MyProfile extends Component {
                 </Content>
             </Container>
         );
+    }
+}
+
+const styles = {
+    text: {
+        fontFamily: 'OpenSans-Regular'
     }
 }
 

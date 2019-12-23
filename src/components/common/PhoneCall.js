@@ -8,14 +8,14 @@ class PhoneCall extends Component {
     renderButton = () => {
         return (
             <Button 
-                full 
-                info 
+                small 
+                primary 
                 onPress={() => Communications.phonecall(this.props.phoneNumber, true)} 
-                style={{ minWidth: this.props.btnWidth, marginBottom: 5 }}>
-                <Icon active name="phone-volume" size={22} color="#ffffff" />
+                style={{ width: this.props.btnWidth, marginBottom: 5, borderRadius: 3 }}>
+                <Icon active name="phone-volume" size={22} color="#ffffff" style={styles.icon} />
                 <Text>CALL</Text>
             </Button>
-        )
+        );
     }
 
     render(){
@@ -24,6 +24,12 @@ class PhoneCall extends Component {
                 {this.renderButton()}
             </Fragment>
         );
+    }
+}
+
+const styles = {
+    icon: {
+        paddingLeft: 15
     }
 }
 

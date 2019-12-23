@@ -9,11 +9,11 @@ class PrivacyPolicy extends Component {
                 <Content padder>
                 <Card>
                     <CardItem header bordered>
-                        <Text>Privacy Policy</Text>
+                        <Text style={styles.text}>Privacy Policy</Text>
                     </CardItem>
                     <CardItem bordered>
                     <Body>
-                        <Text>
+                        <Text style={styles.text}>
                         We may use, store, and process personal information to (1) provide, understand, improve, and develop the HomeSquare Platform, 
                         (2) create and maintain a trusted and safer environment and (3) provide, personalize, measure, and improve our advertising and marketing.</Text>
                     </Body>
@@ -25,6 +25,12 @@ class PrivacyPolicy extends Component {
                 </Content>
             </Container>
         );
+    }
+}
+
+const styles = {
+    text: {
+        fontFamily: 'OpenSans-Regular'
     }
 }
 

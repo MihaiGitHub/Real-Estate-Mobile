@@ -9,7 +9,7 @@ class PropertyItem extends Component {
         if(Array.isArray(this.props.listFiltered)){
             return this.props.listFiltered.map(property => {
                 return (
-                    <Card key={property.pId} style={{ flex: 0 }}>
+                    <Card key={property.pId} style={styles.card}>
                         <CardItem cardBody>
                             <SliderBox
                                 images={property.pImage}
@@ -24,10 +24,10 @@ class PropertyItem extends Component {
                             />
                         </CardItem>
                         <CardItem>
-                            <Body style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-                                <Text style={{ minWidth: '50%', fontWeight: '600', fontSize: 20 }}>${property.price}</Text>
-                                <Text style={{ minWidth: '50%', textAlign: 'right', fontSize: 15 }}>{property.bedroom} beds   {property.bathroom} baths</Text>
-                                <Text style={{ fontSize: 14 }}>{property.location}</Text>
+                            <Body style={styles.body}>
+                                <Text style={styles.textPrice}>${property.price}</Text>
+                                <Text style={styles.textBedsBaths}>{property.bedroom} beds   {property.bathroom} baths</Text>
+                                <Text style={styles.textLocation}>{property.location}</Text>
                             </Body>
                         </CardItem>
                     </Card>
@@ -44,6 +44,33 @@ class PropertyItem extends Component {
                 {this.renderProperties()}
             </Fragment>
         );
+    }
+}
+
+const styles = {
+    card: {
+        flex: 0
+    },
+    body: {
+        display: 'flex', 
+        flexDirection: 'row', 
+        flexWrap: 'wrap'
+    },
+    textPrice: {
+        fontFamily: 'OpenSans-Regular',
+        minWidth: '50%', 
+        fontWeight: '600', 
+        fontSize: 20
+    },
+    textBedsBaths: {
+        fontFamily: 'OpenSans-Regular',
+        minWidth: '50%', 
+        textAlign: 'right', 
+        fontSize: 15
+    },
+    textLocation: {
+        fontFamily: 'OpenSans-Regular',
+        fontSize: 14
     }
 }
 

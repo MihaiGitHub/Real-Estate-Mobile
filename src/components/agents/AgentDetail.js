@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
 import { connect } from 'react-redux';
-import { Container, Content, Card, CardItem, Text, Button, Left, Body } from 'native-base';
+import { Container, Content, Card, CardItem, Text, Left, Body } from 'native-base';
 import GLOBALS from '../common/Globals';
 import SCREEN_IMPORT from 'Dimensions';
 import { agentFetch } from '../../actions';
@@ -31,21 +31,21 @@ class AgentDetail extends Component {
         return (
             <Container>
                 <Content>
-                <Card style={{flex: 0}}>
+                <Card style={styles.card}>
                     <CardItem>
                     <Left>
                         <Body>
-                            <Text>{this.props.agent.fname} {this.props.agent.lname}</Text>
-                            <Text note>Certified Agent</Text>
+                            <Text style={styles.text2}>{this.props.agent.fname} {this.props.agent.lname}</Text>
+                            <Text style={styles.text2} note>Certified Agent</Text>
                         </Body>
                     </Left>
                     </CardItem>
                     <CardItem>
-                    <Body style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+                    <Body style={styles.body}>
 
                         <Image 
                             source={{ uri: image }} 
-                            style={{ height: 300, width: '100%', marginBottom: 5 }} />
+                            style={styles.image} />
 
                         <TextMessage 
                             {...this.props} 
@@ -57,15 +57,15 @@ class AgentDetail extends Component {
                             btnWidth="49%" 
                             phoneNumber={this.props.agent.phone} />
 
-                        <Text style={{ fontSize: 19, paddingBottom: 5, paddingTop: 5, minWidth: '100%', fontWeight: '400' }}>
+                        <Text style={styles.text}>
                             License #: {this.props.agent.license}
                         </Text>
 
-                        <Text style={{ fontSize: 19, paddingBottom: 5, paddingTop: 5, minWidth: '100%', fontWeight: '400' }}>
+                        <Text style={styles.text}>
                             About {this.props.agent.fname}
                         </Text>
 
-                        <Text>
+                        <Text style={styles.text2}>
                             {this.props.agent.description}
                         </Text>
                     </Body>
@@ -74,6 +74,33 @@ class AgentDetail extends Component {
                 </Content>
             </Container>
         );
+    }
+}
+
+const styles = {
+    card: {
+        flex: 0
+    },
+    body: {
+        display: 'flex', 
+        flexDirection: 'row', 
+        flexWrap: 'wrap'
+    },
+    image: {
+        height: 300, 
+        width: '100%', 
+        marginBottom: 5
+    },
+    text: {
+        fontFamily: 'OpenSans-Regular',
+        fontSize: 19, 
+        paddingBottom: 5, 
+        paddingTop: 5, 
+        minWidth: '100%', 
+        fontWeight: '400'
+    },
+    text2: {
+        fontFamily: 'OpenSans-Regular' 
     }
 }
 

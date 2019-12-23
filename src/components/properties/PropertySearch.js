@@ -7,6 +7,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
  
 import { propertiesFiltered, udpateSearchTerm } from '../../actions/PropertiesActions';
 import { Actions } from 'react-native-router-flux';
+import GLOBALS from '../common/Globals';
 
 class PropertySearch extends React.Component {
 
@@ -32,7 +33,7 @@ class PropertySearch extends React.Component {
       
       query={{
         // available options: https://developers.google.com/places/web-service/autocomplete
-        key: 'AIzaSyDXBHck-EqlE9q_FPkoTg_tzTEIwc3Jv8Q',
+        key: GLOBALS.GOOGLE_CLOUD_SERVICES_API_KEY,
         language: 'en', // language of the results
         types: '(cities)' // default: 'geocode'
       }}

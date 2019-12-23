@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Image, View } from 'react-native';
+import { View } from 'react-native';
 import getDirections from 'react-native-google-maps-directions';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Body } from 'native-base';
+import { Container, Content, Card, CardItem, Text, Button, Body } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { SliderBox } from 'react-native-image-slider-box';
 import GLOBALS from '../common/Globals';
@@ -24,7 +24,7 @@ class PropertyDetail extends Component {
 
             return features.map(feature => {
                 return (
-                    <Text key={feature} style={{ paddingBottom: 5, minWidth: '50%', textAlign: 'left' }}>
+                    <Text key={feature} style={styles.textFeatures}>
                         -{feature}
                     </Text>
                 );
@@ -67,7 +67,7 @@ class PropertyDetail extends Component {
         return (
             <Container>
                 <Content>
-                <View style={{flex: 0}}>
+                <View style={styles.view}>
                     <SliderBox
                         images={images}
                         sliderBoxHeight={200}
@@ -76,44 +76,128 @@ class PropertyDetail extends Component {
                         }
                         dotColor="#FFEE58"
                         inactiveDotColor="#90A4AE"
+                        style={styles.sliderBox}
                     />
-                    </View>
-                    <Card style={{flex: 0}}>
+
+                    <Button
+                        small
+                        primary
+                        style={styles.mapBtn}>
+                        <Icon active name="map" size={25} color="#ffffff" style={styles.icon} />
+                        <Text>VIEW MAP</Text>
+                    </Button>
+                    <Button
+                        small
+                        primary
+                        onPress={this.handleGetDirections} 
+                        style={styles.directionsBtn}>
+                        <Icon active name="directions" size={25} color="#ffffff" style={styles.icon} />
+                        <Text>DIRECTIONS</Text>
+                    </Button>
+                </View>
+                <Card style={styles.card}>
                     <CardItem>
-                            <Body style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-                                <Text style={{ fontSize: 26, fontWeight: '500', minWidth: '60%' }}>
-                                    ${this.props.property.price}
-                                </Text>
-                                <Text style={{ marginTop: 5, minWidth: '40%', textAlign: 'right' }}>
-                                    {this.props.property.bedroom} Beds {this.props.property.bathroom} Baths
-                                </Text>
-                                <Text style={{ marginBottom: 5, minWidth: '100%' }}>
-                                    {this.props.property.location}
-                                </Text>
-                                <Button
-                                    full
-                                    info 
-                                    onPress={this.handleGetDirections} 
-                                    style={{ marginBottom: 5, minWidth: '100%' }}>
-                                <Icon active name="directions" size={25} color="#ffffff" />
-                                <Text>GET DIRECTIONS</Text>
-                                </Button>
-                                <Text style={{ fontSize: 19, paddingBottom: 5, minWidth: '100%', fontWeight: '400' }}>
-                                    Features
-                                </Text>
-                                {this.handleFeatures()}
-                                <Text style={{ fontSize: 19, paddingBottom: 5, paddingTop: 5, minWidth: '100%', fontWeight: '400' }}>
-                                    About this home
-                                </Text>
-                                <Text style={{ minWidth: '100%' }}>
-                                    {this.props.property.description}
-                                </Text>
-                            </Body>
-                        </CardItem>
-                    </Card>
+                        <Body style={styles.body}>
+                            <Text style={styles.textPrice}>
+                                ${this.props.property.price}
+                            </Text>
+                            <Text style={styles.textBedBath}>
+                                {this.props.property.bedroom} Beds {this.props.property.bathroom} Baths
+                            </Text>
+                            <Text style={styles.textLocation}>
+                                {this.props.property.location}
+                            </Text>
+                            <Text style={styles.textFeaturesTitle}>
+                                Features
+                            </Text>
+                            {this.handleFeatures()}
+                            <Text style={styles.textDescriptionTitle}>
+                                About this home
+                            </Text>
+                            <Text style={styles.textDescription}>
+                                {this.props.property.description}
+                            </Text>
+                        </Body>
+                    </CardItem>
+                </Card>
                 </Content>
             </Container>
         );
+    }
+}
+
+const styles = {
+    view: {
+        display: 'flex', 
+        flexDirection: 'row', 
+        flexWrap: 'wrap', 
+        justifyContent: 'center'
+    },
+    sliderBox: {
+        minWidth: '100%', 
+        paddingBottom: 5
+    },
+    mapBtn: {
+        marginRight: 2, 
+        width: '49%', 
+        borderRadius: 3
+    },
+    icon: {
+        paddingLeft: 15
+    },
+    directionsBtn: {
+        width: '49%', 
+        borderRadius: 3
+    },
+    card: {
+        flex: 0
+    },
+    body: {
+        display: 'flex', 
+        flexDirection: 'row', 
+        flexWrap: 'wrap'
+    },
+    textPrice: {
+        fontFamily: 'OpenSans-Regular',
+        fontSize: 26, 
+        fontWeight: '500', 
+        minWidth: '59%'
+    },
+    textBedBath: {
+        fontFamily: 'OpenSans-Regular',
+        marginTop: 5, 
+        minWidth: '41%', 
+        textAlign: 'right'
+    },
+    textLocation: {
+        fontFamily: 'OpenSans-Regular',
+        marginBottom: 5, 
+        minWidth: '100%'
+    },
+    textFeaturesTitle: {
+        fontFamily: 'OpenSans-Regular',
+        fontSize: 19, 
+        paddingBottom: 5, 
+        minWidth: '100%', 
+        fontWeight: '400'
+    },
+    textDescriptionTitle: {
+        fontFamily: 'OpenSans-Regular',
+        fontSize: 19, 
+        paddingBottom: 5, 
+        paddingTop: 5, 
+        minWidth: '100%', 
+        fontWeight: '400'
+    },
+    textDescription: {
+        fontFamily: 'OpenSans-Regular',
+        minWidth: '100%'
+    },
+    textFeatures: {
+        fontFamily: 'OpenSans-Regular',
+        paddingBottom: 5, 
+        minWidth: '50%', 
+        textAlign: 'left'
     }
 }
 

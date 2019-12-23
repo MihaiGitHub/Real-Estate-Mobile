@@ -6,16 +6,16 @@ import Communications from 'react-native-communications';
 class TextMessage extends Component {
 
     renderButton = () => {
-        return (
-            <Button 
-                full 
-                info 
+        return ( 
+            <Button
+                small
+                primary
                 onPress={() => Communications.text(this.props.phoneNumber)} 
-                style={{ minWidth: this.props.btnWidth, marginBottom: 5, marginRight: 5 }}>
-                <Icon active name="sms" size={22} color="#ffffff" />
+                style={{ width: this.props.btnWidth, marginBottom: 5, marginRight: 5, borderRadius: 3 }}>
+                <Icon active name="sms" size={22} color="#ffffff" style={styles.icon} />
                 <Text>TEXT</Text>
             </Button>
-        )
+        );
     }
 
     render(){
@@ -24,6 +24,12 @@ class TextMessage extends Component {
                 {this.renderButton()}
             </Fragment>
         );
+    }
+}
+
+const styles = {
+    icon: {
+        paddingLeft: 15
     }
 }
 

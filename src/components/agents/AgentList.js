@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import GLOBALS from '../common/Globals';
 import { agentsFetch } from '../../actions';
 import { Spinner } from '../common/Spinner';
-import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
+import { Container, Content, List, ListItem, Left, Body, Thumbnail, Text } from 'native-base';
 
 class AgentList extends Component {
 
@@ -20,8 +20,8 @@ class AgentList extends Component {
                         <Thumbnail source={{ uri: (agent.picture == '') ? `${GLOBALS.BASE_URL}/dashboard/img/profile.jpg` : `${GLOBALS.BASE_URL}/${agent.picture}` }} />
                     </Left>
                     <Body>
-                        <Text>{agent.fname} {agent.lname}</Text>
-                        <Text note>Certified Agent</Text>
+                        <Text style={styles.text}>{agent.fname} {agent.lname}</Text>
+                        <Text note style={styles.text}>Certified Agent</Text>
                     </Body>
                 </ListItem>
             );
@@ -42,6 +42,12 @@ class AgentList extends Component {
                 </Content>
             </Container>
         );
+    }
+}
+
+const styles = {
+    text: {
+        fontFamily: 'OpenSans-Regular'
     }
 }
 
