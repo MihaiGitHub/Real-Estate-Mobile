@@ -3,17 +3,17 @@ import { Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Container, Content, Card, CardItem, Text, Left, Body } from 'native-base';
 import GLOBALS from '../common/Globals';
-import SCREEN_IMPORT from 'Dimensions';
+//import SCREEN_IMPORT from 'Dimensions';
 import { agentFetch } from '../../actions';
 import { Spinner } from '../common/Spinner';
 import TextMessage from '../common/TextMessage';
 import PhoneCall from '../common/PhoneCall';
 
-const SCREEN_WIDTH = SCREEN_IMPORT.get('window').width;
+//const SCREEN_WIDTH = SCREEN_IMPORT.get('window').width;
 
 class AgentDetail extends Component {
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         this.props.agentFetch(this.props.id);
     }
 

@@ -8,7 +8,7 @@ import { Container, Content, List, ListItem, Left, Body, Thumbnail, Text } from 
 
 class AgentList extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.agentsFetch();
     }
 

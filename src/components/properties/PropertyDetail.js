@@ -6,15 +6,12 @@ import { Container, Content, Card, CardItem, Text, Button, Body } from 'native-b
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { SliderBox } from 'react-native-image-slider-box';
 import GLOBALS from '../common/Globals';
-import SCREEN_IMPORT from 'Dimensions';
 import { propertyFetch } from '../../actions';
 import { Spinner } from '../common/Spinner';
 
-const SCREEN_WIDTH = SCREEN_IMPORT.get('window').width;
-
 class PropertyDetail extends Component {
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         this.props.propertyFetch(this.props.id); 
     }
 
@@ -68,17 +65,13 @@ class PropertyDetail extends Component {
             <Container>
                 <Content>
                 <View style={styles.view}>
-                    <SliderBox
+                    <SliderBox 
                         images={images}
-                        sliderBoxHeight={200}
-                        onCurrentImagePressed={index =>
-                            console.log(`image ${index} pressed`)
-                        }
                         dotColor="#FFEE58"
                         inactiveDotColor="#90A4AE"
-                        style={styles.sliderBox}
-                    />
-
+                        onCurrentImagePressed={index =>
+                            console.log(`image ${index} pressed`)
+                        } />
                     <Button
                         small
                         primary
