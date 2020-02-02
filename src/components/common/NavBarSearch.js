@@ -4,22 +4,21 @@ import { propertiesFiltered } from '../../actions/PropertiesActions';
 import { Header, Item, Input, Icon } from 'native-base';
 import Icon2 from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-
-//import { PermissionsAndroid } from 'react-native';
-//import Geolocation from 'react-native-geolocation-service';
+import { PermissionsAndroid } from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
 
 class NavBarSearch extends Component {
     render() {
+        const searchTerm = this.props.properties.searchTerm ? this.props.properties.searchTerm : 'Current Location'
+
         return (
           <Header searchBar rounded>
               <Item>
                 <Icon name="ios-search" />
                 <Input 
-                  placeholder={this.props.properties.searchTerm}
+                  placeholder={searchTerm}
                   onFocus={ async () => {
-                /*    
                     try {
-
                       const granted = await PermissionsAndroid.request(
                         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
                         {
@@ -29,13 +28,9 @@ class NavBarSearch extends Component {
                       )
 
                       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-                        console.log("You can use the location")
-                       // alert("You can use the location");
-
-                        //  if (hasLocationPermission) {
                               Geolocation.getCurrentPosition(
                                   (position) => {
-                                      console.log(position);
+                                      Actions.propertySearch({ position })
                                   },
                                   (error) => {
                                       // See error code charts below.
@@ -43,18 +38,13 @@ class NavBarSearch extends Component {
                                   },
                                   { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
                               );
-                       //   }
+                       
                       } else {
-                        console.log("location permission denied")
                         alert("Location permission denied");
                       }
-                      
-
                     } catch (err) {
                       console.warn(err)
                     }
-*/
-                    Actions.propertySearch()
                   }} />
                 <Icon2 
                   name="sliders"

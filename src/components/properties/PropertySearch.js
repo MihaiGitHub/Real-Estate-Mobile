@@ -1,10 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
- 
-//const homePlace = { description: 'Home', geometry: { location: { lat: 48.8152937, lng: 2.4597668 } }};
-//const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818, lng: 2.2940881 } }};
- 
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'; 
 import { propertiesFiltered, udpateSearchTerm } from '../../actions/PropertiesActions';
 import { Actions } from 'react-native-router-flux';
 import GLOBALS from '../common/Globals';
@@ -12,6 +8,15 @@ import GLOBALS from '../common/Globals';
 class PropertySearch extends React.Component {
 
   render(){
+    const currenttLocation = { 
+      description: 'Current Location', geometry: { 
+        location: { 
+          lat: this.props.position.coords.latitude, 
+          lng: this.props.position.coords.longitude 
+        } 
+      }
+    };
+
   return (
     <GooglePlacesAutocomplete
       placeholder='Search'
@@ -50,7 +55,7 @@ class PropertySearch extends React.Component {
         }
       }}
       
-      currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
+      currentLocation={false} // Will add a 'Current location' button at the top of the predefined places list
       currentLocationLabel="Current location"
       nearbyPlacesAPI='GoogleReverseGeocoding' // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
       GoogleReverseGeocodingQuery={{
@@ -63,7 +68,7 @@ class PropertySearch extends React.Component {
       }}
  
       filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-      // predefinedPlaces={[homePlace, workPlace]}
+      predefinedPlaces={[currenttLocation]}
  
       debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
     />
