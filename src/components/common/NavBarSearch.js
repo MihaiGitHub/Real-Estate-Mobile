@@ -5,7 +5,7 @@ import { Header, Item, Input, Icon } from 'native-base';
 import Icon2 from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import { PermissionsAndroid } from 'react-native';
-import Geolocation from 'react-native-geolocation-service';
+//import Geolocation from 'react-native-geolocation-service';
 
 class NavBarSearch extends Component {
     render() {
@@ -18,6 +18,9 @@ class NavBarSearch extends Component {
                 <Input 
                   placeholder={searchTerm}
                   onFocus={ async () => {
+                    Actions.propertySearch()
+
+                    /*
                     try {
                       const granted = await PermissionsAndroid.request(
                         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -45,6 +48,7 @@ class NavBarSearch extends Component {
                     } catch (err) {
                       console.warn(err)
                     }
+                    */
                   }} />
                 <Icon2 
                   name="sliders"

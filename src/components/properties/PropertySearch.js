@@ -8,14 +8,14 @@ import GLOBALS from '../common/Globals';
 class PropertySearch extends React.Component {
 
   render(){
-    const currenttLocation = { 
-      description: 'Current Location', geometry: { 
-        location: { 
-          lat: this.props.position.coords.latitude, 
-          lng: this.props.position.coords.longitude 
-        } 
-      }
-    };
+    // const currenttLocation = { 
+    //   description: 'Current Location', geometry: { 
+    //     location: { 
+    //       lat: this.props.position.coords.latitude, 
+    //       lng: this.props.position.coords.longitude 
+    //     } 
+    //   }
+    // };
 
   return (
     <GooglePlacesAutocomplete
@@ -68,7 +68,7 @@ class PropertySearch extends React.Component {
       }}
  
       filterReverseGeocodingByTypes={['locality', 'administrative_area_level_3']} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-      predefinedPlaces={[currenttLocation]}
+    //  predefinedPlaces={[currenttLocation]}
  
       debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
     />

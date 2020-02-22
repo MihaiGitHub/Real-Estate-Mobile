@@ -5,6 +5,7 @@ import getDirections from 'react-native-google-maps-directions';
 import { Container, Content, Card, CardItem, Text, Button, Body } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { SliderBox } from 'react-native-image-slider-box';
+import { Actions } from 'react-native-router-flux';
 import GLOBALS from '../common/Globals';
 import { propertyFetch } from '../../actions';
 import { Spinner } from '../common/Spinner';
@@ -61,6 +62,8 @@ class PropertyDetail extends Component {
             images = [`${GLOBALS.BASE_URL}/dashboard/img/house.gif`];
         }
 
+        const { latitude, longitude } = this.props.property;
+
         return (
             <Container>
                 <Content>
@@ -75,7 +78,8 @@ class PropertyDetail extends Component {
                     <Button
                         small
                         primary
-                        style={styles.mapBtn}>
+                        style={styles.mapBtn}
+                        onPress={() => Actions.propertyMap({ latitude, longitude })}>
                         <Icon active name="map" size={25} color="#ffffff" style={styles.icon} />
                         <Text>VIEW MAP</Text>
                     </Button>
