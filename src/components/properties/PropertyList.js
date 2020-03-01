@@ -39,21 +39,21 @@ class PropertyList extends Component {
         return null;
     }
 
-    sortHandler = (value) => {
-        if(value === 'key1'){
-            this.props.listFiltered.sort((a, b) => (a.price > b.price) ? 1 : -1)
-        }
+    // sortHandler = (value) => {
+    //     if(value === 'key1'){
+    //         this.props.listFiltered.sort((a, b) => (a.price > b.price) ? 1 : -1)
+    //     }
         
-        if (value === 'key2'){
-            this.props.listFiltered.sort((a, b) => (a.price < b.price) ? 1 : -1)
-        }
+    //     if (value === 'key2'){
+    //         this.props.listFiltered.sort((a, b) => (a.price < b.price) ? 1 : -1)
+    //     }
 
-        if (value === 'key3'){
-            this.props.listFiltered.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1) 
-        }
+    //     if (value === 'key3'){
+    //         this.props.listFiltered.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1) 
+    //     }
 
-        this.setState({ selected: value });
-    }
+    //     this.setState({ selected: value });
+    // }
 
     render() {        
         if(this.props.loading){
@@ -64,7 +64,7 @@ class PropertyList extends Component {
             <Container>
                 <Content>
                     
-                    <Picker
+                {/*    <Picker
                         mode="dropdown"
                         placeholder="Sort Listings"
                         iosIcon={<Icon name="arrow-down" />}
@@ -78,7 +78,7 @@ class PropertyList extends Component {
                         <Picker.Item label="Price: Low to High" value="key1" />
                         <Picker.Item label="Price: High to Low" value="key2" />
                         <Picker.Item label="Newest listings" value="key3" />
-                    </Picker>
+                    </Picker> */}
 
                     <PropertyItem {...this.props} />
 

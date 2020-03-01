@@ -12,7 +12,7 @@ class NavBarSearch extends Component {
         const searchTerm = this.props.properties.searchTerm ? this.props.properties.searchTerm : 'Current Location'
 
         return (
-          <Header searchBar rounded>
+          <Header searchBar rounded hasTabs>
               <Item>
                 <Icon name="ios-search" />
                 <Input 

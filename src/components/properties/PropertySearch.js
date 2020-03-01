@@ -31,7 +31,7 @@ class PropertySearch extends React.Component {
           await this.props.propertiesFiltered(details.geometry.location.lat, details.geometry.location.lng)
           await this.props.udpateSearchTerm(details.formatted_address)
 
-          Actions.propertyList()          
+          Actions.propertiesMain()          
       }}
       
       getDefaultValue={() => ''}

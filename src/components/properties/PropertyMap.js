@@ -45,11 +45,7 @@ class PropertyMap extends React.Component {
                     }}
                     title={"Get Directions"}
                     onCalloutPress={() => this.handleGetDirections()}
-                >
-                    <MapView.Callout tooltip>
-                        
-                    </MapView.Callout>
-                </MapView.Marker>
+                />
             </MapView>
         );
     }

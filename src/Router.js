@@ -13,6 +13,7 @@ import PrivacyPolicy from './components/profile/PrivacyPolicy';
 import TermsUse from './components/profile/TermsUse';
 import Settings from './components/profile/Settings';
 import NavBarSearch from './components/common/NavBarSearch';
+import PropertiesMain from './components/properties/index';
 
 const Properties = ({ navigation }) => {
     return (
@@ -44,7 +45,8 @@ const RouterComponent = () => {
                 <Scene key="tabbar" tabs activeBackgroundColor="#808080" activeTintColor="#ffffff">
                     {/* Tab and it's scenes */}
                     <Scene title="PROPERTIES" key="properties" icon={Properties}>
-                        <Scene navBar={NavBarSearch} initial key="propertyList" component={PropertyList} title="Property List" />
+                        <Scene initial navBar={NavBarSearch} key="propertiesMain" component={PropertiesMain} title="Properties" />      
+                        <Scene navBar={NavBarSearch} key="propertyList" component={PropertyList} title="Property List" />
                         <Scene hideNavBar key="propertyView" component={PropertyDetail} title="View Property" />
                         <Scene key="propertySearch" component={PropertySearch} title="Property Search" />
                         <Scene hideTabBar key="propertyMap" component={PropertyMap} title="Property Map" />
