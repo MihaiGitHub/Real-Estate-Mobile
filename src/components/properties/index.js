@@ -8,10 +8,10 @@ class PropertiesMain extends Component {
         return (
             <Tabs locked={true} style={Platform.OS === 'android' ? { overflow: 'hidden' } : null}>
               <Tab heading={ <TabHeading><Text>List</Text></TabHeading>}>
-                <PropertyList />
+                  <PropertyList />
               </Tab>
               <Tab heading={ <TabHeading><Text>Map</Text></TabHeading>}>
-                    <PropertyMapSearch />
+                  <PropertyMapSearch />
               </Tab>
             </Tabs>
         );

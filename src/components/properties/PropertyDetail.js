@@ -33,8 +33,8 @@ class PropertyDetail extends Component {
     handleGetDirections = () => {
         const data = {
           destination: {
-            latitude: parseFloat(this.props.property.latitude, 10),
-            longitude: parseFloat(this.props.property.longitude, 10)
+            latitude: parseFloat(this.props.property.lat, 10),
+            longitude: parseFloat(this.props.property.lng, 10)
           },
           params: [
             {
@@ -55,14 +55,12 @@ class PropertyDetail extends Component {
         if(this.props.loadingProperty){
             return <Spinner size="large" />;
         }
-        
-        if(this.props.property.pImage){
-            images = this.props.property.pImage.map(i => `${GLOBALS.BASE_URL}` + i);
-        } else {
+
+        let { lat, lng, images, price, bedroom, bathroom, location, description } = this.props.property;
+
+        if(images.length === 0){
             images = [`${GLOBALS.BASE_URL}/dashboard/img/house.gif`];
         }
-
-        const { latitude, longitude } = this.props.property;
 
         return (
             <Container>
@@ -79,7 +77,7 @@ class PropertyDetail extends Component {
                         small
                         primary
                         style={styles.mapBtn}
-                        onPress={() => Actions.propertyMap({ latitude, longitude })}>
+                        onPress={() => Actions.propertyMap({ latitude: lat, longitude: lng })}>
                         <Icon active name="map" size={25} color="#ffffff" style={styles.icon} />
                         <Text>VIEW MAP</Text>
                     </Button>
@@ -96,13 +94,13 @@ class PropertyDetail extends Component {
                     <CardItem>
                         <Body style={styles.body}>
                             <Text style={styles.textPrice}>
-                                ${this.props.property.price}
+                                ${price}
                             </Text>
                             <Text style={styles.textBedBath}>
-                                {this.props.property.bedroom} Beds {this.props.property.bathroom} Baths
+                                {bedroom} Beds {bathroom} Baths
                             </Text>
                             <Text style={styles.textLocation}>
-                                {this.props.property.location}
+                                {location}
                             </Text>
                             <Text style={styles.textFeaturesTitle}>
                                 Features
@@ -112,7 +110,7 @@ class PropertyDetail extends Component {
                                 About this home
                             </Text>
                             <Text style={styles.textDescription}>
-                                {this.props.property.description}
+                                {description}
                             </Text>
                         </Body>
                     </CardItem>
@@ -198,8 +196,10 @@ const styles = {
     }
 }
 
-const mapStateToProps = state => {    
-    const { property, loadingProperty } = state.properties;
+const mapStateToProps = state => {
+
+    const { listFiltered, propertyId, loadingProperty } = state.properties;
+    const property = listFiltered.find(x => x.id === propertyId);
 
     return { property, loadingProperty };
 };

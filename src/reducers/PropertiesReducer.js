@@ -8,7 +8,7 @@ import {
 const INITIAL_STATE = {
     list: [],
     listFiltered: [],
-    property: {},
+    propertyId: '',
     loading: true,
     loadingProperty: true,
     searchTerm: 'Search'
@@ -23,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
             // Will send to app state in combineReducers as state.properties
             return { ...state, list: action.payload, listFiltered: action.payload, loading: false }
         case PROPERTY_FETCH_SUCCESS:
-            return { ...state, property: action.payload, loadingProperty: false }
+            return { ...state, propertyId: action.payload, loadingProperty: false }
         case UPDATE_SEARCH_TERM:
             return { ...state, searchTerm: action.payload }
         default:

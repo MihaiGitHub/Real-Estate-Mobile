@@ -1,21 +1,35 @@
 import React, { Component, Fragment } from 'react';
-import { ToastAndroid } from 'react-native';
+import { ToastAndroid, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Card, CardItem, Text, Body } from 'native-base';
 import { SliderBox } from 'react-native-image-slider-box';
+import GLOBALS from '../common/Globals';
 
 class PropertyItem extends Component {
     renderProperties = () => {
         if(Array.isArray(this.props.listFiltered)){
-            return this.props.listFiltered.map(property => {
+
+            return this.props.listFiltered.map((item, index, array) => {
+
+                if(item.PropertyImages.length > 0){
+                    const images = item.PropertyImages.map(image => {
+                        return `${GLOBALS.BASE_URL}${image.url}`;
+                    })
+  
+                    array[index]['images'] = images;
+                
+                } else {
+                    array[index]['images'] = [`${GLOBALS.BASE_URL}/dashboard/img/house.gif`];
+                }
+
                 return (
-                    <Card key={property.pId} style={styles.card}>
+                    <Card key={item.id} style={styles.card}>
                         <CardItem cardBody>
                             <SliderBox
-                                images={property.pImage}
+                                images={array[index]['images']}
                                 sliderBoxHeight={200}
                                 onCurrentImagePressed={index => {
-                                        Actions.propertyView({ id: property.pId })
+                                     Actions.propertyView({ id: item.id })
                                         console.log(`image ${index} pressed`)
                                     } 
                                 }
@@ -25,14 +39,14 @@ class PropertyItem extends Component {
                         </CardItem>
                         <CardItem>
                             <Body style={styles.body}>
-                                <Text style={styles.textPrice}>${property.price}</Text>
-                                <Text style={styles.textBedsBaths}>{property.bedroom} beds   {property.bathroom} baths</Text>
-                                <Text style={styles.textLocation}>{property.location}</Text>
+                                <Text style={styles.textPrice}>${item.price}</Text>
+                                <Text style={styles.textBedsBaths}>{item.bedrooms} beds   {item.bathrooms} baths</Text>
+                                <Text style={styles.textLocation}>{item.address}</Text>
                             </Body>
                         </CardItem>
                     </Card>
                 );
-            });
+            })
         } else {
             ToastAndroid.show('No properties found near this location!', ToastAndroid.LONG)
         }

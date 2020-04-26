@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Content, Picker, Icon } from 'native-base';
-import GLOBALS from '../common/Globals';
 import { propertiesFetch } from '../../actions';
 import { Spinner } from '../common/Spinner';
 import PropertyItem from './PropertyItem';
@@ -10,33 +9,6 @@ class PropertyList extends Component {
 
     state = {
         selected: "key3"
-    }  
-
-    static getDerivedStateFromProps(nextProps, prevState){
-        if(Array.isArray(nextProps.listFiltered)){
-            if(nextProps.listFiltered.length > 0){
-                // Code executes only once, updates image URLs
-                // Update listFiltered array on the fly
-                nextProps.listFiltered.map(property => {
-
-                    if(property.pImage.length > 0){
-                        // Property has images
-                        // Update array items on the fly
-                        property.pImage.forEach((item, index, arr) => {
-                            if(arr[index].charAt(0) === '/')
-                                arr[index] = `${GLOBALS.BASE_URL}${item}`;
-                        })
-
-                    } else {
-                        property.pImage.push(`${GLOBALS.BASE_URL}/dashboard/img/house.gif`)
-                    }
-                })
-            } else {
-                nextProps.propertiesFetch()
-            }
-        }
-
-        return null;
     }
 
     // sortHandler = (value) => {
