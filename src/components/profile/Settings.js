@@ -13,7 +13,7 @@ class Settings extends Component {
                         <Icon name={"bell"} size={25} />
                     </Left>
                     <Body>
-                        <Text style={styles.text}>Notifications</Text>
+                        <Text>Notifications</Text>
                     </Body>
                     <Right>
                         <CheckBox checked={true} color="green"/>
@@ -22,12 +22,6 @@ class Settings extends Component {
             </Content>
         </Container>
         );
-    }
-}
-
-const styles = {
-    text: {
-        fontFamily: 'OpenSans-Regular'
     }
 }
 

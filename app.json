@@ -1,4 +1,33 @@
 {
-  "name": "HomeSquare",
-  "displayName": "HomeSquare"
+  "expo": {
+    "name": "Our House",
+    "slug": "ourhouse",
+    "version": "1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "com.ourhouse.org",
+      "versionCode": 1,
+      "config": {
+        "googleMaps": {
+          "apiKey": "XXXX"
+        }
+      }
+    }
+  }
 }
