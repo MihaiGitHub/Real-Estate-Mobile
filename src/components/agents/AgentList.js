@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Actions } from "react-native-router-flux";
 import GLOBALS from "../common/Globals";
@@ -15,13 +15,13 @@ import {
   Text,
 } from "native-base";
 
-class AgentList extends Component {
-  componentDidMount() {
-    this.props.agentsFetch();
-  }
+const AgentList = (props) => {
+  useEffect(() => {
+    props.agentsFetch();
+  }, []);
 
-  renderList() {
-    return this.props.list.map((agent) => {
+  const renderList = () => {
+    return props.list.map((agent) => {
       return (
         <ListItem
           avatar
@@ -47,22 +47,20 @@ class AgentList extends Component {
         </ListItem>
       );
     });
+  };
+
+  if (props.loading) {
+    return <Spinner size="large" />;
   }
 
-  render() {
-    if (this.props.loading) {
-      return <Spinner size="large" />;
-    }
-
-    return (
-      <Container>
-        <Content>
-          <List>{this.renderList()}</List>
-        </Content>
-      </Container>
-    );
-  }
-}
+  return (
+    <Container>
+      <Content>
+        <List>{renderList()}</List>
+      </Content>
+    </Container>
+  );
+};
 
 const mapStateToProps = (state) => {
   const { list, loading } = state.agents;

@@ -1,17 +1,14 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import { ToastAndroid, Image } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { Card, CardItem, Text, Body } from "native-base";
 import { SliderBox } from "react-native-image-slider-box";
 import GLOBALS from "../common/Globals";
 
-class PropertyItem extends Component {
-  renderProperties = () => {
-    if (
-      Array.isArray(this.props.listFiltered) &&
-      this.props.listFiltered.length > 0
-    ) {
-      return this.props.listFiltered.map((item, index, array) => {
+const PropertyItem = (props) => {
+  const renderProperties = () => {
+    if (Array.isArray(props.listFiltered) && props.listFiltered.length > 0) {
+      return props.listFiltered.map((item, index, array) => {
         if (item.PropertyImages.length > 0) {
           const images = item.PropertyImages.map((image) => {
             return `${GLOBALS.TEMP_IMAGE_PATH}${image.url}`;
@@ -58,10 +55,8 @@ class PropertyItem extends Component {
     }
   };
 
-  render() {
-    return <Fragment>{this.renderProperties()}</Fragment>;
-  }
-}
+  return <Fragment>{renderProperties()}</Fragment>;
+};
 
 const styles = {
   card: {

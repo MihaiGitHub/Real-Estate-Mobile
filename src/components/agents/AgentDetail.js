@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Image } from "react-native";
 import { connect } from "react-redux";
 import {
@@ -19,69 +19,67 @@ import PhoneCall from "../common/PhoneCall";
 
 //const SCREEN_WIDTH = SCREEN_IMPORT.get('window').width;
 
-class AgentDetail extends Component {
-  componentDidMount = () => {
-    this.props.agentFetch(this.props.id);
-  };
+const AgentDetail = (props) => {
+  useEffect(() => {
+    props.agentFetch(props.id);
+  }, []);
 
-  render() {
-    if (this.props.loadingAgent) {
-      return <Spinner size="large" />;
-    }
-
-    let image = "";
-
-    if (this.props.agent.picture) {
-      image = `${GLOBALS.TEMP_IMAGE_PATH}/${this.props.agent.picture}`;
-    } else {
-      image = `${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/profile.jpg`;
-    }
-
-    return (
-      <Container>
-        <Content>
-          <Card style={styles.card}>
-            <CardItem>
-              <Left>
-                <Body>
-                  <Text>
-                    {this.props.agent.fname} {this.props.agent.lname}
-                  </Text>
-                  <Text note>Certified Agent</Text>
-                </Body>
-              </Left>
-            </CardItem>
-            <CardItem>
-              <Body style={styles.body}>
-                <Image source={{ uri: image }} style={styles.image} />
-
-                <TextMessage
-                  {...this.props}
-                  btnWidth="49%"
-                  phoneNumber={this.props.agent.phone}
-                />
-
-                <PhoneCall
-                  {...this.props}
-                  btnWidth="49%"
-                  phoneNumber={this.props.agent.phone}
-                />
-
-                <Text style={styles.text}>
-                  License #: {this.props.agent.license}
-                </Text>
-
-                <Text style={styles.text}>About {this.props.agent.fname}</Text>
-
-                <Text>{this.props.agent.description}</Text>
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
-    );
+  if (props.loadingAgent) {
+    return <Spinner size="large" />;
   }
-}
+
+  let image = "";
+
+  if (props.agent.picture) {
+    image = `${GLOBALS.TEMP_IMAGE_PATH}/${props.agent.picture}`;
+  } else {
+    image = `${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/profile.jpg`;
+  }
+
+  return (
+    <Container>
+      <Content>
+        <Card style={styles.card}>
+          <CardItem>
+            <Left>
+              <Body>
+                <Text>
+                  {props.agent.fname} {props.agent.lname}
+                </Text>
+                <Text note>Certified Agent</Text>
+              </Body>
+            </Left>
+          </CardItem>
+          <CardItem>
+            <Body style={styles.body}>
+              <Image source={{ uri: image }} style={styles.image} />
+
+              <TextMessage
+                {...props}
+                btnWidth="49%"
+                phoneNumber={props.agent.phone}
+              />
+
+              <PhoneCall
+                {...props}
+                btnWidth="49%"
+                phoneNumber={props.agent.phone}
+              />
+
+              <Text style={styles.text}>
+                License #: {props.agent.license_number}
+              </Text>
+
+              <Text style={styles.text}>About {props.agent.fname}</Text>
+
+              <Text>{props.agent.description}</Text>
+            </Body>
+          </CardItem>
+        </Card>
+      </Content>
+    </Container>
+  );
+};
 
 const styles = {
   card: {

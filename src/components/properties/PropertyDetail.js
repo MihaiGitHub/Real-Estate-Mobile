@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { View } from "react-native";
+import { InteractionManager, View } from "react-native";
 import getDirections from "react-native-google-maps-directions";
 import {
   Container,
@@ -18,14 +18,18 @@ import GLOBALS from "../common/Globals";
 import { propertyFetch } from "../../actions";
 import { Spinner } from "../common/Spinner";
 
-class PropertyDetail extends Component {
-  componentDidMount = () => {
-    this.props.propertyFetch(this.props.id);
+const PropertyDetail = (props) => {
+  const init = () => {
+    props.propertyFetch(props.id);
   };
 
-  handleFeatures = () => {
-    if (this.props.property.features) {
-      let features = this.props.property.features.split(",");
+  useEffect(() => {
+    init();
+  }, []);
+
+  const handleFeatures = () => {
+    if (props.property.features) {
+      let features = props.property.features.split(",");
 
       return features.map((feature) => {
         return (
@@ -37,11 +41,11 @@ class PropertyDetail extends Component {
     }
   };
 
-  handleGetDirections = () => {
+  const handleGetDirections = () => {
     const data = {
       destination: {
-        latitude: parseFloat(this.props.property.lat, 10),
-        longitude: parseFloat(this.props.property.lng, 10),
+        latitude: parseFloat(props.property.lat, 10),
+        longitude: parseFloat(props.property.lng, 10),
       },
       params: [
         {
@@ -58,91 +62,89 @@ class PropertyDetail extends Component {
     getDirections(data);
   };
 
-  render() {
-    if (this.props.loadingProperty) {
-      return <Spinner size="large" />;
-    }
-
-    let {
-      lat,
-      lng,
-      images,
-      price,
-      bedroom,
-      bathroom,
-      location,
-      description,
-    } = this.props.property;
-
-    if (images.length === 0) {
-      images = [`${GLOBALS.BASE_URL}/dashboard/img/house.gif`];
-    }
-
-    return (
-      <Container>
-        <Content>
-          <View style={styles.view}>
-            <SliderBox
-              images={images}
-              dotColor="#FFEE58"
-              inactiveDotColor="#90A4AE"
-              onCurrentImagePressed={(index) =>
-                console.log(`image ${index} pressed`)
-              }
-            />
-            <Button
-              small
-              primary
-              style={styles.mapBtn}
-              onPress={() =>
-                Actions.propertyMap({ latitude: lat, longitude: lng })
-              }
-            >
-              <Icon
-                active
-                name="map"
-                size={25}
-                color="#ffffff"
-                style={styles.icon}
-              />
-              <Text>VIEW MAP</Text>
-            </Button>
-            <Button
-              small
-              primary
-              onPress={this.handleGetDirections}
-              style={styles.directionsBtn}
-            >
-              <Icon
-                active
-                name="directions"
-                size={25}
-                color="#ffffff"
-                style={styles.icon}
-              />
-              <Text>DIRECTIONS</Text>
-            </Button>
-          </View>
-          <Card style={styles.card}>
-            <CardItem>
-              <Body style={styles.body}>
-                <Text style={styles.textPrice}>${price}</Text>
-                <Text style={styles.textBedBath}>
-                  {bedroom} Beds {bathroom} Baths
-                </Text>
-                <Text style={styles.textLocation}>{location}</Text>
-                <Text style={styles.textFeaturesTitle}>Features</Text>
-                {this.handleFeatures()}
-                <Text style={styles.textDescriptionTitle}>About this home</Text>
-                <Text style={styles.textDescription}>{description}</Text>
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
-    );
+  if (props.loadingProperty) {
+    return <Spinner size="large" />;
   }
-}
+
+  const {
+    lat,
+    lng,
+    images,
+    price,
+    bedroom,
+    bathroom,
+    location,
+    description,
+  } = props.property;
+
+  if (images.length === 0) {
+    images = [`${GLOBALS.BASE_URL}/dashboard/img/house.gif`];
+  }
+
+  return (
+    <Container>
+      <Content>
+        <View style={styles.view}>
+          <SliderBox
+            images={images}
+            dotColor="#FFEE58"
+            inactiveDotColor="#90A4AE"
+            onCurrentImagePressed={(index) =>
+              console.log(`image ${index} pressed`)
+            }
+          />
+          <Button
+            small
+            primary
+            style={styles.mapBtn}
+            onPress={() =>
+              Actions.propertyMap({ latitude: lat, longitude: lng })
+            }
+          >
+            <Icon
+              active
+              name="map"
+              size={25}
+              color="#ffffff"
+              style={styles.icon}
+            />
+            <Text>VIEW MAP</Text>
+          </Button>
+          <Button
+            small
+            primary
+            onPress={handleGetDirections}
+            style={styles.directionsBtn}
+          >
+            <Icon
+              active
+              name="directions"
+              size={25}
+              color="#ffffff"
+              style={styles.icon}
+            />
+            <Text>DIRECTIONS</Text>
+          </Button>
+        </View>
+        <Card style={styles.card}>
+          <CardItem>
+            <Body style={styles.body}>
+              <Text style={styles.textPrice}>${price}</Text>
+              <Text style={styles.textBedBath}>
+                {bedroom} Beds {bathroom} Baths
+              </Text>
+              <Text style={styles.textLocation}>{location}</Text>
+              <Text style={styles.textFeaturesTitle}>Features</Text>
+              {handleFeatures()}
+              <Text style={styles.textDescriptionTitle}>About this home</Text>
+              <Text style={styles.textDescription}>{description}</Text>
+            </Body>
+          </CardItem>
+        </Card>
+      </Content>
+    </Container>
+  );
+};
 
 const styles = {
   view: {
