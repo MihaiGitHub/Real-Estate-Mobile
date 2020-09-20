@@ -7,8 +7,10 @@ npm-debug.*
 *.key
 *.mobileprovision
 *.orig.*
+*.properties
 web-build/
 local.properties
+
 
 # macOS
 .DS_Store
