@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { InteractionManager, View } from "react-native";
+import { View } from "react-native";
 import getDirections from "react-native-google-maps-directions";
 import {
   Container,
@@ -12,11 +12,11 @@ import {
   Body,
 } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { SliderBox } from "react-native-image-slider-box";
 import { Actions } from "react-native-router-flux";
 import GLOBALS from "../common/Globals";
 import { propertyFetch } from "../../actions";
 import { Spinner } from "../common/Spinner";
+import ImageBrowser from "react-native-interactive-image-gallery";
 
 const PropertyDetail = (props) => {
   const init = () => {
@@ -78,21 +78,24 @@ const PropertyDetail = (props) => {
   } = props.property;
 
   if (images.length === 0) {
-    images = [`${GLOBALS.BASE_URL}/dashboard/img/house.gif`];
+    imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
   }
+
+  const imageURLs = images.map((image, index) => ({
+    URI: image,
+    thumbnail: image,
+    id: index + 1,
+    title: "",
+    description: "",
+  }));
 
   return (
     <Container>
       <Content>
+        <View>
+          <ImageBrowser images={imageURLs} />
+        </View>
         <View style={styles.view}>
-          <SliderBox
-            images={images}
-            dotColor="#FFEE58"
-            inactiveDotColor="#90A4AE"
-            onCurrentImagePressed={(index) =>
-              console.log(`image ${index} pressed`)
-            }
-          />
           <Button
             small
             primary
