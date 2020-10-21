@@ -3,6 +3,7 @@ import {
   PROPERTIES_FILTERED,
   PROPERTY_FETCH_SUCCESS,
   UPDATE_SEARCH_TERM,
+  SEARCH_LAT_LNG
 } from "./types";
 import axios from "axios";
 import GLOBALS from "../components/common/Globals";
@@ -37,9 +38,14 @@ export const propertiesFiltered = (lat, lng) => {
       .get(`${GLOBALS.BASE_URL}/search/properties?lat=${lat}&lng=${lng}`)
       .then((response) => {
         dispatch({
+          type: SEARCH_LAT_LNG,
+          payload: { lat, lng },
+        });
+
+        dispatch({
           type: PROPERTIES_FILTERED,
           payload: response.data.results,
-        });
+        });        
       })
       .catch(function (error) {
         console.log(error);

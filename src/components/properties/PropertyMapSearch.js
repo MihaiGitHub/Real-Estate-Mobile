@@ -4,7 +4,13 @@ import MapView from "react-native-maps";
 import { Actions } from "react-native-router-flux";
 
 const PropertyMapSearch = (props) => {
-  const { lat, lng } = props.listFiltered[0];
+  
+  if(Array.isArray(props.listFiltered) && props.listFiltered.length > 0){
+    var { lat, lng } = props.listFiltered[0];
+  }
+  else {
+    var { lat, lng } = props.searchLatLng;
+  }
 
   return (
     <MapView
@@ -32,9 +38,9 @@ const PropertyMapSearch = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { listFiltered, loading } = state.properties;
+  const { listFiltered, searchLatLng, loading } = state.properties;
 
-  return { listFiltered, loading };
+  return { listFiltered, searchLatLng, loading };
 };
 
 // Anytime state updates, connect helper will rerun mapStateToProps to make it available as props in component

@@ -25,6 +25,7 @@ const PropertySearch = (props) => {
           details.geometry.location.lat,
           details.geometry.location.lng
         );
+        
         await props.udpateSearchTerm(details.formatted_address);
 
         Actions.propertiesMain();

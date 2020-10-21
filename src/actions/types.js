@@ -4,3 +4,4 @@ export const AGENT_FETCH_SUCCESS = 'agent_fetch_success';
 export const PROPERTIES_FILTERED = 'properties_filtered';
 export const PROPERTY_FETCH_SUCCESS = 'property_fetch_success';
 export const UPDATE_SEARCH_TERM = 'update_search_term';
+export const SEARCH_LAT_LNG = 'search_lat_lng';

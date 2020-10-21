@@ -3,6 +3,7 @@ import {
   PROPERTIES_FILTERED,
   PROPERTY_FETCH_SUCCESS,
   UPDATE_SEARCH_TERM,
+  SEARCH_LAT_LNG
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -12,6 +13,7 @@ const INITIAL_STATE = {
   loading: true,
   loadingProperty: true,
   searchTerm: "Search",
+  searchLatLng: {},
   filtered: false,
 };
 
@@ -37,6 +39,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, propertyId: action.payload, loadingProperty: false };
     case UPDATE_SEARCH_TERM:
       return { ...state, searchTerm: action.payload };
+    case SEARCH_LAT_LNG:
+      return { ...state, searchLatLng: action.payload };
     default:
       return state;
   }
