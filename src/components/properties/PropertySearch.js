@@ -1,14 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import * as Location from 'expo-location';
+import { Actions } from "react-native-router-flux";
 import {
   propertiesFiltered,
   udpateSearchTerm,
 } from "../../actions/PropertiesActions";
-import { Actions } from "react-native-router-flux";
 import GLOBALS from "../common/Globals";
 
 const PropertySearch = (props) => {
+  const [location, setLocation] = useState(null);
+  const [currentLat, setCurrentLat] = useState(null);
+  const [currentLng, setCurrentLng] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  const currentLocation = {
+    description: 'Current Location',
+    geometry: { 
+      location: { 
+        lat: currentLat, 
+        lng: currentLng
+      } 
+    },
+  };
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      setCurrentLat(location.coords.latitude);
+      setCurrentLng(location.coords.longitude);
+    })();
+  }, []);
+
   return (
     <GooglePlacesAutocomplete
       placeholder="Search"
@@ -65,7 +95,7 @@ const PropertySearch = (props) => {
         "locality",
         "administrative_area_level_3",
       ]} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
-      //  predefinedPlaces={[currenttLocation]}
+      predefinedPlaces={[currentLocation]}
 
       debounce={200} // debounce the requests in ms. Set to 0 to remove debounce. By default 0ms.
     />
