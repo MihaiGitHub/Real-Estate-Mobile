@@ -66,13 +66,15 @@ const PropertyDetail = (props) => {
     return <Spinner size="large" />;
   }
 
+  console.log('props.property ', props.property)
+
   const {
     lat,
     lng,
     images,
     price,
-    bedroom,
-    bathroom,
+    bedrooms,
+    bathrooms,
     location,
     description,
   } = props.property;
@@ -134,7 +136,7 @@ const PropertyDetail = (props) => {
             <Body style={styles.body}>
               <Text style={styles.textPrice}>${price}</Text>
               <Text style={styles.textBedBath}>
-                {bedroom} Beds {bathroom} Baths
+                {bedrooms} Beds {bathrooms} Baths
               </Text>
               <Text style={styles.textLocation}>{location}</Text>
               <Text style={styles.textFeaturesTitle}>Features</Text>
