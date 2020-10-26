@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { View } from "react-native";
+import { View, Image } from "react-native";
 import getDirections from "react-native-google-maps-directions";
 import {
   Container,
@@ -20,6 +20,7 @@ import ImageBrowser from "react-native-interactive-image-gallery";
 
 const PropertyDetail = (props) => {
   const init = () => {
+    console.log("PROPS ", props);
     props.propertyFetch(props.id);
   };
 
@@ -66,8 +67,6 @@ const PropertyDetail = (props) => {
     return <Spinner size="large" />;
   }
 
-  console.log('props.property ', props.property)
-
   const {
     lat,
     lng,
@@ -77,6 +76,7 @@ const PropertyDetail = (props) => {
     bathrooms,
     location,
     description,
+    user,
   } = props.property;
 
   if (images.length === 0) {
@@ -90,6 +90,14 @@ const PropertyDetail = (props) => {
     title: "",
     description: "",
   }));
+
+  let agentImage = "";
+
+  if (props.property.user.picture) {
+    agentImage = `${GLOBALS.TEMP_IMAGE_PATH}/${props.property.user.picture}`;
+  } else {
+    agentImage = `${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/profile.jpg`;
+  }
 
   return (
     <Container>
@@ -145,6 +153,24 @@ const PropertyDetail = (props) => {
               <Text style={styles.textDescription}>{description}</Text>
             </Body>
           </CardItem>
+
+          <CardItem>
+            <Body style={styles.body}>
+              <Text style={styles.textDescriptionTitle}>
+                Contact Agent - {user.fname} {user.lname}
+              </Text>
+
+              <Image source={{ uri: agentImage }} style={styles.image} />
+              <Button
+                block
+                primary
+                onPress={() => Actions.agentMessage(user.id)}
+                style={styles.messageBtn}
+              >
+                <Text>SEND MESSAGE</Text>
+              </Button>
+            </Body>
+          </CardItem>
         </Card>
       </Content>
     </Container>
@@ -173,6 +199,11 @@ const styles = {
   directionsBtn: {
     width: "49%",
     borderRadius: 3,
+  },
+  messageBtn: {
+    width: "100%",
+    borderRadius: 5,
+    textAlign: "center",
   },
   card: {
     flex: 0,
@@ -224,11 +255,18 @@ const styles = {
     minWidth: "50%",
     textAlign: "left",
   },
+  image: {
+    height: 300,
+    width: "100%",
+    marginBottom: 5,
+    marginTop: 5,
+  },
 };
 
 const mapStateToProps = (state) => {
-  const { listFiltered, propertyId, loadingProperty } = state.properties;
-  const property = listFiltered.find((x) => x.id === propertyId);
+  const { list, propertyId, loadingProperty } = state.properties;
+
+  const property = list.find((x) => x.id === propertyId);
 
   return { property, loadingProperty };
 };

@@ -14,6 +14,7 @@ import TermsUse from "./src/components/profile/TermsUse";
 import Settings from "./src/components/profile/Settings";
 import NavBarSearch from "./src/components/common/NavBarSearch";
 import PropertiesMain from "./src/components/properties/index";
+import AgentMessage from "./src/components/agents/AgentMessage";
 
 const Properties = ({ navigation }) => {
   return (
@@ -93,6 +94,12 @@ const RouterComponent = () => {
               key="propertyMap"
               component={PropertyMap}
               title="Property Map"
+            />
+            <Scene
+              hideTabBar
+              key="agentMessage"
+              component={AgentMessage}
+              title="Message agent"
             />
           </Scene>
 

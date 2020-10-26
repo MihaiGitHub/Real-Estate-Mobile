@@ -33,3 +33,15 @@ export const agentFetch = (id) => {
       });
   };
 };
+
+export const saveMessage = (id, msg) => {
+  return axios
+    .post(`${GLOBALS.BASE_URL}/agent/${id}/message`, {
+      uid: id,
+      message: msg,
+    })
+    .then((response) => response)
+    .catch(function (error) {
+      console.log(error);
+    });
+};

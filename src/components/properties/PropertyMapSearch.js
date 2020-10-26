@@ -4,11 +4,9 @@ import MapView from "react-native-maps";
 import { Actions } from "react-native-router-flux";
 
 const PropertyMapSearch = (props) => {
-  
-  if(Array.isArray(props.listFiltered) && props.listFiltered.length > 0){
+  if (Array.isArray(props.listFiltered) && props.listFiltered.length > 0) {
     var { lat, lng } = props.listFiltered[0];
-  }
-  else {
+  } else {
     var { lat, lng } = props.searchLatLng;
   }
 

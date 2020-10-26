@@ -3,7 +3,7 @@ import {
   PROPERTIES_FILTERED,
   PROPERTY_FETCH_SUCCESS,
   UPDATE_SEARCH_TERM,
-  SEARCH_LAT_LNG
+  SEARCH_LAT_LNG,
 } from "../actions/types";
 
 const INITIAL_STATE = {
