@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -36,7 +37,18 @@
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "babel-preset-expo": "^8.2.3",
+    "jest-expo": "^39.0.0",
+    "react-test-renderer": "^17.0.1",
     "redux-devtools": "^3.7.0"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|ourhouse|react-native-button|native-base|native-base-shoutem-theme|react-native-easy-grid|react-native-drawer|expo(nent)?|@expo(nent)?/.*|expo-font|@unimodules/.*|unimodules|expo-asset|expo-constants|expo-file-system|react-native-vector-icons|@codler/react-native-keyboard-aware-scroll-view|react-native-iphone-x-helper|react-native-router-flux|react-navigation|react-native-gesture-handler)/)"
+    ],
+    "transform": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/fileTransformer.js"
+    }
+  }
 }

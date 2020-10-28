@@ -1,12 +1,23 @@
 # Real-Estate-Mobile
-Mobile app for searching and getting directions to nearby homes, condos and townhouses.  Browsing real estate agents and scheduling appointments.
 
-## Running Locally
+Mobile app with GeoLocation for searching and getting directions to nearby homes, condos and townhouses. Browsing real estate agents and scheduling appointments.<br><br>
+MySQL back-end database<br>
+Node (Express + Sequelize) API layer<br>
+React front-end client
 
-Ensure a device, or emulated Android image is connected (i.e. Android Studio). 
+## Installation
+
+Ensure a device, or emulated Android image is connected (i.e. Android Studio).
 Real-Estate-Mobile is built on React Native and therefore assumes you have Node.js installed.
 
 `git clone https://github.com/MihaiGitHub/Real-Estate-Mobile.git` <br>
 `cd Real-Estate-Mobile` <br>
 `npm install` <br>
-`npm run android`
+
+## Running Locally
+
+`expo start`
+
+## Running Tests
+
+`npm test`
