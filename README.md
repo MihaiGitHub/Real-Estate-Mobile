@@ -14,6 +14,11 @@ Real-Estate-Mobile is built on React Native and therefore assumes you have Node.
 `cd Real-Estate-Mobile` <br>
 `npm install` <br>
 
+Update the following files with the correct Google Maps API key
+
+`src\components\common\Globals.js`<br>
+`app.json`
+
 ## Running Locally
 
 `expo start`
