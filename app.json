@@ -2,7 +2,7 @@
   "expo": {
     "name": "Our House",
     "slug": "ourhouse",
-    "version": "1",
+    "version": "4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -15,14 +15,16 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "ourhouse.org"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.ourhouse.org",
-      "versionCode": 1,
+      "package": "ourhouse.org",
+      "versionCode": 4,
+      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"],
       "config": {
         "googleMaps": {
           "apiKey": "XXXX"
