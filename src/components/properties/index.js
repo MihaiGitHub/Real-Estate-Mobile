@@ -1,34 +1,22 @@
 import React from "react";
-import { Tab, Tabs, TabHeading, Text } from "native-base";
-import PropertyList from "./PropertyList";
-import PropertyMapSearch from "./PropertyMapSearch";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { PropertiesList } from "./PropertiesList";
+import { PropertyView } from "./PropertyView";
 
-const PropertiesMain = () => {
+const PropertiesStack = createNativeStackNavigator();
+
+export function Properties() {
   return (
-    <Tabs
-      locked={true}
-      style={Platform.OS === "android" ? { overflow: "hidden" } : null}
+    <PropertiesStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
     >
-      <Tab
-        heading={
-          <TabHeading>
-            <Text>List</Text>
-          </TabHeading>
-        }
-      >
-        <PropertyList />
-      </Tab>
-      <Tab
-        heading={
-          <TabHeading>
-            <Text>Map</Text>
-          </TabHeading>
-        }
-      >
-        <PropertyMapSearch />
-      </Tab>
-    </Tabs>
+      <PropertiesStack.Screen
+        name="PropertiesList"
+        component={PropertiesList}
+      />
+      <PropertiesStack.Screen name="PropertyView" component={PropertyView} />
+    </PropertiesStack.Navigator>
   );
-};
-
-export default PropertiesMain;
+}

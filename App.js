@@ -1,50 +1,82 @@
-import React, { useState, useEffect } from "react";
-import { Provider } from "react-redux";
+import React from "react";
+import { Provider, useSelector, useDispatch } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import ReduxThunk from "redux-thunk";
 import reducers from "./src/reducers";
-import Router from "./Router";
-import { Root } from "native-base";
-import * as Font from "expo-font";
-import { AppLoading } from "expo";
+import {
+  Text,
+  Link,
+  HStack,
+  Center,
+  Heading,
+  Switch,
+  useColorMode,
+  NativeBaseProvider,
+  extendTheme,
+  VStack,
+  Code,
+} from "native-base";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
+import { Properties } from "./src/components/Properties";
+import { Agents } from "./src/components/Agents";
+import { Account } from "./src/components/Account";
 
-const App = () => {
-  const [loading, setLoading] = useState(true);
+// Define the config
+// const config = {
+//   useSystemColorMode: false,
+//   initialColorMode: "dark",
+// };
 
-  async function fontLoad() {
-    await Font.loadAsync({
-      Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-    });
+const Tab = createBottomTabNavigator();
 
-    setLoading(false);
-  }
+function MainMenu() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
 
-  const init = () => {
-    fontLoad();
-  };
+          if (route.name === "Properties") {
+            iconName = focused ? "home" : "home";
+          } else if (route.name === "Agents") {
+            iconName = focused ? "person" : "person";
+          } else if (route.name === "My Profile") {
+            iconName = focused ? "book" : "book";
+          }
 
-  useEffect(() => {
-    init();
-  }, []);
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "gray",
+      })}
+    >
+      <Tab.Screen
+        name="Properties"
+        component={Properties}
+        //    icon={<Ionicons name="md-checkmark-circle" size={32} color="green" />}
+      />
+      <Tab.Screen name="Agents" component={Agents} />
+      <Tab.Screen name="Account" component={Account} />
+    </Tab.Navigator>
+  );
+}
 
-  const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+// extend the theme
+//export const theme = extendTheme({ config });
 
-  if (loading) {
-    return (
-      <Root>
-        <AppLoading />
-      </Root>
-    );
-  } else {
-    return (
-      <Root>
-        <Provider store={store}>
-          <Router />
-        </Provider>
-      </Root>
-    );
-  }
-};
+const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
-export default App;
+export default function App() {
+  return (
+    <Provider store={store}>
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <MainMenu />
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </Provider>
+  );
+}

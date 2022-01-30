@@ -1,47 +1,28 @@
 import { AGENTS_FETCH_SUCCESS, AGENT_FETCH_SUCCESS } from "./types";
-import axios from "axios";
-import GLOBALS from "../components/common/Globals";
+import AgentsService from "../services/AgentsService";
 
-export const agentsFetch = () => {
-  return (dispatch) => {
-    axios
-      .get(`${GLOBALS.BASE_URL}/agents`)
-      .then((response) => {
-        dispatch({
-          type: AGENTS_FETCH_SUCCESS,
-          payload: response.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-};
+export const agentsFetch = () => async (dispatch) => {
+  try {
+    const res = await AgentsService.getAgents();
 
-export const agentFetch = (id) => {
-  return (dispatch) => {
-    axios
-      .get(`${GLOBALS.BASE_URL}/agent/${id}`)
-      .then((response) => {
-        dispatch({
-          type: AGENT_FETCH_SUCCESS,
-          payload: response.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-};
-
-export const saveMessage = (id, msg) => {
-  return axios
-    .post(`${GLOBALS.BASE_URL}/agent/${id}/message`, {
-      uid: id,
-      message: msg,
-    })
-    .then((response) => response)
-    .catch(function (error) {
-      console.log(error);
+    dispatch({
+      type: AGENTS_FETCH_SUCCESS,
+      payload: res.data,
     });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const findAgentById = (id) => async (dispatch) => {
+  try {
+    const res = await AgentsService.getAgentById(id);
+
+    dispatch({
+      type: AGENT_FETCH_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };

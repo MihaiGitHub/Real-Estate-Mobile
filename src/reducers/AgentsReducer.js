@@ -10,7 +10,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case AGENTS_FETCH_SUCCESS:
-      // Will send to app state in combineReducers as state.agents
       return { ...state, list: action.payload, loading: false };
     case AGENT_FETCH_SUCCESS:
       return { ...state, agent: action.payload, loadingAgent: false };
