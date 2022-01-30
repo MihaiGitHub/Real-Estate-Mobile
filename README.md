@@ -1,5 +1,7 @@
 # Real-Estate-Mobile
 
+Version 1.2: Before redux and hooks<br>
+
 Mobile app with GeoLocation for searching and getting directions to nearby homes, condos and townhouses. Browsing real estate agents and scheduling appointments.<br><br>
 MySQL back-end database<br>
 Node (Express + Sequelize) API layer<br>
