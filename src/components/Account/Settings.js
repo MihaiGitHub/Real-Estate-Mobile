@@ -1,5 +1,4 @@
 import React from "react";
-//import { Text, View } from "react-native";
 import { Switch, HStack, Text, Center, NativeBaseProvider } from "native-base";
 
 export function Settings({ navigation }) {

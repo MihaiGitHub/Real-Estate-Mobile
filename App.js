@@ -42,8 +42,8 @@ function MainMenu() {
             iconName = focused ? "home" : "home";
           } else if (route.name === "Agents") {
             iconName = focused ? "person" : "person";
-          } else if (route.name === "My Profile") {
-            iconName = focused ? "book" : "book";
+          } else if (route.name === "Account") {
+            iconName = focused ? "list" : "list";
           }
 
           // You can return any component that you like here!
@@ -58,7 +58,11 @@ function MainMenu() {
         component={Properties}
         //    icon={<Ionicons name="md-checkmark-circle" size={32} color="green" />}
       />
-      <Tab.Screen name="Agents" component={Agents} />
+      <Tab.Screen
+        name="Agents"
+        //    options={{ headerShown: false }}
+        component={Agents}
+      />
       <Tab.Screen name="Account" component={Account} />
     </Tab.Navigator>
   );

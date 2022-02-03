@@ -11,7 +11,7 @@ export function PropertiesList({ navigation }) {
     dispatch(propertiesFetch());
   }, []);
 
-  console.log("Redux store  ", reduxStore);
+  // console.log("Redux store  ", reduxStore);
 
   return (
     <View>
