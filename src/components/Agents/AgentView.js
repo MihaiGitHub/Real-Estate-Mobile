@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Linking } from "react-native";
 import {
   Box,
   Button,
@@ -13,12 +14,28 @@ import {
   ScrollView,
 } from "native-base";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import Communications from "react-native-communications";
 import GLOBALS from "../Common/Globals";
 
 export function AgentView({ route }) {
   const { item } = route.params;
 
-  console.log("item ", item);
+  const initiateWhatsApp = (message, number) => {
+    // Check for perfect 10 digit length
+    // if (mobileNumber.length != 10) {
+    //   alert("Please insert correct WhatsApp number");
+    //   return;
+    // }
+
+    let url = "whatsapp://send?text=" + message + "&phone=1" + number;
+    Linking.openURL(url)
+      .then((data) => {
+        console.log("WhatsApp Opened");
+      })
+      .catch(() => {
+        alert("Make sure Whatsapp installed on your device");
+      });
+  };
 
   return (
     <Box alignItems="center">
@@ -96,6 +113,12 @@ export function AgentView({ route }) {
               justifyContent="space-between"
             >
               <Button
+                onPress={() =>
+                  initiateWhatsApp(
+                    "I want to inquire about a property",
+                    item.phone
+                  )
+                }
                 style={{ flex: 0.35 }}
                 leftIcon={
                   <FontAwesome name="whatsapp" size={24} color="black" />
@@ -104,6 +127,7 @@ export function AgentView({ route }) {
                 WhatsApp
               </Button>
               <Button
+                onPress={() => Communications.text(item.phone)}
                 style={{ flex: 0.35 }}
                 leftIcon={
                   <MaterialIcons name="textsms" size={24} color="black" />
