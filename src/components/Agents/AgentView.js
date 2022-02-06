@@ -13,6 +13,7 @@ import {
   ScrollView,
 } from "native-base";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import GLOBALS from "../Common/Globals";
 
 export function AgentView({ route }) {
   const { item } = route.params;
@@ -41,10 +42,11 @@ export function AgentView({ route }) {
           }}
         >
           <Box>
-            <AspectRatio w="100%" ratio={16 / 9}>
+            <AspectRatio w="100%" ratio={16 / 14}>
               <Image
+                style={{ paddingTop: "25px", marginTop: "25px" }}
                 source={{
-                  uri: "https://ssl.cdn-redfin.com/system_files/images/21057/640x460/6_93.jpg",
+                  uri: `${GLOBALS.TEMP_IMAGE_PATH}${item.picture}`,
                 }}
                 alt="image"
               />
@@ -117,17 +119,6 @@ export function AgentView({ route }) {
               >
                 Call
               </Button>
-              {/* <HStack alignItems="center">
-                <Text
-                  color="coolGray.600"
-                  _dark={{
-                    color: "warmGray.200",
-                  }}
-                  fontWeight="400"
-                >
-                  
-                </Text>
-              </HStack> */}
             </HStack>
           </Stack>
         </Box>

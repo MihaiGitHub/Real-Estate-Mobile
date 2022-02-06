@@ -24,12 +24,6 @@ export function AgentsList({ navigation }) {
     dispatch(agentsFetch());
   }, []);
 
-  console.log("Redux store  ", agents);
-
-  const obj = {
-    avatar: "http://homesquare.epizy.com/dashboard/uploads/3/profile/8_6.jpg",
-  };
-
   return (
     <Box>
       <FlatList
@@ -57,18 +51,10 @@ export function AgentsList({ navigation }) {
               py="2"
             >
               <HStack space={3} justifyContent="space-between">
-                {/* <Text>
-                  {GLOBALS.TEMP_IMAGE_PATH}
-                  {item.picture}
-                </Text> */}
                 <Avatar
                   size="48px"
                   source={{
-                    // uri: obj.avatar,
-                    // uri: "http://homesquare.epizy.com/dashboard/uploads/3/profile/8_6.jpg",
-                    //  uri: `${GLOBALS.TEMP_IMAGE_PATH}${item.picture}`,
-                    //  uri: TEMP_IMAGE_PATH + item.picture,
-                    uri: "https://ssl.cdn-redfin.com/system_files/images/21057/640x460/6_93.jpg",
+                    uri: `${GLOBALS.TEMP_IMAGE_PATH}${item.picture}`,
                   }}
                 />
                 <VStack>
