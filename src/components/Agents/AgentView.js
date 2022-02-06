@@ -37,6 +37,24 @@ export function AgentView({ route }) {
       });
   };
 
+  const initiatePhoneCall = (number) => {
+    // Check for perfect 10 digit length
+    // if (mobileNumber.length != 10) {
+    //   alert("Please insert correct WhatsApp number");
+    //   return;
+    // }
+
+    let url = "tel:" + number;
+
+    Linking.openURL(url)
+      .then((data) => {
+        console.log("Phone Opened");
+      })
+      .catch(() => {
+        alert("Make sure phone calls are working on device");
+      });
+  };
+
   return (
     <Box alignItems="center">
       <ScrollView>
@@ -136,6 +154,7 @@ export function AgentView({ route }) {
                 Text
               </Button>
               <Button
+                onPress={() => initiatePhoneCall(item.phone)}
                 style={{ flex: 0.35 }}
                 leftIcon={
                   <Ionicons name="call-outline" size={24} color="black" />
