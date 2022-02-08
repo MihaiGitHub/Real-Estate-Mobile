@@ -1,24 +1,90 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Button, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { propertiesFetch } from "../../actions/PropertiesActions";
+import {
+  Box,
+  FlatList,
+  Heading,
+  Avatar,
+  HStack,
+  VStack,
+  AspectRatio,
+  Text,
+  Stack,
+  Image,
+  Spacer,
+  Center,
+  NativeBaseProvider,
+  ScrollView,
+} from "native-base";
+import { Spinner } from "../Common/Spinner";
+import { SliderBox } from "react-native-image-slider-box";
 
 export function PropertiesList({ navigation }) {
-  const reduxStore = useSelector((state) => state);
+  const properties = useSelector((state) => state.properties.listFiltered);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(propertiesFetch());
   }, []);
 
-  // console.log("Redux store  ", reduxStore);
+  if (properties.length === 0) {
+    return <Spinner size="large" />;
+  }
 
-  return (
-    <View>
-      <Button
-        title="Go to properties View"
-        onPress={() => navigation.navigate("PropertyView")}
-      />
-    </View>
-  );
+  const renderProperties = () => {
+    return properties.map((item, index, array) => {
+      if (item.PropertyImages.length > 0) {
+        const images = item.PropertyImages.map((image) => {
+          // return `${GLOBALS.TEMP_IMAGE_PATH}${image.url}`;
+          return image.url;
+        });
+
+        array[index]["images"] = images;
+      } else {
+        array[index]["images"] = [
+          `https://media0.giphy.com/media/l2JejWb7Yq2L7TOVi/giphy.gif?cid=790b76111476f50608a579e2e3c159c0553040a43dcfcc64&rid=giphy.gif&ct=g`,
+        ];
+      }
+
+      return (
+        <Box border="1" borderRadius="md" key={index}>
+          <VStack space="4">
+            <Box>
+              <SliderBox
+                images={array[index]["images"]}
+                sliderBoxHeight={200}
+                onCurrentImagePressed={(index) => {
+                  //   Actions.propertyView({ id: item.id });
+                  console.log(`image ${index} pressed`);
+                }}
+                dotColor="#FFEE58"
+                inactiveDotColor="#90A4AE"
+              />
+            </Box>
+            <Box px="4">
+              <Box alignSelf="flex-end3">
+                <Text textAlign="left" fontSize={24} fontWeight={600}>
+                  ${item.price}
+                </Text>
+              </Box>
+              <Box alignSelf="flex-end">
+                <Text textAlign="right" fontSize={24} fontWeight={600}>
+                  4 bed
+                </Text>
+              </Box>
+            </Box>
+            <Box px="4" pb="4" pt={0}>
+              {item.address}
+            </Box>
+          </VStack>
+        </Box>
+      );
+    });
+  };
+
+  console.log("properties  ", properties);
+
+  return <ScrollView>{renderProperties()}</ScrollView>;
 }
