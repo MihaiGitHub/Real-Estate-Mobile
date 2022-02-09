@@ -64,14 +64,9 @@ export function PropertiesList({ navigation }) {
               />
             </Box>
             <Box px="4">
-              <Box alignSelf="flex-end3">
+              <Box>
                 <Text textAlign="left" fontSize={24} fontWeight={600}>
                   ${item.price}
-                </Text>
-              </Box>
-              <Box alignSelf="flex-end">
-                <Text textAlign="right" fontSize={24} fontWeight={600}>
-                  4 bed
                 </Text>
               </Box>
             </Box>
