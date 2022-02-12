@@ -22,6 +22,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Properties } from "./src/components/Properties";
 import { Agents } from "./src/components/Agents";
 import { Account } from "./src/components/Account";
+import { NavBarSearch } from "./src/components/Common/NavBarSearch";
 
 // Define the config
 // const config = {
@@ -56,7 +57,7 @@ function MainMenu() {
       <Tab.Screen
         name="Properties"
         component={Properties}
-        //    icon={<Ionicons name="md-checkmark-circle" size={32} color="green" />}
+        options={{ headerTitle: (props) => <NavBarSearch {...props} /> }}
       />
       <Tab.Screen
         name="Agents"

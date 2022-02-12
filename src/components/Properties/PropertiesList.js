@@ -79,7 +79,7 @@ export function PropertiesList({ navigation }) {
     });
   };
 
-  console.log("properties  ", properties);
+  // console.log("properties  ", properties);
 
   return <ScrollView>{renderProperties()}</ScrollView>;
 }
