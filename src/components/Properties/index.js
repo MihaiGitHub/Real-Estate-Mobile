@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { PropertiesList } from "./PropertiesList";
 import { PropertyView } from "./PropertyView";
+import { NavBarTabs } from "../Common/Tabs";
 
 const PropertiesStack = createNativeStackNavigator();
 
@@ -12,10 +12,7 @@ export function Properties() {
         headerShown: false,
       }}
     >
-      <PropertiesStack.Screen
-        name="PropertiesList"
-        component={PropertiesList}
-      />
+      <PropertiesStack.Screen name="PropertiesMain" component={NavBarTabs} />
       <PropertiesStack.Screen name="PropertyView" component={PropertyView} />
     </PropertiesStack.Navigator>
   );
