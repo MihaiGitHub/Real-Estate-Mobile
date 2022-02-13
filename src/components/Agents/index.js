@@ -8,12 +8,12 @@ const AgentsStack = createNativeStackNavigator();
 export function Agents() {
   return (
     <AgentsStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
+    // screenOptions={{
+    //   headerShown: false,
+    // }}
     >
-      <AgentsStack.Screen name="AgentsList" component={AgentsList} />
-      <AgentsStack.Screen name="AgentView" component={AgentView} />
+      <AgentsStack.Screen name="Agents List" component={AgentsList} />
+      <AgentsStack.Screen name="Agent Detail" component={AgentView} />
     </AgentsStack.Navigator>
   );
 }

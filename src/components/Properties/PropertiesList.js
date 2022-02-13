@@ -21,9 +21,12 @@ import {
 import { Spinner } from "../Common/Spinner";
 import { SliderBox } from "react-native-image-slider-box";
 
-export function PropertiesList({ navigation }) {
+import { useNavigation } from "@react-navigation/native";
+
+export function PropertiesList() {
   const properties = useSelector((state) => state.properties.listFiltered);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   useEffect(() => {
     dispatch(propertiesFetch());
@@ -57,7 +60,10 @@ export function PropertiesList({ navigation }) {
                 sliderBoxHeight={200}
                 onCurrentImagePressed={(index) => {
                   //   Actions.propertyView({ id: item.id });
-                  console.log(`image ${index} pressed`);
+                  navigation.navigate("Property Detail", {
+                    id: item.id,
+                  });
+                  //  console.log(`image ${index} pressed`);
                 }}
                 dotColor="#FFEE58"
                 inactiveDotColor="#90A4AE"

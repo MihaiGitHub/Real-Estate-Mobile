@@ -15,10 +15,12 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { agentsFetch } from "../../actions/AgentsActions";
 import GLOBALS from "../Common/Globals";
+import { useNavigation } from "@react-navigation/native";
 
-export function AgentsList({ navigation }) {
+export function AgentsList() {
   const agents = useSelector((state) => state.agents.list);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   useEffect(() => {
     dispatch(agentsFetch());
@@ -32,7 +34,7 @@ export function AgentsList({ navigation }) {
           <TouchableHighlight
             key={item.id}
             onPress={() =>
-              navigation.navigate("AgentView", {
+              navigation.navigate("Agent Detail", {
                 item,
               })
             }

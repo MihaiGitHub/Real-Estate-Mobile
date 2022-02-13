@@ -3,10 +3,12 @@ import { Button, View, Text } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import MapView from "react-native-maps";
 import { findPropertyById } from "../../actions/PropertiesActions";
+import { useNavigation } from "@react-navigation/native";
 
-export function PropertiesMap({ navigation }) {
+export function PropertiesMap() {
   const { listFiltered } = useSelector((state) => state.properties);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   useEffect(() => {
     dispatch(findPropertyById());
@@ -16,11 +18,10 @@ export function PropertiesMap({ navigation }) {
     var { lat, lng } = listFiltered[0];
   } else {
     //var { lat, lng } = props.searchLatLng;
-    var lat = 33.4484;
-    var lng = 112.074;
+    var lat = 33.448376;
+    var lng = -112.074036;
   }
 
-  console.log("lat,  lng ", lat, lng);
   return (
     <MapView
       style={{ flex: 1 }}
@@ -40,7 +41,11 @@ export function PropertiesMap({ navigation }) {
             longitude: parseFloat(marker.lng),
           }}
           title={"$" + marker.price}
-          //      nCalloutPress={() => Actions.propertyView({ id: marker.id })}
+          onCalloutPress={() =>
+            navigation.navigate("Property Detail", {
+              id: marker.id,
+            })
+          }
         />
       ))}
     </MapView>

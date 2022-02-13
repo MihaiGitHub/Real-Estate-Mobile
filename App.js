@@ -57,12 +57,13 @@ function MainMenu() {
       <Tab.Screen
         name="Properties"
         component={Properties}
-        options={{ headerTitle: (props) => <NavBarSearch {...props} /> }}
+        options={{ headerShown: false }}
+        // options={{ headerTitle: (props) => <NavBarSearch {...props} /> }}
       />
       <Tab.Screen
         name="Agents"
-        //    options={{ headerShown: false }}
         component={Agents}
+        options={{ headerShown: false }}
       />
       <Tab.Screen name="Account" component={Account} />
     </Tab.Navigator>
