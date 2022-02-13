@@ -18,8 +18,8 @@ const renderScene = SceneMap({
 export function NavBarTabs() {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: "first", title: "First" },
-    { key: "second", title: "Second" },
+    { key: "first", title: "List" },
+    { key: "second", title: "Map" },
   ]);
 
   return (
