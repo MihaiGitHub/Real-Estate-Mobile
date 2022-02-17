@@ -28,6 +28,7 @@ import { ImageGallery } from "@georstat/react-native-image-gallery";
 import getDirections from "react-native-google-maps-directions";
 import { SliderBox } from "react-native-image-slider-box";
 import { useNavigation } from "@react-navigation/native";
+import GLOBALS from "../Common/Globals";
 
 export function PropertyView({ route }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -72,9 +73,7 @@ export function PropertyView({ route }) {
     return image;
   });
 
-  console.log("imageURLs ", imageURLs);
-
-  // console.log("property ", property);
+  console.log("property ", property);
 
   // let agentImage = "";
 
@@ -247,7 +246,29 @@ export function PropertyView({ route }) {
               {property.bedrooms} Beds 2 {property.baths} Baths
             </Text>
           </HStack>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                fontSize: 20,
+              }}
+            >
+              Features
+            </Text>
+          </HStack>
           {handleFeatures()}
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                fontSize: 20,
+              }}
+            >
+              About this home
+            </Text>
+          </HStack>
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
@@ -257,6 +278,28 @@ export function PropertyView({ route }) {
             >
               {property.description}
             </Text>
+          </HStack>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                fontSize: 20,
+              }}
+            >
+              Contact Agent - {property.user.fname} {property.user.lname}
+            </Text>
+          </HStack>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <AspectRatio w="100%" ratio={16 / 14}>
+              <Image
+                style={{ paddingTop: "25px", marginTop: "25px" }}
+                source={{
+                  uri: `${GLOBALS.TEMP_IMAGE_PATH}${property.user.picture}`,
+                }}
+                alt="image"
+              />
+            </AspectRatio>
           </HStack>
         </VStack>
         <ImageGallery
