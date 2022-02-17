@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect } from "react";
-import { Button, View } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { propertiesFetch } from "../../actions/PropertiesActions";
 import {
@@ -40,7 +39,6 @@ export function PropertiesList() {
     return properties.map((item, index, array) => {
       if (item.PropertyImages.length > 0) {
         const images = item.PropertyImages.map((image) => {
-          // return `${GLOBALS.TEMP_IMAGE_PATH}${image.url}`;
           return image.url;
         });
 
@@ -59,11 +57,9 @@ export function PropertiesList() {
                 images={array[index]["images"]}
                 sliderBoxHeight={200}
                 onCurrentImagePressed={(index) => {
-                  //   Actions.propertyView({ id: item.id });
-                  navigation.navigate("Property Detail", {
+                  navigation.navigate("Property Info", {
                     id: item.id,
                   });
-                  //  console.log(`image ${index} pressed`);
                 }}
                 dotColor="#FFEE58"
                 inactiveDotColor="#90A4AE"
@@ -84,8 +80,6 @@ export function PropertiesList() {
       );
     });
   };
-
-  // console.log("properties  ", properties);
 
   return <ScrollView>{renderProperties()}</ScrollView>;
 }

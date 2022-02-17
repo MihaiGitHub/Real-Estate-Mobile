@@ -34,7 +34,7 @@ export function AgentsList() {
           <TouchableHighlight
             key={item.id}
             onPress={() =>
-              navigation.navigate("Agent Detail", {
+              navigation.navigate("Agent Info", {
                 item,
               })
             }
@@ -42,7 +42,6 @@ export function AgentsList() {
             onHideUnderlay={separators.unhighlight}
           >
             <Box
-              onPress={() => navigation.navigate("AgentView")}
               borderBottomWidth="1"
               _dark={{
                 borderColor: "gray.600",

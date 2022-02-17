@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Button, View, Text } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import MapView from "react-native-maps";
 import { findPropertyById } from "../../actions/PropertiesActions";
@@ -42,7 +41,7 @@ export function PropertiesMap() {
           }}
           title={"$" + marker.price}
           onCalloutPress={() =>
-            navigation.navigate("Property Detail", {
+            navigation.navigate("Property Info", {
               id: marker.id,
             })
           }
