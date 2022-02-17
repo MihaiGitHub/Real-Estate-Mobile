@@ -113,27 +113,67 @@ export function PropertyView({ route }) {
     if (property.features) {
       let features = property.features.split(",");
 
-      for (let i = 0; i < features.length; i++) {
+      if (features.length > 1) {
         return (
-          <HStack alignItems="center" space={1} justifyContent="space-between">
-            <HStack space={3} justifyContent="center">
-              <Text>-{features[i]}</Text>
-              <Text>-{features[i + 1]}</Text>
+          <>
+            <HStack
+              alignItems="center"
+              space={1}
+              justifyContent="space-between"
+            >
+              <HStack space={5} justifyContent="center">
+                {features[0] && (
+                  <Text
+                    style={{
+                      flex: 0.4,
+                      marginLeft: 15,
+                    }}
+                  >
+                    -{features[0]}
+                  </Text>
+                )}
+                {features[1] && (
+                  <Text
+                    style={{
+                      flex: 0.4,
+                    }}
+                  >
+                    -{features[1]}
+                  </Text>
+                )}
+                {features[1] && (
+                  <Text
+                    style={{
+                      flex: 0.4,
+                    }}
+                  >
+                    -{features[2]}
+                  </Text>
+                )}
+              </HStack>
             </HStack>
-          </HStack>
+          </>
         );
       }
 
-      // return features.map((feature, index, array) => {
-      //   return (
-      //     <HStack alignItems="center" space={1} justifyContent="space-between">
-      //       <HStack space={3} justifyContent="center">
-      //         <Text>-{array[index]}</Text>
-      //         <Text>-{array[index + 1]}</Text>
-      //       </HStack>
-      //     </HStack>
-      //   );
-      // });
+      return (
+        <>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <HStack space={5} justifyContent="center">
+              {features[0] && (
+                <Text
+                  style={{
+                    flex: 1,
+                    marginLeft: 15,
+                  }}
+                >
+                  -{features[0]}
+                </Text>
+              )}
+            </HStack>
+          </HStack>
+        </>
+      );
     }
   };
 
@@ -208,20 +248,6 @@ export function PropertyView({ route }) {
             </Text>
           </HStack>
           {handleFeatures()}
-
-          <HStack alignItems="center" space={1} justifyContent="space-between">
-            <HStack space={3} justifyContent="center">
-              <Text>1111111</Text>
-              <Text>2222222</Text>
-            </HStack>
-          </HStack>
-          <HStack alignItems="center" space={1} justifyContent="space-between">
-            <HStack space={3} justifyContent="center">
-              <Text>3333333</Text>
-              <Text>4444444</Text>
-            </HStack>
-          </HStack>
-
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
