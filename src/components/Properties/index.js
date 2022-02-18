@@ -4,6 +4,7 @@ import { PropertyView } from "./PropertyView";
 import { PropertyMap } from "./PropertyMap";
 import { NavBarTabs } from "../Common/Tabs";
 import { NavBarSearch } from "../Common/NavBarSearch";
+import { PropertySendMessage } from "./PropertySendMessage";
 
 const PropertiesStack = createNativeStackNavigator();
 
@@ -24,6 +25,11 @@ export function Properties() {
         name="Property Info"
         title="Property"
         component={PropertyView}
+      />
+      <PropertiesStack.Screen
+        name="Property Send Message"
+        title="Message Agent"
+        component={PropertySendMessage}
       />
     </PropertiesStack.Navigator>
   );

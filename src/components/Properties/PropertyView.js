@@ -201,7 +201,7 @@ export function PropertyView({ route }) {
                   longitude: property.lng,
                 })
               }
-              style={{ flex: 0.4 }}
+              style={{ flex: 0.4, marginLeft: 15 }}
               leftIcon={
                 <MaterialCommunityIcons
                   name="map-marker-radius"
@@ -225,7 +225,7 @@ export function PropertyView({ route }) {
             <Button
               title="Uber"
               onPress={() => initiateUber()}
-              style={{ flex: 0.4 }}
+              style={{ flex: 0.4, marginRight: 15 }}
               leftIcon={<FontAwesome5 name="uber" size={24} color="black" />}
             >
               Uber
@@ -300,6 +300,24 @@ export function PropertyView({ route }) {
                 alt="image"
               />
             </AspectRatio>
+          </HStack>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Button
+              title="Send Agent Message"
+              onPress={() =>
+                navigation.navigate("Property Send Message", {
+                  id: property.user.id,
+                })
+              }
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                marginRight: 15,
+                marginBottom: 15,
+              }}
+            >
+              Send Message
+            </Button>
           </HStack>
         </VStack>
         <ImageGallery
