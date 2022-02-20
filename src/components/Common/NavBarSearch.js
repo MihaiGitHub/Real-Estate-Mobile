@@ -13,14 +13,17 @@ import {
   Heading,
 } from "native-base";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export function NavBarSearch() {
+  const navigation = useNavigation();
+
   return (
-    // <VStack w="90%">
     <VStack w="100%" alignSelf="center">
       <Input
-        //  ml={0}
+        onFocus={async () => {
+          navigation.navigate("Property Search");
+        }}
         mr={8}
         alignSelf="center"
         placeholder="Search"
@@ -49,6 +52,5 @@ export function NavBarSearch() {
         }
       />
     </VStack>
-    // </VStack>
   );
 }
