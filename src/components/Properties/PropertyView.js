@@ -58,7 +58,7 @@ export function PropertyView({ route }) {
   // }));
 
   const imageURLs2 = property.images.map((image, index) => {
-    console.log("image ", image);
+    //   console.log("image ", image);
 
     return {
       url: image,
@@ -73,7 +73,7 @@ export function PropertyView({ route }) {
     return image;
   });
 
-  console.log("property ", property);
+  // console.log("property ", property);
 
   // let agentImage = "";
 
@@ -307,6 +307,7 @@ export function PropertyView({ route }) {
               onPress={() =>
                 navigation.navigate("Property Send Message", {
                   id: property.user.id,
+                  pid: property.id,
                 })
               }
               style={{

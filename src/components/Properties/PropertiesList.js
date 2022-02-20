@@ -19,7 +19,6 @@ import {
 } from "native-base";
 import { Spinner } from "../Common/Spinner";
 import { SliderBox } from "react-native-image-slider-box";
-
 import { useNavigation } from "@react-navigation/native";
 
 export function PropertiesList() {

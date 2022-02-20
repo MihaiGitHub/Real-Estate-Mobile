@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, TextArea, HStack, VStack } from "native-base";
+import { useNavigation } from "@react-navigation/native";
+import { saveMessage } from "../../actions/AgentsActions";
 
 export function PropertySendMessage({ route }) {
-  const { id } = route.params;
+  const { id, pid } = route.params;
+  const navigation = useNavigation();
+  const [message, setMessage] = useState("");
+
+  const handlePress = () => {
+    saveMessage(id, message).then(() =>
+      navigation.navigate("Property Info", { id: pid })
+    );
+  };
 
   return (
     <VStack space="4">
       <Box alignItems="center" w="100%">
         <TextArea
+          onChangeText={(text) => setMessage(text)}
           style={{
             backgroundColor: "#fff",
             marginTop: 5,
@@ -21,11 +32,7 @@ export function PropertySendMessage({ route }) {
       <HStack alignItems="center" space={1} justifyContent="space-between">
         <Button
           title="Send Agent Message"
-          // onPress={() =>
-          //   navigation.navigate("Property Send Message", {
-          //     id: property.user.id,
-          //   })
-          // }
+          onPress={handlePress}
           style={{
             flex: 1,
             marginLeft: 10,

@@ -26,3 +26,11 @@ export const findAgentById = (id) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const saveMessage = async (id, msg) => {
+  try {
+    const res = await AgentsService.saveMessage(id, msg);
+  } catch (err) {
+    console.log(err);
+  }
+};
