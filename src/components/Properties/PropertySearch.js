@@ -3,8 +3,16 @@ import { Text } from "native-base";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 //import * as Location from "expo-location";
 import Globals from "../Common/Globals";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  propertiesFiltered,
+  udpateSearchTerm,
+} from "../../actions/PropertiesActions";
+import { useNavigation } from "@react-navigation/native";
 
 export function PropertySearch() {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [location, setLocation] = useState(null);
   const [currentLat, setCurrentLat] = useState(null);
   const [currentLng, setCurrentLng] = useState(null);
@@ -47,17 +55,16 @@ export function PropertySearch() {
       renderDescription={(row) => row.description} // custom description render
       onPress={async (data, details = null) => {
         // 'details' is provided when fetchDetails = true
+        await dispatch(
+          propertiesFiltered(
+            details.geometry.location.lat,
+            details.geometry.location.lng
+          )
+        );
 
-        console.log("data ", data, "details ", details);
+        await udpateSearchTerm(details.formatted_address);
 
-        // await props.propertiesFiltered(
-        //   details.geometry.location.lat,
-        //   details.geometry.location.lng
-        // );
-
-        // await props.udpateSearchTerm(details.formatted_address);
-
-        // Actions.propertiesMain();
+        navigation.navigate("PropertiesMain");
       }}
       getDefaultValue={() => ""}
       query={{

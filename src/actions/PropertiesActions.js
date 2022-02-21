@@ -33,7 +33,7 @@ export const findPropertyById = (id) => async (dispatch) => {
 
 export const propertiesFiltered = (lat, lng) => async (dispatch) => {
   try {
-    const res = await PropertiesService.getProperties(lat, lng);
+    const res = await PropertiesService.getPropertiesFiltered(lat, lng);
 
     dispatch({
       type: SEARCH_LAT_LNG,
@@ -42,7 +42,7 @@ export const propertiesFiltered = (lat, lng) => async (dispatch) => {
 
     dispatch({
       type: PROPERTIES_FILTERED,
-      payload: res.data,
+      payload: res.data.results,
     });
   } catch (err) {
     console.log(err);
