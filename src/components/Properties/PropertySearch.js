@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Text } from "native-base";
+import { Platform, Text, View, StyleSheet } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 //import * as Location from "expo-location";
+//import Geolocation from "react-native-geolocation-service";
+import GetLocation from "react-native-get-location";
 import Globals from "../Common/Globals";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -13,36 +15,69 @@ import { useNavigation } from "@react-navigation/native";
 export function PropertySearch() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [location, setLocation] = useState(null);
-  const [currentLat, setCurrentLat] = useState(null);
-  const [currentLng, setCurrentLng] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  // const [location, setLocation] = useState(null);
+  // const [currentLat, setCurrentLat] = useState(null);
+  // const [currentLng, setCurrentLng] = useState(null);
+  // const [errorMsg, setErrorMsg] = useState(null);
 
-  //   const currentLocation = {
-  //     description: "Current Location",
-  //     geometry: {
-  //       location: {
-  //         lat: currentLat,
-  //         lng: currentLng,
-  //       },
+  // const currentLocation = {
+  //   description: "Current Location",
+  //   geometry: {
+  //     location: {
+  //       lat: currentLat,
+  //       lng: currentLng,
   //     },
-  //   };
+  //   },
+  // };
 
-  //   useEffect(() => {
-  //     (async () => {
-  //       let { status } = await Location.requestBackgroundPermissionsAsync();
-  //       if (status !== "granted") {
-  //         setErrorMsg("Permission to access location was denied");
-  //       }
+  // useEffect(() => {
+  //   (async () => {
+  //     // let { status } = await Location.requestBackgroundPermissionsAsync();
+  //     // if (status !== "granted") {
+  //     //   setErrorMsg("Permission to access location was denied");
+  //     // }
+  //     // let location = await Location.getCurrentPositionAsync({});
+  //     // setLocation(location);
+  //     // setCurrentLat(location.coords.latitude);
+  //     // setCurrentLng(location.coords.longitude);
+  //   })();
+  // }, []);
 
-  //       let location = await Location.getCurrentPositionAsync({});
-  //       setLocation(location);
-  //       setCurrentLat(location.coords.latitude);
-  //       setCurrentLng(location.coords.longitude);
-  //     })();
-  //   }, []);
+  // useEffect(() => {
+  //   //  if (hasLocationPermission) {
+  //   Geolocation.getCurrentPosition(
+  //     (position) => {
+  //       console.log(position);
+  //     },
+  //     (error) => {
+  //       // See error code charts below.
+  //       console.log(error.code, error.message);
+  //     },
+  //     { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+  //   );
+  //   //   }
+  // }, []);
 
-  //return <Text>search</Text>;
+  useEffect(() => {
+    // console.log(
+    //   "GetLocation ",
+    //   GetLocation.getCurrentPosition({
+    //     enableHighAccuracy: true,
+    //     timeout: 15000,
+    //   })
+    // );
+    // GetLocation.getCurrentPosition({
+    //   enableHighAccuracy: true,
+    //   timeout: 15000,
+    // })
+    //   .then((location) => {
+    //     console.log(location);
+    //   })
+    //   .catch((error) => {
+    //     const { code, message } = error;
+    //     console.warn(code, message);
+    //   });
+  }, []);
 
   return (
     <GooglePlacesAutocomplete
@@ -62,7 +97,7 @@ export function PropertySearch() {
           )
         );
 
-        await udpateSearchTerm(details.formatted_address);
+        await dispatch(udpateSearchTerm(details.formatted_address));
 
         navigation.navigate("PropertiesMain");
       }}

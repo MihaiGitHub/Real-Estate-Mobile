@@ -47,19 +47,7 @@ export function PropertyView({ route }) {
   //    imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
   // }
 
-  // console.log("images ", property.images);
-
-  // const imageURLs = property.images.map((image, index) => ({
-  //   URI: image,
-  //   thumbnail: image,
-  //   id: index + 1,
-  //   title: "",
-  //   description: "",
-  // }));
-
   const imageURLs2 = property.images.map((image, index) => {
-    //   console.log("image ", image);
-
     return {
       url: image,
       thumbnail: image,
@@ -73,8 +61,6 @@ export function PropertyView({ route }) {
     return image;
   });
 
-  // console.log("property ", property);
-
   // let agentImage = "";
 
   // if (props.property.user.picture) {
@@ -86,6 +72,18 @@ export function PropertyView({ route }) {
   useEffect(() => {
     // dispatch(findPropertyById(id));
   }, []);
+
+  const initiateUber = () => {
+    let url = `uber://?action=setPickup&dropoff[latitude]=${property.lat}&dropoff[longitude]=${property.lng}`;
+
+    Linking.openURL(url)
+      .then((data) => {
+        console.log("Uber Opened");
+      })
+      .catch(() => {
+        alert("Make sure Uber installed on your device");
+      });
+  };
 
   const handleGetDirections = () => {
     const data = {

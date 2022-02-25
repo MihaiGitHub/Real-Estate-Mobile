@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import MapView from "react-native-maps";
 import { findPropertyById } from "../../actions/PropertiesActions";
 import { useNavigation } from "@react-navigation/native";
 
 export function PropertiesMap() {
-  const { listFiltered } = useSelector((state) => state.properties);
+  const { listFiltered, searchLatLng } = useSelector(
+    (state) => state.properties
+  );
+
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -16,10 +19,12 @@ export function PropertiesMap() {
   if (Array.isArray(listFiltered) && listFiltered.length > 0) {
     var { lat, lng } = listFiltered[0];
   } else {
-    //var { lat, lng } = props.searchLatLng;
+    // var { lat, lng } = searchLatLng;
+
     var lat = 33.448376;
     var lng = -112.074036;
   }
+  console.log("coords ", lat, lng);
 
   return (
     <MapView
