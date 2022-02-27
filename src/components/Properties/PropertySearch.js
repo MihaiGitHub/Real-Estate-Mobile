@@ -3,7 +3,7 @@ import { Platform, Text, View, StyleSheet } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 //import * as Location from "expo-location";
 //import Geolocation from "react-native-geolocation-service";
-import GetLocation from "react-native-get-location";
+//import GetLocation from "react-native-get-location";
 import Globals from "../Common/Globals";
 import { useSelector, useDispatch } from "react-redux";
 import {

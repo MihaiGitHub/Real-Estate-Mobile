@@ -1,4 +1,5 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
+import { ToastAndroid } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { propertiesFetch } from "../../actions/PropertiesActions";
 import {
@@ -31,13 +32,11 @@ export function PropertiesList() {
     dispatch(propertiesFetch());
   }, []);
 
-  if (properties.length === 0) {
+  if (properties.loading) {
     return <Spinner size="large" />;
   }
 
   const renderProperties = () => {
-    console.log("render properties ", properties.results);
-
     if (Array.isArray(properties) && properties.length > 0) {
       return properties.map((item, index, array) => {
         if (item.PropertyImages.length > 0) {
@@ -68,13 +67,25 @@ export function PropertiesList() {
                   inactiveDotColor="#90A4AE"
                 />
               </Box>
-              <Box px="4">
-                <Box>
-                  <Text textAlign="left" fontSize={24} fontWeight={600}>
-                    ${item.price}
-                  </Text>
-                </Box>
-              </Box>
+              <HStack
+                alignItems="center"
+                space={4}
+                justifyContent="space-between"
+              >
+                <Text
+                  style={{
+                    flex: 0.36,
+                    marginLeft: 15,
+                    fontSize: 24,
+                    paddingTop: 10,
+                  }}
+                >
+                  ${item.price}
+                </Text>
+                <Text style={{ flex: 0.36 }}>
+                  {item.bedrooms} Beds 2 {item.baths} Baths
+                </Text>
+              </HStack>
               <Box px="4" pb="4" pt={0}>
                 {item.address}
               </Box>
@@ -83,11 +94,10 @@ export function PropertiesList() {
         );
       });
     } else {
-      console.log("no filtered");
-      // ToastAndroid.show(
-      //   "No properties found near this location!",
-      //   ToastAndroid.LONG
-      // );
+      ToastAndroid.show(
+        "No properties found near this location!",
+        ToastAndroid.LONG
+      );
     }
   };
 
