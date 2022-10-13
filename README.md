@@ -21,9 +21,9 @@ Update the following files with the correct Google Maps API key
 
 # Running Locally
 
-expo start
+`expo start`
 
 # Running Tests
 
-npm test
+`npm test`
 
