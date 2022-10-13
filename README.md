@@ -1,4 +1,4 @@
-# expo-template-native-base
+# Real-Estate-Mobile
 
 The official NativeBase template for [Expo](https://docs.expo.io/)
 
