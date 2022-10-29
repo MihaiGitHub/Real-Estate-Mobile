@@ -19,7 +19,7 @@ Update the following files with the correct Google Maps API key
 `src\components\common\Globals.js`<br>
 `app.json`
 
-# Running Locally
+# Running the client
 
 `expo start`
 
