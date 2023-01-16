@@ -29,6 +29,7 @@ import { NavBarSearch } from "./src/components/Common/NavBarSearch";
 //   useSystemColorMode: false,
 //   initialColorMode: "dark",
 // };
+// Real-Estate-Mobile-V1.3
 
 const Tab = createBottomTabNavigator();
 
