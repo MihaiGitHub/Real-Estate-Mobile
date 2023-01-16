@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "new-real-estate-mobile4",
-    "slug": "new-real-estate-mobile4",
+    "name": "Real-Estate-Mobile-Remake",
+    "slug": "Real-Estate-Mobile-Remake",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

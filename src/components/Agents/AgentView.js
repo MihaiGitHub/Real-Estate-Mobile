@@ -15,7 +15,7 @@ import {
 } from "native-base";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import Communications from "react-native-communications";
-import GLOBALS from "../Common/Globals";
+//import GLOBALS from "../Common/Globals";
 
 export function AgentView({ route }) {
   const { item } = route.params;
@@ -78,13 +78,13 @@ export function AgentView({ route }) {
         >
           <Box>
             <AspectRatio w="100%" ratio={16 / 14}>
-              <Image
+              {/* <Image
                 style={{ paddingTop: "25px", marginTop: "25px" }}
                 source={{
                   uri: `${GLOBALS.TEMP_IMAGE_PATH}${item.picture}`,
                 }}
                 alt="image"
-              />
+              /> */}
             </AspectRatio>
             <Center
               bg="violet.500"

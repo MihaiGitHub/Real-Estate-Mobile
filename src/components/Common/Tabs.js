@@ -1,40 +1,40 @@
-import * as React from "react";
-import { View, StyleSheet, Dimensions, StatusBar } from "react-native";
-import { TabView, SceneMap } from "react-native-tab-view";
-import { PropertiesList } from "../Properties/PropertiesList";
-import { PropertiesMap } from "../Properties/PropertiesMap";
+// import * as React from "react";
+// import { View, StyleSheet, Dimensions, StatusBar } from "react-native";
+// import { TabView, SceneMap } from "react-native-tab-view";
+// import { PropertiesList } from "../Properties/PropertiesList";
+// import { PropertiesMap } from "../Properties/PropertiesMap";
 
-const FirstRoute = () => <PropertiesList />;
+// const FirstRoute = () => <PropertiesList />;
 
-const SecondRoute = () => <PropertiesMap />;
+// const SecondRoute = () => <PropertiesMap />;
 
-const initialLayout = { width: Dimensions.get("window").width };
+// const initialLayout = { width: Dimensions.get("window").width };
 
-const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-});
+// const renderScene = SceneMap({
+//   first: FirstRoute,
+//   second: SecondRoute,
+// });
 
-export function NavBarTabs() {
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: "first", title: "List" },
-    { key: "second", title: "Map" },
-  ]);
+// export function NavBarTabs() {
+//   const [index, setIndex] = React.useState(0);
+//   const [routes] = React.useState([
+//     { key: "first", title: "List" },
+//     { key: "second", title: "Map" },
+//   ]);
 
-  return (
-    <TabView
-      navigationState={{ index, routes }}
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      initialLayout={initialLayout}
-      //   style={styles.container}
-    />
-  );
-}
+//   return (
+//     <TabView
+//       navigationState={{ index, routes }}
+//       renderScene={renderScene}
+//       onIndexChange={setIndex}
+//       initialLayout={initialLayout}
+//       //   style={styles.container}
+//     />
+//   );
+// }
 
-const styles = StyleSheet.create({
-  scene: {
-    flex: 1,
-  },
-});
+// const styles = StyleSheet.create({
+//   scene: {
+//     flex: 1,
+//   },
+// });

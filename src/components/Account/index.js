@@ -1,17 +1,4 @@
 import React from "react";
-import {
-  Box,
-  FlatList,
-  Heading,
-  Avatar,
-  HStack,
-  VStack,
-  Text,
-  Spacer,
-  Center,
-  NativeBaseProvider,
-} from "native-base";
-
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Settings } from "./Settings";
 import { PrivacyPolicy } from "./PrivacyPolicy";

@@ -1,20 +1,6 @@
 import React from "react";
 import { TouchableHighlight } from "react-native";
-
-import {
-  Box,
-  FlatList,
-  Heading,
-  Avatar,
-  HStack,
-  VStack,
-  Text,
-  Spacer,
-  Center,
-  NativeBaseProvider,
-} from "native-base";
-
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Box, FlatList, HStack, VStack, Text } from "native-base";
 
 export function Main({ navigation }) {
   const data = [

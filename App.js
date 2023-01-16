@@ -1,35 +1,21 @@
-import React from "react";
 import { Provider, useSelector, useDispatch } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import ReduxThunk from "redux-thunk";
-import reducers from "./src/reducers";
-import {
-  Text,
-  Link,
-  HStack,
-  Center,
-  Heading,
-  Switch,
-  useColorMode,
-  NativeBaseProvider,
-  extendTheme,
-  VStack,
-  Code,
-} from "native-base";
+//import { applyMiddleware } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+
+//import thunk from "redux-thunk";
+//import reducers from "./src/reducers";
+import PropertiesReducer from "./src/reducers/PropertiesReducer";
+import AgentsReducer from "./src/reducers/AgentsReducer";
+
 import { NavigationContainer } from "@react-navigation/native";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+
 import { Properties } from "./src/components/Properties";
 import { Agents } from "./src/components/Agents";
 import { Account } from "./src/components/Account";
-import { NavBarSearch } from "./src/components/Common/NavBarSearch";
-
-// Define the config
-// const config = {
-//   useSystemColorMode: false,
-//   initialColorMode: "dark",
-// };
-// Real-Estate-Mobile-V1.3
+import { NativeBaseProvider } from "native-base";
 
 const Tab = createBottomTabNavigator();
 
@@ -71,19 +57,27 @@ function MainMenu() {
   );
 }
 
-// extend the theme
-//export const theme = extendTheme({ config });
-
-const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+// The redux-dev-tools and redux-thunk are already included in redux-toolkit.
+const store = (preloadedState) =>
+  configureStore({
+    reducer: {
+      properties: PropertiesReducer,
+      agents: AgentsReducer,
+    },
+    preloadedState,
+  });
+// const store = configureStore({
+//   reducer: reducers,
+// });
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <NativeBaseProvider>
-        <NavigationContainer>
+    <Provider store={store()}>
+      <NavigationContainer>
+        <NativeBaseProvider>
           <MainMenu />
-        </NavigationContainer>
-      </NativeBaseProvider>
+        </NativeBaseProvider>
+      </NavigationContainer>
     </Provider>
   );
 }

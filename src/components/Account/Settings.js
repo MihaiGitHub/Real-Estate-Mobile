@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, HStack, Text, Center, NativeBaseProvider } from "native-base";
+import { Switch, HStack, Text, Center } from "native-base";
 
 export function Settings({ navigation }) {
   return (

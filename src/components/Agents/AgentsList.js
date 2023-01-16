@@ -14,7 +14,8 @@ import {
 } from "native-base";
 import { useSelector, useDispatch } from "react-redux";
 import { agentsFetch } from "../../actions/AgentsActions";
-import GLOBALS from "../Common/Globals";
+//import GLOBALS from "../Common/Globals";
+import Globals from "../Common/Globals";
 import { useNavigation } from "@react-navigation/native";
 
 export function AgentsList() {
@@ -52,12 +53,12 @@ export function AgentsList() {
               py="2"
             >
               <HStack space={3} justifyContent="space-between">
-                <Avatar
+                {/* <Avatar
                   size="48px"
                   source={{
-                    uri: `${GLOBALS.TEMP_IMAGE_PATH}${item.picture}`,
+                    uri: `${Globals.TEMP_IMAGE_PATH}${item.picture}`,
                   }}
-                />
+                /> */}
                 <VStack>
                   <Text
                     _dark={{
