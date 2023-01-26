@@ -16,6 +16,7 @@ import { Properties } from "./src/components/Properties";
 import { Agents } from "./src/components/Agents";
 import { Account } from "./src/components/Account";
 import { NativeBaseProvider } from "native-base";
+import { NavBarSearch } from "./src/components/Common/NavBarSearch";
 
 const Tab = createBottomTabNavigator();
 
@@ -44,8 +45,7 @@ function MainMenu() {
       <Tab.Screen
         name="Properties"
         component={Properties}
-        options={{ headerShown: false }}
-        // options={{ headerTitle: (props) => <NavBarSearch {...props} /> }}
+        options={{ headerTitle: (props) => <NavBarSearch {...props} /> }}
       />
       <Tab.Screen
         name="Agents"

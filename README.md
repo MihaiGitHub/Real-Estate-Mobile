@@ -4,7 +4,7 @@ Mobile application with GeoLocation for searching and getting directions to near
 
 MySQL back-end database<br>
 Node (Express + Sequelize) API layer<br>
-React Native (Redux + Hooks) front-end client<br>
+React Native (React + Redux) front-end client<br>
 
 # Installation
 
