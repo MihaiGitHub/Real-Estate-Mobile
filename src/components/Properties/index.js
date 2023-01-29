@@ -13,7 +13,7 @@ export function Properties() {
   return (
     <PropertiesStack.Navigator>
       <PropertiesStack.Screen
-        name="Properties List"
+        name="Properties Main"
         component={NavBarTabs}
         options={{ headerShown: false }}
         //   options={{ headerTitle: (props) => <NavBarTabs {...props} /> }}

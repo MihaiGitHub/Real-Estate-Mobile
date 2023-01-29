@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Real-Estate-Mobile-Remake",
-    "slug": "Real-Estate-Mobile-Remake",
+    "name": "Real-Estate-Mobile",
+    "slug": "Real-Estate-Mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,9 +14,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
