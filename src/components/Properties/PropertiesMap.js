@@ -1,3 +1,10 @@
+import React from "react";
+import { Text } from "react-native";
+
+export function PropertiesMap() {
+  return <Text>PropertyMap</Text>;
+}
+
 // import React, { useState, useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";
 // import MapView from "react-native-maps";

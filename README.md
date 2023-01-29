@@ -21,7 +21,7 @@ Update the following files with the correct Google Maps API key
 
 # Running the client
 
-`expo start`
+`expo start --tunnel`
 
 # Running Tests
 
