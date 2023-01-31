@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Real-Estate-Mobile",
-    "slug": "Real-Estate-Mobile",
+    "name": "Century Homes",
+    "slug": "century-homes",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,11 +14,15 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "package": "com.century.homes",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -26,6 +30,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3534908b-8d1d-4088-9879-1a0c781c8178"
+      }
     }
   }
 }
