@@ -1,4 +1,4 @@
-# Real-Estate-Mobile
+# Real-Estate-Mobile (Century Homes)
 
 Mobile application with GeoLocation for searching and getting directions to nearby homes, condos and townhouses. Browsing real estate agents and scheduling appointments. Integrated with Uber and WhatsApp.
 
