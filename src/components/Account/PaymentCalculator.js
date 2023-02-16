@@ -17,10 +17,6 @@ export function PaymentCalculator() {
   const dollarUSLocale = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-
-    // These options are needed to round to whole numbers if that's what you want.
-    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
 
   const downPaymentTotal = (price * downPayment) / 100;
@@ -29,7 +25,7 @@ export function PaymentCalculator() {
 
   const monthlyInterestRateTotal = (finalPrice * interestRate) / 100 / 12;
 
-  const monthlyPrincipalTotal = finalPrice / 360;
+  const monthlyPrincipalTotal = Math.round(finalPrice / 360);
 
   const monthlyTaxesTotal = (monthlyInterestRateTotal + finalPrice / 360) / 12;
 
@@ -45,7 +41,7 @@ export function PaymentCalculator() {
         <Box px="4" pt="4">
           Payment Calculator
         </Box>
-        <Box px="4">
+        <Box px="6">
           <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
             <VictoryPie
               colorScale={["tomato", "orange", "gold", "cyan", "navy"]}
@@ -53,9 +49,21 @@ export function PaymentCalculator() {
               width={400}
               height={400}
               data={[
-                { x: "Principal", y: monthlyPrincipalTotal },
-                { x: "Interest", y: monthlyInterestRateTotal },
-                { x: "Taxes", y: monthlyTaxesTotal },
+                {
+                  x: `Principal 
+($${Math.round(monthlyPrincipalTotal)})`,
+                  y: monthlyPrincipalTotal,
+                },
+                {
+                  x: `Interest
+($${Math.round(monthlyInterestRateTotal)})`,
+                  y: monthlyInterestRateTotal,
+                },
+                {
+                  x: `Taxes
+($${Math.round(monthlyTaxesTotal)})`,
+                  y: monthlyTaxesTotal,
+                },
               ]}
               innerRadius={100}
               labelRadius={110}
@@ -69,7 +77,7 @@ export function PaymentCalculator() {
               text={`${totalMonthlyPayment} / mo`}
             />
           </Svg>
-          <Text>Price: {dollarUSLocale.format(price)}</Text>
+          <Text>Price: {dollarUSLocale.format(Math.round(price))}</Text>
 
           <Slider
             minimumValue={30000}
@@ -94,7 +102,7 @@ export function PaymentCalculator() {
             value={downPayment}
           />
 
-          <Text>Interest Rate: {Math.round(interestRate)}%</Text>
+          <Text>Interest Rate: {Math.round(interestRate * 100) / 100}%</Text>
 
           <Slider
             minimumValue={0}
