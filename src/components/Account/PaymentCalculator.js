@@ -17,6 +17,7 @@ export function PaymentCalculator() {
   const dollarUSLocale = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
+    minimumFractionDigits: 0,
   });
 
   const downPaymentTotal = (price * downPayment) / 100;
@@ -29,11 +30,8 @@ export function PaymentCalculator() {
 
   const monthlyTaxesTotal = (monthlyInterestRateTotal + finalPrice / 360) / 12;
 
-  const totalMonthlyPayment = dollarUSLocale.format(
-    Math.round(
-      monthlyInterestRateTotal + monthlyPrincipalTotal + monthlyTaxesTotal
-    )
-  );
+  const totalMonthlyPayment =
+    monthlyInterestRateTotal + monthlyPrincipalTotal + monthlyTaxesTotal;
 
   return (
     <Box border="1" borderRadius="md">
@@ -74,10 +72,10 @@ export function PaymentCalculator() {
               style={{ fontSize: 20, fontWeight: 700 }}
               x={200}
               y={200}
-              text={`${totalMonthlyPayment} / mo`}
+              text={`${dollarUSLocale.format(totalMonthlyPayment)} / mo`}
             />
           </Svg>
-          <Text>Price: {dollarUSLocale.format(Math.round(price))}</Text>
+          <Text>Price: {dollarUSLocale.format(price)}</Text>
 
           <Slider
             minimumValue={30000}
