@@ -27,7 +27,7 @@ export function TermsUse() {
             publication of advertisements on the app's website.
           </Box>
           <Box px="4" pb="4">
-            Our House
+            Century Homes
           </Box>
         </VStack>
       </Box>

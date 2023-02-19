@@ -65,7 +65,7 @@ export function PrivacyPolicy() {
             the use of the Website.
           </Box>
           <Box px="4" pb="4">
-            Our House
+            Century Homes
           </Box>
         </VStack>
       </Box>

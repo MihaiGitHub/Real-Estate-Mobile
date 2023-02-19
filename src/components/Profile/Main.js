@@ -7,7 +7,7 @@ export function Main({ navigation }) {
     {
       id: "1",
       title: "About",
-      nav: "PaymentCalculator",
+      nav: "About",
     },
     {
       id: "2",
@@ -35,7 +35,7 @@ export function Main({ navigation }) {
     {
       id: "3",
       title: "Affordability Calculator",
-      nav: "TermsUse",
+      nav: "PaymentCalculator",
     },
   ];
 
@@ -43,7 +43,7 @@ export function Main({ navigation }) {
     <Box>
       <Heading size="md" style={{ paddingTop: 15, paddingLeft: 5 }}>
         Century Homes
-      </Heading>{" "}
+      </Heading>
       <FlatList
         data={data}
         renderItem={({ item, index, separators }) => (

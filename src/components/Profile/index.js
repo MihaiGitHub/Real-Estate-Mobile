@@ -3,11 +3,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { PaymentCalculator } from "./PaymentCalculator";
 import { PrivacyPolicy } from "./PrivacyPolicy";
 import { TermsUse } from "./TermsUse";
+import { About } from "./About";
 import { Main } from "./Main";
 
 const AccountStack = createNativeStackNavigator();
 
-export function Account() {
+export function Profile() {
   return (
     <AccountStack.Navigator
       screenOptions={{
@@ -21,6 +22,7 @@ export function Account() {
       />
       <AccountStack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
       <AccountStack.Screen name="TermsUse" component={TermsUse} />
+      <AccountStack.Screen name="About" component={About} />
     </AccountStack.Navigator>
   );
 }

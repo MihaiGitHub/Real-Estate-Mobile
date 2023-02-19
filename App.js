@@ -14,7 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { Properties } from "./src/components/Properties";
 import { Agents } from "./src/components/Agents";
-import { Account } from "./src/components/Account";
+import { Profile } from "./src/components/Profile";
 import { NativeBaseProvider } from "native-base";
 import { NavBarSearch } from "./src/components/Common/NavBarSearch";
 
@@ -31,7 +31,7 @@ function MainMenu() {
             iconName = focused ? "home" : "home";
           } else if (route.name === "Agents") {
             iconName = focused ? "person" : "person";
-          } else if (route.name === "Account") {
+          } else if (route.name === "Profile") {
             iconName = focused ? "list" : "list";
           }
 
@@ -52,7 +52,7 @@ function MainMenu() {
         component={Agents}
         options={{ headerShown: false }}
       />
-      <Tab.Screen name="Account" component={Account} />
+      <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
   );
 }
