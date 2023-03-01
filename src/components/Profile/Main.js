@@ -35,7 +35,7 @@ export function Main({ navigation }) {
     {
       id: "3",
       title: "Affordability Calculator",
-      nav: "PaymentCalculator",
+      nav: "AffordabilityCalculator",
     },
   ];
 
