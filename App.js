@@ -50,7 +50,7 @@ function MainMenu() {
       <Tab.Screen
         name="Agents"
         component={Agents}
-        options={{ headerShown: false }}
+        options={{ headerTitle: (props) => <NavBarSearch {...props} /> }}
       />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>
