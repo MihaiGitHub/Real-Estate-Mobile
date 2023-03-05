@@ -53,12 +53,12 @@ export function AgentsList() {
               py="2"
             >
               <HStack space={3} justifyContent="space-between">
-                {/* <Avatar
+                <Avatar
                   size="48px"
                   source={{
                     uri: `${Globals.TEMP_IMAGE_PATH}${item.picture}`,
                   }}
-                /> */}
+                />
                 <VStack>
                   <Text
                     _dark={{
