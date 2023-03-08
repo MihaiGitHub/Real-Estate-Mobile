@@ -17,8 +17,8 @@ import {
 // } from "../../actions/PropertiesActions";
 // import { useNavigation } from "@react-navigation/native";
 
-export function PropertySearch() {
-  return <Text>PropertySearch</Text>;
+export function AgentSearch() {
+  return <Text>AgentSearch</Text>;
   //   const dispatch = useDispatch();
   //   const navigation = useNavigation();
   //   // const [location, setLocation] = useState(null);

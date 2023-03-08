@@ -15,18 +15,20 @@ import {
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export function NavBarSearch() {
+export function NavBarSearch({ type }) {
   const navigation = useNavigation();
 
   return (
     <VStack w="100%" minWidth={"100%"} alignSelf="center">
       <Input
         onFocus={async () => {
-          //    navigation.navigate("Property Search");
+          type === "agents"
+            ? navigation.navigate("Agent Search")
+            : navigation.navigate("Property Search");
         }}
         mr={0}
         alignSelf="center"
-        placeholder="Search"
+        placeholder={type === "agents" ? "Search agents" : "Search properties"}
         width="100%"
         borderRadius="4"
         py="3"

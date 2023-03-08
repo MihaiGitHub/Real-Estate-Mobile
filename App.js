@@ -45,12 +45,12 @@ function MainMenu() {
       <Tab.Screen
         name="Properties"
         component={Properties}
-        options={{ headerTitle: (props) => <NavBarSearch {...props} /> }}
+        options={{ headerShown: false }}
       />
       <Tab.Screen
         name="Agents"
         component={Agents}
-        options={{ headerTitle: (props) => <NavBarSearch {...props} /> }}
+        options={{ headerShown: false }}
       />
       <Tab.Screen name="Profile" component={Profile} />
     </Tab.Navigator>

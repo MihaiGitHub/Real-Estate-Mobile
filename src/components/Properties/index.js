@@ -15,8 +15,9 @@ export function Properties() {
       <PropertiesStack.Screen
         name="Properties Main"
         component={NavBarTabs}
-        options={{ headerShown: false }}
-        //   options={{ headerTitle: (props) => <NavBarTabs {...props} /> }}
+        options={{
+          headerTitle: (props) => <NavBarSearch {...props} type="properties" />,
+        }}
       />
       <PropertiesStack.Screen
         name="Properties Map"
@@ -32,12 +33,12 @@ export function Properties() {
         name="Property Send Message"
         title="Message Agent"
         component={PropertySendMessage}
-      />
+      /> */}
       <PropertiesStack.Screen
         name="Property Search"
         title="Property Search"
         component={PropertySearch}
-      /> */}
+      />
     </PropertiesStack.Navigator>
   );
 }
