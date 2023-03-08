@@ -11,12 +11,8 @@ const AccountStack = createNativeStackNavigator();
 
 export function Profile() {
   return (
-    <AccountStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <AccountStack.Screen name="Main" component={Main} />
+    <AccountStack.Navigator>
+      <AccountStack.Screen name="Profile" component={Main} />
       <AccountStack.Screen
         name="PaymentCalculator"
         component={PaymentCalculator}
@@ -25,8 +21,8 @@ export function Profile() {
         name="AffordabilityCalculator"
         component={AffordabilityCalculator}
       />
-      <AccountStack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
-      <AccountStack.Screen name="TermsUse" component={TermsUse} />
+      <AccountStack.Screen name="Privacy Policy" component={PrivacyPolicy} />
+      <AccountStack.Screen name="Terms of Use" component={TermsUse} />
       <AccountStack.Screen name="About" component={About} />
     </AccountStack.Navigator>
   );

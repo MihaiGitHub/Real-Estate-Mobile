@@ -1,8 +1,11 @@
 import React from "react";
 import { TouchableHighlight } from "react-native";
 import { Box, FlatList, HStack, VStack, Text, Heading } from "native-base";
+import { useNavigation } from "@react-navigation/native";
 
-export function Main({ navigation }) {
+export function Main() {
+  const navigation = useNavigation();
+
   const data = [
     {
       id: "1",
@@ -12,12 +15,12 @@ export function Main({ navigation }) {
     {
       id: "2",
       title: "Privacy Policy",
-      nav: "PrivacyPolicy",
+      nav: "Privacy Policy",
     },
     {
       id: "3",
       title: "Terms of Use",
-      nav: "TermsUse",
+      nav: "Terms of Use",
     },
   ];
 
