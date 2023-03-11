@@ -5,11 +5,11 @@ import {
   //   View,
   //   StyleSheet
 } from "react-native";
-// import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 // //import * as Location from "expo-location";
 // //import Geolocation from "react-native-geolocation-service";
 // //import GetLocation from "react-native-get-location";
-// import Globals from "../Common/Globals";
+import Globals from "../Common/Globals";
 // import { useSelector, useDispatch } from "react-redux";
 // import {
 //   propertiesFiltered,
@@ -18,7 +18,20 @@ import {
 // import { useNavigation } from "@react-navigation/native";
 
 export function PropertySearch() {
-  return <Text>PropertySearch</Text>;
+  return (
+    <GooglePlacesAutocomplete
+      placeholder="Address, city or zip"
+      onPress={(data, details = null) => {
+        // 'details' is provided when fetchDetails = true
+        console.log(data, details);
+      }}
+      query={{
+        key: Globals.GOOGLE_CLOUD_SERVICES_API_KEY,
+        language: "en",
+      }}
+    />
+  );
+
   //   const dispatch = useDispatch();
   //   const navigation = useNavigation();
   //   // const [location, setLocation] = useState(null);
