@@ -1,6 +1,7 @@
 import * as React from "react";
 import { View, useWindowDimensions } from "react-native";
-import { TabView, SceneMap } from "react-native-tab-view";
+import { TabView, TabBar, SceneMap } from "react-native-tab-view";
+import Globals from "./Globals";
 import { PropertiesList } from "../Properties/PropertiesList";
 import { PropertiesMap } from "../Properties/PropertiesMap";
 
@@ -22,8 +23,17 @@ export function NavBarTabs() {
     { key: "second", title: "Map" },
   ]);
 
+  const renderTabBar = (props) => (
+    <TabBar
+      {...props}
+      indicatorStyle={{ backgroundColor: "white" }}
+      style={{ backgroundColor: Globals.HEADER_COLOR }}
+    />
+  );
+
   return (
     <TabView
+      renderTabBar={renderTabBar}
       navigationState={{ index, routes }}
       renderScene={renderScene}
       onIndexChange={setIndex}

@@ -24,14 +24,23 @@ function MainMenu() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        tabBarStyle: {
+          height: 50,
+          paddingHorizontal: 5,
+          paddingTop: 0,
+          //  backgroundColor: "rgba(34,36,40,1)",
+          backgroundColor: "#344955",
+          position: "absolute",
+          borderTopWidth: 0,
+        },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === "Properties") {
+          if (route.name === "PROPERTIES") {
             iconName = focused ? "home" : "home";
-          } else if (route.name === "Agents") {
+          } else if (route.name === "AGENTS") {
             iconName = focused ? "person" : "person";
-          } else if (route.name === "Profile") {
+          } else if (route.name === "PROFILE") {
             iconName = focused ? "list" : "list";
           }
 
@@ -43,17 +52,17 @@ function MainMenu() {
       })}
     >
       <Tab.Screen
-        name="Properties"
+        name="PROPERTIES"
         component={Properties}
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name="Agents"
+        name="AGENTS"
         component={Agents}
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name="Profile"
+        name="PROFILE"
         component={Profile}
         options={{ headerShown: false }}
       />

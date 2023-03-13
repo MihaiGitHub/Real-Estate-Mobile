@@ -1,5 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Globals from "../Common/Globals";
 import { AgentsList } from "./AgentsList";
 import { AgentView } from "./AgentView";
 import { AgentSearch } from "./AgentSearch";
@@ -15,6 +16,13 @@ export function Agents() {
         component={AgentsList}
         options={{
           headerTitle: (props) => <NavBarSearch {...props} type="agents" />,
+          headerStyle: {
+            backgroundColor: Globals.HEADER_COLOR,
+          },
+          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTitleStyle: {
+            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+          },
         }}
       />
       <AgentsStack.Screen name="Agent Info" component={AgentView} />
@@ -22,6 +30,15 @@ export function Agents() {
         name="Agent Search"
         title="Agent Search"
         component={AgentSearch}
+        options={{
+          headerStyle: {
+            backgroundColor: Globals.HEADER_COLOR,
+          },
+          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTitleStyle: {
+            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+          },
+        }}
       />
     </AgentsStack.Navigator>
   );

@@ -27,16 +27,11 @@ export function Main() {
   const data2 = [
     {
       id: "1",
-      title: "Home Loans",
-      nav: "PaymentCalculator",
-    },
-    {
-      id: "2",
       title: "Payment Calculator",
       nav: "PaymentCalculator",
     },
     {
-      id: "3",
+      id: "2",
       title: "Affordability Calculator",
       nav: "AffordabilityCalculator",
     },

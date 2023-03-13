@@ -1,5 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Globals from "../Common/Globals";
 import { PropertyView } from "./PropertyView";
 import { PropertiesMap } from "./PropertiesMap";
 import { NavBarTabs } from "../Common/Tabs";
@@ -17,12 +18,28 @@ export function Properties() {
         component={NavBarTabs}
         options={{
           headerTitle: (props) => <NavBarSearch {...props} type="properties" />,
+          headerStyle: {
+            backgroundColor: Globals.HEADER_COLOR,
+          },
+          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTitleStyle: {
+            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+          },
         }}
       />
       <PropertiesStack.Screen
         name="Properties Map"
         title="Properties Map"
         component={PropertiesMap}
+        options={{
+          headerStyle: {
+            backgroundColor: Globals.HEADER_COLOR,
+          },
+          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTitleStyle: {
+            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+          },
+        }}
       />
       {/* <PropertiesStack.Screen
         name="Property Info"
@@ -38,6 +55,15 @@ export function Properties() {
         name="Property Search"
         title="Property Search"
         component={PropertySearch}
+        options={{
+          headerStyle: {
+            backgroundColor: Globals.HEADER_COLOR,
+          },
+          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTitleStyle: {
+            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+          },
+        }}
       />
     </PropertiesStack.Navigator>
   );
