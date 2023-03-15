@@ -19,24 +19,19 @@ export function NavBarSearch({ type }) {
   const navigation = useNavigation();
 
   return (
-    <VStack w="100%" minWidth={"100%"} alignSelf="center">
+    <VStack w="100%" minWidth={"100%"}>
       <Input
         onFocus={async () => {
           type === "agents"
             ? navigation.navigate("Agent Search")
             : navigation.navigate("Property Search");
         }}
-        mr={0}
-        alignSelf="center"
         placeholder={type === "agents" ? "Search agents" : "Search properties"}
-        width="100%"
+        width="92%"
         borderRadius="4"
-        py="3"
-        px="1"
         fontSize="14"
         InputLeftElement={
           <Icon
-            m="2"
             ml="3"
             size="6"
             color="gray.400"
@@ -45,8 +40,7 @@ export function NavBarSearch({ type }) {
         }
         InputRightElement={
           <Icon
-            m="2"
-            mr="6"
+            mr="3"
             size="6"
             color="gray.400"
             as={<Ionicons name="filter" />}
