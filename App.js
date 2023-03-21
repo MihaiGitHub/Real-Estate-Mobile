@@ -8,15 +8,13 @@ import PropertiesReducer from "./src/reducers/PropertiesReducer";
 import AgentsReducer from "./src/reducers/AgentsReducer";
 
 import { NavigationContainer } from "@react-navigation/native";
-
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 
 import { Properties } from "./src/components/Properties";
 import { Agents } from "./src/components/Agents";
 import { Profile } from "./src/components/Profile";
 import { NativeBaseProvider } from "native-base";
-import { NavBarSearch } from "./src/components/Common/NavBarSearch";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,8 +26,6 @@ function MainMenu() {
           height: 50,
           paddingHorizontal: 5,
           paddingTop: 0,
-          //  backgroundColor: "rgba(34,36,40,1)",
-          backgroundColor: "#344955",
           position: "absolute",
           borderTopWidth: 0,
         },
@@ -39,16 +35,16 @@ function MainMenu() {
           if (route.name === "PROPERTIES") {
             iconName = focused ? "home" : "home";
           } else if (route.name === "AGENTS") {
-            iconName = focused ? "person" : "person";
+            iconName = focused ? "id-card" : "id-card";
           } else if (route.name === "PROFILE") {
-            iconName = focused ? "list" : "list";
+            iconName = focused ? "user" : "user";
           }
 
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <FontAwesome name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "tomato",
+        tabBarActiveTintColor: "white",
         tabBarInactiveTintColor: "gray",
+        tabBarActiveBackgroundColor: "gray",
       })}
     >
       <Tab.Screen
