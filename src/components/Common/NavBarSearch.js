@@ -29,6 +29,10 @@ export function NavBarSearch({ type }) {
         placeholder={type === "agents" ? "Search agents" : "Search properties"}
         width="92%"
         borderRadius="4"
+        //   borderColor={"none"}
+        //   outlineColor={"none"}
+        variant={type === "agents" ? "unstyled" : "underlined"}
+        //     style={{ outlineColor: "none", borderColor: "none", border: "none" }}
         fontSize="14"
         InputLeftElement={
           <Icon

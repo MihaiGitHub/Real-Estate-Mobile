@@ -2,9 +2,9 @@
   "expo": {
     "name": "Century Homes",
     "slug": "century-homes",
-    "version": "1.5.8",
+    "version": "1.6.3",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon.jpg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -20,7 +20,7 @@
     },
     "android": {
       "package": "com.century.homes",
-      "versionCode": 65,
+      "versionCode": 70,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

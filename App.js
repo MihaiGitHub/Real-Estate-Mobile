@@ -24,7 +24,7 @@ function MainMenu() {
       screenOptions={({ route }) => ({
         tabBarStyle: {
           height: 50,
-          paddingHorizontal: 5,
+          paddingHorizontal: 0,
           paddingTop: 0,
           position: "absolute",
           borderTopWidth: 0,
