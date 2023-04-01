@@ -23,15 +23,14 @@ import { Spinner } from "../Common/Spinner";
 import { useNavigation } from "@react-navigation/native";
 
 export function PropertiesList() {
-  const properties = useSelector((state) => state.properties.listFiltered);
+  // const properties = useSelector((state) => state.properties.listFiltered);
+  let properties = [];
 
-  // console.log("properties ", properties);
-
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
+  // const dispatch = useDispatch();
+  // const navigation = useNavigation();
 
   useEffect(() => {
-    dispatch(propertiesFetch());
+    // dispatch(propertiesFetch());
   }, []);
 
   if (properties.length === 0) {

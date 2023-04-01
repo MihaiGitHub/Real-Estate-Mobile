@@ -2,7 +2,9 @@ import axios from "axios";
 import GLOBALS from "../components/Common/Globals";
 
 const getAgents = () => {
-  return axios.get(`${GLOBALS.BASE_URL}/agents`);
+  return axios.get(`${GLOBALS.BASE_URL}/agents`).catch(function (e) {
+    console.log(e);
+  });
 };
 
 const getAgentById = (id) => {
@@ -16,10 +18,21 @@ const saveMessage = (id, message) => {
   });
 };
 
+const getAgentsFiltered = async (city, state) => {
+  return axios
+    .get(
+      `${GLOBALS.BASE_URL}/agentsUSRealEstate?city=${city}&state_code=${state}`
+    )
+    .catch(function (e) {
+      console.log(e);
+    });
+};
+
 const AgentsService = {
   getAgents,
   getAgentById,
   saveMessage,
+  getAgentsFiltered,
 };
 
 export default AgentsService;

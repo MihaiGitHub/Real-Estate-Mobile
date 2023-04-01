@@ -1,4 +1,8 @@
-import { AGENTS_FETCH_SUCCESS, AGENT_FETCH_SUCCESS } from "./types";
+import {
+  AGENTS_FETCH_SUCCESS,
+  AGENT_FETCH_SUCCESS,
+  AGENTS_FILTERED,
+} from "./types";
 import AgentsService from "../services/AgentsService";
 
 export const agentsFetch = () => async (dispatch) => {
@@ -30,6 +34,26 @@ export const findAgentById = (id) => async (dispatch) => {
 export const saveMessage = async (id, msg) => {
   try {
     const res = await AgentsService.saveMessage(id, msg);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const agentsFiltered = (city, state) => async (dispatch) => {
+  try {
+    const res = await AgentsService.getAgentsFiltered(city, state);
+
+    // console.log("RES ", res);
+
+    // dispatch({
+    //   type: SEARCH_LAT_LNG,
+    //   payload: { lat, lng },
+    // });
+
+    dispatch({
+      type: AGENTS_FILTERED,
+      payload: res.data,
+    });
   } catch (err) {
     console.log(err);
   }

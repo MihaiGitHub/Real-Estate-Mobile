@@ -19,9 +19,14 @@ import Globals from "../Common/Globals";
 import { useNavigation } from "@react-navigation/native";
 
 export function AgentsList() {
-  const agents = useSelector((state) => state.agents.list);
+  const agents = useSelector((state) => state.agents.agentsFiltered);
+  const agentsDB = useSelector((state) => state.agents.agentsDB);
+
   const dispatch = useDispatch();
   const navigation = useNavigation();
+
+  console.log("Agents ", agents);
+  console.log("AgentsDB ", agentsDB);
 
   useEffect(() => {
     dispatch(agentsFetch());
@@ -29,62 +34,123 @@ export function AgentsList() {
 
   return (
     <Box>
-      <FlatList
-        data={agents}
-        renderItem={({ item, index, separators }) => (
-          <TouchableHighlight
-            key={item.id}
-            onPress={() =>
-              navigation.navigate("Agent Info", {
-                item,
-              })
-            }
-            onShowUnderlay={separators.highlight}
-            onHideUnderlay={separators.unhighlight}
-          >
-            <Box
-              borderBottomWidth="1"
-              _dark={{
-                borderColor: "gray.600",
-              }}
-              borderColor="coolGray.200"
-              pl="4"
-              pr="5"
-              py="2"
+      {agentsDB && agentsDB.length && (
+        <FlatList
+          data={agentsDB}
+          renderItem={({ item, index, separators }) => (
+            <TouchableHighlight
+              key={item.id}
+              // onPress={() =>
+              //   navigation.navigate("Agent Info", {
+              //     item,
+              //   })
+              // }
+              onShowUnderlay={separators.highlight}
+              onHideUnderlay={separators.unhighlight}
             >
-              <HStack space={3} justifyContent="space-between">
-                <Avatar
-                  size="48px"
-                  source={{
-                    uri: `${Globals.TEMP_IMAGE_PATH}${item.picture}`,
-                  }}
-                />
-                <VStack>
-                  <Text
-                    _dark={{
-                      color: "warmGray.50",
+              <Box
+                borderBottomWidth="1"
+                _dark={{
+                  borderColor: "gray.600",
+                }}
+                borderColor="coolGray.200"
+                pl="4"
+                pr="5"
+                py="2"
+              >
+                <HStack space={3} justifyContent="space-between">
+                  <Avatar
+                    size="48px"
+                    source={{
+                      uri: `${Globals.TEMP_IMAGE_PATH}${item.picture}`,
                     }}
-                    color="coolGray.800"
-                    bold
-                  >
-                    {item.fname} {item.lname}
-                  </Text>
-                  <Text
-                    color="coolGray.600"
-                    _dark={{
-                      color: "warmGray.200",
+                  />
+                  <VStack>
+                    <Text
+                      _dark={{
+                        color: "warmGray.50",
+                      }}
+                      color="coolGray.800"
+                      bold
+                    >
+                      {item.fname} {item.lname}
+                    </Text>
+                    <Text
+                      color="coolGray.600"
+                      _dark={{
+                        color: "warmGray.200",
+                      }}
+                    >
+                      {item.business_name}
+                    </Text>
+                  </VStack>
+                  <Spacer />
+                </HStack>
+              </Box>
+            </TouchableHighlight>
+          )}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      )}
+
+      {agents.response && agents.response.length && (
+        <FlatList
+          data={agents.response}
+          renderItem={({ item, index, separators }) => (
+            <TouchableHighlight
+              key={item.id}
+              // onPress={() =>
+              //   navigation.navigate("Agent Info", {
+              //     item,
+              //   })
+              // }
+              onShowUnderlay={separators.highlight}
+              onHideUnderlay={separators.unhighlight}
+            >
+              <Box
+                borderBottomWidth="1"
+                _dark={{
+                  borderColor: "gray.600",
+                }}
+                borderColor="coolGray.200"
+                pl="4"
+                pr="5"
+                py="2"
+              >
+                <HStack space={3} justifyContent="space-between">
+                  <Avatar
+                    size="48px"
+                    source={{
+                      uri: `${item.photo.href}`,
                     }}
-                  >
-                    {item.business_name}
-                  </Text>
-                </VStack>
-                <Spacer />
-              </HStack>
-            </Box>
-          </TouchableHighlight>
-        )}
-        keyExtractor={(item) => item.id.toString()}
-      />
+                  />
+                  <VStack>
+                    <Text
+                      _dark={{
+                        color: "warmGray.50",
+                      }}
+                      color="coolGray.800"
+                      bold
+                    >
+                      {item.full_name}
+                    </Text>
+                    <Text
+                      color="coolGray.600"
+                      _dark={{
+                        color: "warmGray.200",
+                      }}
+                    >
+                      {item.broker.name}
+                    </Text>
+                  </VStack>
+                  <Spacer />
+                </HStack>
+              </Box>
+            </TouchableHighlight>
+          )}
+          keyExtractor={(item) => item.advertiser_id.toString()}
+        />
+      )}
     </Box>
   );
 }
