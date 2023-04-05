@@ -19,7 +19,7 @@ import Globals from "../Common/Globals";
 import { useNavigation } from "@react-navigation/native";
 
 export function AgentsList() {
-  const agents = useSelector((state) => state.agents.agentsFiltered);
+  const agents = useSelector((state) => state.agents.agentsFiltered.response);
   const agentsDB = useSelector((state) => state.agents.agentsDB);
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export function AgentsList() {
 
   return (
     <Box>
-      {agentsDB && agentsDB.length && (
+      {agentsDB && agentsDB.length > 0 && (
         <FlatList
           data={agentsDB}
           renderItem={({ item, index, separators }) => (
@@ -93,9 +93,9 @@ export function AgentsList() {
         />
       )}
 
-      {agents.response && agents.response.length && (
+      {agents && agents.length > 0 && (
         <FlatList
-          data={agents.response}
+          data={agents}
           renderItem={({ item, index, separators }) => (
             <TouchableHighlight
               key={item.id}
