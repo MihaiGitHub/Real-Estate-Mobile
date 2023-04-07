@@ -40,11 +40,11 @@ export function AgentsList() {
           renderItem={({ item, index, separators }) => (
             <TouchableHighlight
               key={item.id}
-              // onPress={() =>
-              //   navigation.navigate("Agent Info", {
-              //     item,
-              //   })
-              // }
+              onPress={() =>
+                navigation.navigate("Agent Info", {
+                  item,
+                })
+              }
               onShowUnderlay={separators.highlight}
               onHideUnderlay={separators.unhighlight}
             >
@@ -99,11 +99,11 @@ export function AgentsList() {
           renderItem={({ item, index, separators }) => (
             <TouchableHighlight
               key={item.id}
-              // onPress={() =>
-              //   navigation.navigate("Agent Info", {
-              //     item,
-              //   })
-              // }
+              onPress={() =>
+                navigation.navigate("Agent Info", {
+                  item,
+                })
+              }
               onShowUnderlay={separators.highlight}
               onHideUnderlay={separators.unhighlight}
             >

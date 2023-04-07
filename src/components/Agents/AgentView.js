@@ -15,10 +15,12 @@ import {
 } from "native-base";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import Communications from "react-native-communications";
-//import GLOBALS from "../Common/Globals";
+import GLOBALS from "../Common/Globals";
 
 export function AgentView({ route }) {
   const { item } = route.params;
+
+  console.log("item ", item);
 
   const initiateWhatsApp = (message, number) => {
     // Check for perfect 10 digit length
@@ -55,9 +57,11 @@ export function AgentView({ route }) {
       });
   };
 
+  const phone = item.phone ? item.phone : item.phones[0]["number"];
+
   return (
-    <Box alignItems="center">
-      <ScrollView>
+    <ScrollView>
+      <Box alignItems="center">
         <Box
           maxW="500"
           rounded="lg"
@@ -78,13 +82,15 @@ export function AgentView({ route }) {
         >
           <Box>
             <AspectRatio w="100%" ratio={16 / 14}>
-              {/* <Image
+              <Image
                 style={{ paddingTop: "25px", marginTop: "25px" }}
                 source={{
-                  uri: `${GLOBALS.TEMP_IMAGE_PATH}${item.picture}`,
+                  uri: item.advertiser_id
+                    ? `${item.photo.href}`
+                    : `${GLOBALS.TEMP_IMAGE_PATH}${item.picture}`,
                 }}
                 alt="image"
-              /> */}
+              />
             </AspectRatio>
             <Center
               bg="violet.500"
@@ -107,7 +113,8 @@ export function AgentView({ route }) {
           <Stack p="4" space={3}>
             <Stack space={2}>
               <Heading size="md" ml="-1">
-                {item.fname} {item.lname}
+                {item.first_name ? item.first_name : item.fname}
+                {item.last_name ? item.last_name : item.lname}
               </Heading>
               <Text
                 fontSize="xs"
@@ -121,7 +128,7 @@ export function AgentView({ route }) {
                 ml="-0.5"
                 mt="-1"
               >
-                {item.business_name}
+                {item.business_name ? item.business_name : item.broker.name}
               </Text>
             </Stack>
             <Text fontWeight="400">{item.description}</Text>
@@ -132,10 +139,7 @@ export function AgentView({ route }) {
             >
               <Button
                 onPress={() =>
-                  initiateWhatsApp(
-                    "I want to inquire about a property",
-                    item.phone
-                  )
+                  initiateWhatsApp("I want to inquire about a property", phone)
                 }
                 style={{ flex: 0.35 }}
                 leftIcon={
@@ -145,7 +149,7 @@ export function AgentView({ route }) {
                 WhatsApp
               </Button>
               <Button
-                onPress={() => Communications.text(item.phone)}
+                onPress={() => Communications.text(phone)}
                 style={{ flex: 0.35 }}
                 leftIcon={
                   <MaterialIcons name="textsms" size={24} color="black" />
@@ -154,7 +158,7 @@ export function AgentView({ route }) {
                 Text
               </Button>
               <Button
-                onPress={() => initiatePhoneCall(item.phone)}
+                onPress={() => initiatePhoneCall(phone)}
                 style={{ flex: 0.35 }}
                 leftIcon={
                   <Ionicons name="call-outline" size={24} color="black" />
@@ -165,7 +169,7 @@ export function AgentView({ route }) {
             </HStack>
           </Stack>
         </Box>
-      </ScrollView>
-    </Box>
+      </Box>
+    </ScrollView>
   );
 }

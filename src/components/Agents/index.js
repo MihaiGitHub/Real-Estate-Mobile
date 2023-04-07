@@ -25,7 +25,20 @@ export function Agents() {
           },
         }}
       />
-      <AgentsStack.Screen name="Agent Info" component={AgentView} />
+      <AgentsStack.Screen
+        name="Agent Info"
+        title="Agent Info"
+        component={AgentView}
+        options={{
+          headerStyle: {
+            backgroundColor: Globals.HEADER_COLOR,
+          },
+          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTitleStyle: {
+            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+          },
+        }}
+      />
       <AgentsStack.Screen
         name="Agent Search"
         title="Agent Search"
