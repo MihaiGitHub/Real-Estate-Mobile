@@ -19,7 +19,7 @@ import Globals from "../Common/Globals";
 import { useNavigation } from "@react-navigation/native";
 
 export function AgentsList() {
-  const agents = useSelector((state) => state.agents.agentsFiltered.response);
+  const agents = useSelector((state) => state.agents.agentsFiltered);
   const agentsDB = useSelector((state) => state.agents.agentsDB);
 
   const dispatch = useDispatch();

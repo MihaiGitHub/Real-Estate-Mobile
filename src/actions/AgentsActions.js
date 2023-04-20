@@ -43,8 +43,6 @@ export const agentsFiltered = (city, state) => async (dispatch) => {
   try {
     const res = await AgentsService.getAgentsFiltered(city, state);
 
-    // console.log("RES ", res);
-
     // dispatch({
     //   type: SEARCH_LAT_LNG,
     //   payload: { lat, lng },
