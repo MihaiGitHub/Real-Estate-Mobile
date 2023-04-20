@@ -23,20 +23,20 @@ import { Spinner } from "../Common/Spinner";
 import { useNavigation } from "@react-navigation/native";
 
 export function PropertiesList() {
-  // const properties = useSelector((state) => state.properties.listFiltered);
-  let properties = [];
+  const properties = useSelector((state) => state.properties.listFiltered);
+  //let properties = [];
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const navigation = useNavigation();
 
   useEffect(() => {
-    // dispatch(propertiesFetch());
+    dispatch(propertiesFetch());
   }, []);
 
   if (properties.length === 0) {
     return <Spinner size="large" />;
   }
-
+  console.log("properties ", properties);
   const renderProperties = () => {
     if (Array.isArray(properties) && properties.length > 0) {
       //  console.log("properties ", properties);
