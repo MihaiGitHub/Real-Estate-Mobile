@@ -19,12 +19,11 @@ import {
   ScrollView,
 } from "native-base";
 import { Spinner } from "../Common/Spinner";
-// import { SliderBox } from "react-native-image-slider-box";
 import { useNavigation } from "@react-navigation/native";
+import ImageCarousel from "./ImageCarousel";
 
 export function PropertiesList() {
   const properties = useSelector((state) => state.properties.listFiltered);
-  //let properties = [];
 
   const dispatch = useDispatch();
   // const navigation = useNavigation();
@@ -36,45 +35,34 @@ export function PropertiesList() {
   if (properties.length === 0) {
     return <Spinner size="large" />;
   }
-  console.log("properties ", properties);
+
   const renderProperties = () => {
     if (Array.isArray(properties) && properties.length > 0) {
-      //  console.log("properties ", properties);
-
       return properties.map((item, index, array) => {
-        console.log("item ", item);
+        if (item.properties_images.length > 0) {
+          const images = item.properties_images.map((image) => {
+            return { url: image.url, title: item.title };
+          });
 
-        // if (item.PropertyImages.length > 0) {
-        //   const images = item.PropertyImages.map((image) => {
-        //     return image.url;
-        //   });
-
-        //   array[index]["images"] = images;
-        // } else {
-        //   array[index]["images"] = [
-        //     `https://media0.giphy.com/media/l2JejWb7Yq2L7TOVi/giphy.gif?cid=790b76111476f50608a579e2e3c159c0553040a43dcfcc64&rid=giphy.gif&ct=g`,
-        //   ];
-        // }
+          array[index]["images"] = images;
+        } else {
+          array[index]["images"] = [
+            {
+              url: `https://ssl.cdn-redfin.com/photo/115/bigphoto/382/22304382_0.jpg`,
+              title: item.title,
+            },
+          ];
+        }
 
         return (
           <Box border="1" borderRadius="md" key={index}>
-            <VStack space="4">
+            <VStack space="0">
               <Box>
-                {/* <SliderBox
-                  images={array[index]["images"]}
-                  sliderBoxHeight={200}
-                  onCurrentImagePressed={(index) => {
-                    navigation.navigate("Property Info", {
-                      id: item.id,
-                    });
-                  }}
-                  dotColor="#FFEE58"
-                  inactiveDotColor="#90A4AE"
-                /> */}
+                <ImageCarousel data={array[index]["images"]} />
               </Box>
               <HStack
                 alignItems="center"
-                space={4}
+                space={0}
                 justifyContent="space-between"
               >
                 <Text
@@ -91,7 +79,7 @@ export function PropertiesList() {
                   {item.bedrooms} Beds 2 {item.baths} Baths
                 </Text>
               </HStack>
-              <Box px="4" pb="4" pt={0}>
+              <Box px="4" pb="1" pt={0}>
                 {item.address}
               </Box>
             </VStack>
