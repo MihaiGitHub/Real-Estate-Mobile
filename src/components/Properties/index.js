@@ -41,11 +41,12 @@ export function Properties() {
           },
         }}
       />
-      {/* <PropertiesStack.Screen
+      <PropertiesStack.Screen
         name="Property Info"
         title="Property"
         component={PropertyView}
       />
+      {/*
       <PropertiesStack.Screen
         name="Property Send Message"
         title="Message Agent"

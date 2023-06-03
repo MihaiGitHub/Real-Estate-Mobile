@@ -8,6 +8,7 @@ import {
   Dimensions,
   Text,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Default Props
 const defaults = {
@@ -21,7 +22,6 @@ const Item = ({ title, url, height, width }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      //   onPress={onPress}
       style={[styles.imageContainer, { height: height, width: width }]}
     >
       <Image source={{ uri: url }} style={[styles.image, { height: height }]} />
@@ -36,7 +36,11 @@ const Item = ({ title, url, height, width }) => {
 
 // Default On Press Action
 const handlePress = (item) => {
-  console.log("Pressed", item.id);
+  console.log("Pressed", item);
+
+  navigation.navigate("Property Info", {
+    item,
+  });
 };
 
 // Carousal Component
@@ -50,10 +54,11 @@ export default function ImageCarousel({
 }) {
   const [selectedIndex, setselectedIndex] = useState(0);
   const scrollView = useRef();
+  const navigation = useNavigation();
 
   // Script which will only executed when component initilizes
   useEffect(() => {
-    console.log("DATA ", data);
+    // console.log("DATA ", data);
     const fn = setInterval(() => {
       setselectedIndex((oldCount) =>
         oldCount === data.length - 1 ? 0 : oldCount + 1
