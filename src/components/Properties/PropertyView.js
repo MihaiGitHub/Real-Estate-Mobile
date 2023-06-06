@@ -77,17 +77,17 @@ export function PropertyView({ route }) {
   //     // dispatch(findPropertyById(id));
   //   }, []);
 
-  //   const initiateUber = () => {
-  //     let url = `uber://?action=setPickup&dropoff[latitude]=${property.lat}&dropoff[longitude]=${property.lng}`;
+  const initiateUber = () => {
+    let url = `uber://?action=setPickup&dropoff[latitude]=${property.lat}&dropoff[longitude]=${property.lng}`;
 
-  //     Linking.openURL(url)
-  //       .then((data) => {
-  //         console.log("Uber Opened");
-  //       })
-  //       .catch(() => {
-  //         alert("Make sure Uber installed on your device");
-  //       });
-  //   };
+    Linking.openURL(url)
+      .then((data) => {
+        console.log("Uber Opened");
+      })
+      .catch(() => {
+        alert("Make sure Uber installed on your device");
+      });
+  };
 
   const handleGetDirections = () => {
     const data = {
@@ -225,7 +225,7 @@ export function PropertyView({ route }) {
             </Button>
             <Button
               title="Uber"
-              // onPress={() => initiateUber()}
+              onPress={() => initiateUber()}
               style={{ flex: 0.4, marginRight: 15 }}
               // leftIcon={<FontAwesome5 name="uber" size={24} color="black" />}
             >
