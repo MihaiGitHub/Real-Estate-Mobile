@@ -17,31 +17,32 @@ const defaults = {
   delay: 5000,
 };
 
-// Default Image Item
-const Item = ({ title, url, height, width }) => {
-  return (
-    <TouchableOpacity
-      activeOpacity={0.8}
-      style={[styles.imageContainer, { height: height, width: width }]}
-    >
-      <Image source={{ uri: url }} style={[styles.image, { height: height }]} />
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>{title}</Text>
-        {/* {title && <Text style={styles.title}>{title} </Text>}
-            {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>} */}
-      </View>
-    </TouchableOpacity>
-  );
-};
+// // Default Image Item
+// const Item = ({ title, url, height, width, onPress }) => {
+//   return (
+//     <TouchableOpacity
+//       activeOpacity={0.8}
+//       style={[styles.imageContainer, { height: height, width: width }]}
+//       onPress={onPress}
+//     >
+//       <Image source={{ uri: url }} style={[styles.image, { height: height }]} />
+//       <View style={styles.titleContainer}>
+//         <Text style={styles.title}>{title}</Text>
+//         {/* {title && <Text style={styles.title}>{title} </Text>}
+//             {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>} */}
+//       </View>
+//     </TouchableOpacity>
+//   );
+// };
 
-// Default On Press Action
-const handlePress = (item) => {
-  console.log("Pressed", item);
+// // Default On Press Action
+// const handlePress = (item) => {
+//   console.log("Pressed", item);
 
-  navigation.navigate("Property Info", {
-    item,
-  });
-};
+//   navigation.navigate("Property Info", {
+//     item,
+//   });
+// };
 
 // Carousal Component
 export default function ImageCarousel({
@@ -49,8 +50,8 @@ export default function ImageCarousel({
   height = defaults.height,
   width = defaults.width,
   delay = defaults.delay,
-  onPress = handlePress,
-  ItemElement = Item,
+  // onPress = handlePress,
+  // ItemElement = Item,
 }) {
   const [selectedIndex, setselectedIndex] = useState(0);
   const scrollView = useRef();
@@ -97,13 +98,23 @@ export default function ImageCarousel({
       >
         <View style={styles.carousalContainer}>
           {data.map((item) => (
-            <ItemElement
-              key={item.id}
-              height={height}
-              width={width}
-              {...item}
-              onPress={() => onPress(item)}
-            />
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={[styles.imageContainer, { height: height, width: width }]}
+              onPress={() =>
+                navigation.navigate("Property Info", { id: item.id })
+              }
+            >
+              <Image
+                source={{ uri: item.url }}
+                style={[styles.image, { height: height }]}
+              />
+              <View style={styles.titleContainer}>
+                <Text style={styles.title}>{item.title}</Text>
+                {/* {title && <Text style={styles.title}>{title} </Text>}
+                      {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>} */}
+              </View>
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>

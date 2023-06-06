@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-// import { View, Linking } from "react-native";
-// import { useSelector, useDispatch, ReactReduxContext } from "react-redux";
-// import {
-//   Box,
-//   Button,
-//   FlatList,
-//   Heading,
-//   Avatar,
-//   HStack,
-//   VStack,
-//   AspectRatio,
-//   Text,
-//   Stack,
-//   Image,
-//   Spacer,
-//   Center,
-//   NativeBaseProvider,
-//   ScrollView,
-// } from "native-base";
+import { View, Linking } from "react-native";
+import { useSelector, useDispatch, ReactReduxContext } from "react-redux";
+import {
+  Box,
+  Button,
+  FlatList,
+  Heading,
+  Avatar,
+  HStack,
+  VStack,
+  AspectRatio,
+  Text,
+  Stack,
+  Image,
+  Spacer,
+  Center,
+  NativeBaseProvider,
+  ScrollView,
+} from "native-base";
 // import {
 //   Ionicons,
 //   FontAwesome5,
@@ -25,23 +25,27 @@ import React, { useEffect, useState } from "react";
 //   MaterialCommunityIcons,
 // } from "@expo/vector-icons";
 // import { ImageGallery } from "@georstat/react-native-image-gallery";
-// import getDirections from "react-native-google-maps-directions";
+import getDirections from "react-native-google-maps-directions";
 // import { SliderBox } from "react-native-image-slider-box";
-// import { useNavigation } from "@react-navigation/native";
+//import { useNavigation } from "@react-navigation/native";
 // import GLOBALS from "../Common/Globals";
 
 export function PropertyView({ route }) {
-  //   const [isOpen, setIsOpen] = useState(false);
-  //   const openGallery = () => setIsOpen(true);
-  //   const closeGallery = () => setIsOpen(false);
-  //   const navigation = useNavigation();
+  // const [isOpen, setIsOpen] = useState(false);
+  // const openGallery = () => setIsOpen(true);
+  // const closeGallery = () => setIsOpen(false);
+  //const navigation = useNavigation();
 
-  //   const { id } = route.params;
+  const { id } = route.params;
 
-  //   const { list } = useSelector((state) => state.properties);
+  const { list } = useSelector((state) => state.properties);
   //   //const dispatch = useDispatch();
 
-  //   const property = list.find((x) => x.id === id);
+  console.log("list ", list);
+
+  const property = list.find((x) => x.id === id);
+
+  console.log("property ", property);
 
   //   // if (images.length === 0) {
   //   //    imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
@@ -85,26 +89,26 @@ export function PropertyView({ route }) {
   //       });
   //   };
 
-  //   const handleGetDirections = () => {
-  //     const data = {
-  //       destination: {
-  //         latitude: parseFloat(property.lat, 10),
-  //         longitude: parseFloat(property.lng, 10),
-  //       },
-  //       params: [
-  //         {
-  //           key: "travelmode",
-  //           value: "driving", // may be "walking", "bicycling" or "transit" as well
-  //         },
-  //         {
-  //           key: "dir_action",
-  //           value: "navigate", // this instantly initializes navigation using the given travel mode
-  //         },
-  //       ],
-  //     };
+  const handleGetDirections = () => {
+    const data = {
+      destination: {
+        latitude: parseFloat(property.lat, 10),
+        longitude: parseFloat(property.lng, 10),
+      },
+      params: [
+        {
+          key: "travelmode",
+          value: "driving", // may be "walking", "bicycling" or "transit" as well
+        },
+        {
+          key: "dir_action",
+          value: "navigate", // this instantly initializes navigation using the given travel mode
+        },
+      ],
+    };
 
-  //     getDirections(data);
-  //   };
+    getDirections(data);
+  };
 
   //   const handleFeatures = () => {
   //     if (property.features) {
@@ -152,7 +156,6 @@ export function PropertyView({ route }) {
   //           </>
   //         );
   //       }
-  return <Text>Property View</Text>;
   //       return (
   //         <>
   //           <HStack alignItems="center" space={1} justifyContent="space-between">
@@ -174,157 +177,157 @@ export function PropertyView({ route }) {
   //     }
   //   };
 
-  //   return (
-  //     <Box border="1" borderRadius="md">
-  //       <ScrollView>
-  //         <VStack space="4">
-  //           <Box>
-  //             <SliderBox
-  //               images={imageURLs}
-  //               sliderBoxHeight={200}
-  //               onCurrentImagePressed={(index) => {
-  //                 openGallery();
-  //               }}
-  //               dotColor="#FFEE58"
-  //               inactiveDotColor="#90A4AE"
-  //             />
-  //           </Box>
+  return (
+    <Box border="1" borderRadius="md">
+      <ScrollView>
+        <VStack space="4">
+          <Box>
+            {/* <SliderBox
+                images={imageURLs}
+                sliderBoxHeight={200}
+                onCurrentImagePressed={(index) => {
+                  openGallery();
+                }}
+                dotColor="#FFEE58"
+                inactiveDotColor="#90A4AE"
+              /> */}
+          </Box>
 
-  //           <HStack alignItems="center" space={4} justifyContent="space-between">
-  //             <Button
-  //               title="View Map"
-  //               onPress={() =>
-  //                 navigation.navigate("Property Map", {
-  //                   latitude: property.lat,
-  //                   longitude: property.lng,
-  //                 })
-  //               }
-  //               style={{ flex: 0.4, marginLeft: 15 }}
-  //               leftIcon={
-  //                 <MaterialCommunityIcons
-  //                   name="map-marker-radius"
-  //                   size={24}
-  //                   color="black"
-  //                 />
-  //               }
-  //             >
-  //               View Map
-  //             </Button>
-  //             <Button
-  //               title="Get Directions"
-  //               onPress={() => handleGetDirections()}
-  //               style={{ flex: 0.5 }}
-  //               leftIcon={
-  //                 <FontAwesome5 name="directions" size={24} color="black" />
-  //               }
-  //             >
-  //               Get Directions
-  //             </Button>
-  //             <Button
-  //               title="Uber"
-  //               onPress={() => initiateUber()}
-  //               style={{ flex: 0.4, marginRight: 15 }}
-  //               leftIcon={<FontAwesome5 name="uber" size={24} color="black" />}
-  //             >
-  //               Uber
-  //             </Button>
-  //           </HStack>
-  //           <HStack alignItems="center" space={4} justifyContent="space-between">
-  //             <Text
-  //               style={{
-  //                 flex: 0.36,
-  //                 marginLeft: 15,
-  //                 fontSize: 24,
-  //                 paddingTop: 10,
-  //               }}
-  //             >
-  //               ${property.price}
-  //             </Text>
-  //             <Text style={{ flex: 0.36 }}>
-  //               {property.bedrooms} Beds 2 {property.baths} Baths
-  //             </Text>
-  //           </HStack>
-  //           <HStack alignItems="center" space={1} justifyContent="space-between">
-  //             <Text
-  //               style={{
-  //                 flex: 1,
-  //                 marginLeft: 15,
-  //                 fontSize: 20,
-  //               }}
-  //             >
-  //               Features
-  //             </Text>
-  //           </HStack>
-  //           {handleFeatures()}
-  //           <HStack alignItems="center" space={1} justifyContent="space-between">
-  //             <Text
-  //               style={{
-  //                 flex: 1,
-  //                 marginLeft: 15,
-  //                 fontSize: 20,
-  //               }}
-  //             >
-  //               About this home
-  //             </Text>
-  //           </HStack>
-  //           <HStack alignItems="center" space={1} justifyContent="space-between">
-  //             <Text
-  //               style={{
-  //                 flex: 1,
-  //                 marginLeft: 15,
-  //               }}
-  //             >
-  //               {property.description}
-  //             </Text>
-  //           </HStack>
-  //           <HStack alignItems="center" space={1} justifyContent="space-between">
-  //             <Text
-  //               style={{
-  //                 flex: 1,
-  //                 marginLeft: 15,
-  //                 fontSize: 20,
-  //               }}
-  //             >
-  //               Contact Agent - {property.user.fname} {property.user.lname}
-  //             </Text>
-  //           </HStack>
-  //           <HStack alignItems="center" space={1} justifyContent="space-between">
-  //             <AspectRatio w="100%" ratio={16 / 14}>
-  //               <Image
-  //                 style={{ paddingTop: "25px", marginTop: "25px" }}
-  //                 source={{
-  //                   uri: `${GLOBALS.TEMP_IMAGE_PATH}${property.user.picture}`,
-  //                 }}
-  //                 alt="image"
-  //               />
-  //             </AspectRatio>
-  //           </HStack>
-  //           <HStack alignItems="center" space={1} justifyContent="space-between">
-  //             <Button
-  //               title="Send Agent Message"
-  //               onPress={() =>
-  //                 navigation.navigate("Property Send Message", {
-  //                   id: property.user.id,
-  //                   pid: property.id,
-  //                 })
-  //               }
-  //               style={{
-  //                 flex: 1,
-  //                 marginLeft: 15,
-  //                 marginRight: 15,
-  //                 marginBottom: 15,
-  //               }}
-  //             >
-  //               Send Message
-  //             </Button>
-  //           </HStack>
-  //         </VStack>
-  //         <ImageGallery
-  //           close={closeGallery}
-  //           isOpen={isOpen}
-  //           images={imageURLs2}
-  //         />
-  //       </ScrollView>
-  //     </Box>
-  //   );
+          <HStack alignItems="center" space={4} justifyContent="space-between">
+            <Button
+              title="View Map"
+              // onPress={() =>
+              //   navigation.navigate("Property Map", {
+              //     latitude: property.lat,
+              //     longitude: property.lng,
+              //   })
+              // }
+              style={{ flex: 0.4, marginLeft: 15 }}
+              // leftIcon={
+              //   <MaterialCommunityIcons
+              //     name="map-marker-radius"
+              //     size={24}
+              //     color="black"
+              //   />
+              // }
+            >
+              View Map
+            </Button>
+            <Button
+              title="Get Directions"
+              onPress={() => handleGetDirections()}
+              style={{ flex: 0.5 }}
+              // leftIcon={
+              //   <FontAwesome5 name="directions" size={24} color="black" />
+              // }
+            >
+              Get Directions
+            </Button>
+            <Button
+              title="Uber"
+              // onPress={() => initiateUber()}
+              style={{ flex: 0.4, marginRight: 15 }}
+              // leftIcon={<FontAwesome5 name="uber" size={24} color="black" />}
+            >
+              Uber
+            </Button>
+          </HStack>
+          <HStack alignItems="center" space={4} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 0.36,
+                marginLeft: 15,
+                fontSize: 24,
+                paddingTop: 10,
+              }}
+            >
+              ${property.price}
+            </Text>
+            <Text style={{ flex: 0.36 }}>
+              {property.bedrooms} Beds 2 {property.baths} Baths
+            </Text>
+          </HStack>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                fontSize: 20,
+              }}
+            >
+              Features
+            </Text>
+          </HStack>
+          {/* {handleFeatures()} */}
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                fontSize: 20,
+              }}
+            >
+              About this home
+            </Text>
+          </HStack>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+              }}
+            >
+              {property.description}
+            </Text>
+          </HStack>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                fontSize: 20,
+              }}
+            >
+              Contact Agent - {property.user.fname} {property.user.lname}
+            </Text>
+          </HStack>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <AspectRatio w="100%" ratio={16 / 14}>
+              {/* <Image
+                  style={{ paddingTop: "25px", marginTop: "25px" }}
+                  source={{
+                    uri: `${GLOBALS.TEMP_IMAGE_PATH}${property.user.picture}`,
+                  }}
+                  alt="image"
+                /> */}
+            </AspectRatio>
+          </HStack>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Button
+              title="Send Agent Message"
+              // onPress={() =>
+              //   navigation.navigate("Property Send Message", {
+              //     id: property.user.id,
+              //     pid: property.id,
+              //   })
+              // }
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                marginRight: 15,
+                marginBottom: 15,
+              }}
+            >
+              Send Message
+            </Button>
+          </HStack>
+        </VStack>
+        {/* <ImageGallery
+            close={closeGallery}
+            isOpen={isOpen}
+            images={imageURLs2}
+          /> */}
+      </ScrollView>
+    </Box>
+  );
 }

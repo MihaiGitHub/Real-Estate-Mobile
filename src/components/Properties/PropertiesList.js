@@ -41,7 +41,7 @@ export function PropertiesList() {
       return properties.map((item, index, array) => {
         if (item.properties_images.length > 0) {
           const images = item.properties_images.map((image) => {
-            return { url: image.url, title: item.title };
+            return { id: item.id, url: image.url, title: item.title };
           });
 
           array[index]["images"] = images;
