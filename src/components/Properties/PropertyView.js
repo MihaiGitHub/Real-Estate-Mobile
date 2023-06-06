@@ -18,17 +18,17 @@ import {
   NativeBaseProvider,
   ScrollView,
 } from "native-base";
-// import {
-//   Ionicons,
-//   FontAwesome5,
-//   MaterialIcons,
-//   MaterialCommunityIcons,
-// } from "@expo/vector-icons";
+import {
+  Ionicons,
+  FontAwesome5,
+  MaterialIcons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 // import { ImageGallery } from "@georstat/react-native-image-gallery";
 import getDirections from "react-native-google-maps-directions";
 // import { SliderBox } from "react-native-image-slider-box";
 //import { useNavigation } from "@react-navigation/native";
-// import GLOBALS from "../Common/Globals";
+import GLOBALS from "../Common/Globals";
 
 export function PropertyView({ route }) {
   // const [isOpen, setIsOpen] = useState(false);
@@ -110,72 +110,72 @@ export function PropertyView({ route }) {
     getDirections(data);
   };
 
-  //   const handleFeatures = () => {
-  //     if (property.features) {
-  //       let features = property.features.split(",");
+  const handleFeatures = () => {
+    if (property.features) {
+      let features = property.features.split(",");
 
-  //       if (features.length > 1) {
-  //         return (
-  //           <>
-  //             <HStack
-  //               alignItems="center"
-  //               space={1}
-  //               justifyContent="space-between"
-  //             >
-  //               <HStack space={5} justifyContent="center">
-  //                 {features[0] && (
-  //                   <Text
-  //                     style={{
-  //                       flex: 0.4,
-  //                       marginLeft: 15,
-  //                     }}
-  //                   >
-  //                     -{features[0]}
-  //                   </Text>
-  //                 )}
-  //                 {features[1] && (
-  //                   <Text
-  //                     style={{
-  //                       flex: 0.4,
-  //                     }}
-  //                   >
-  //                     -{features[1]}
-  //                   </Text>
-  //                 )}
-  //                 {features[1] && (
-  //                   <Text
-  //                     style={{
-  //                       flex: 0.4,
-  //                     }}
-  //                   >
-  //                     -{features[2]}
-  //                   </Text>
-  //                 )}
-  //               </HStack>
-  //             </HStack>
-  //           </>
-  //         );
-  //       }
-  //       return (
-  //         <>
-  //           <HStack alignItems="center" space={1} justifyContent="space-between">
-  //             <HStack space={5} justifyContent="center">
-  //               {features[0] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 1,
-  //                     marginLeft: 15,
-  //                   }}
-  //                 >
-  //                   -{features[0]}
-  //                 </Text>
-  //               )}
-  //             </HStack>
-  //           </HStack>
-  //         </>
-  //       );
-  //     }
-  //   };
+      if (features.length > 1) {
+        return (
+          <>
+            <HStack
+              alignItems="center"
+              space={1}
+              justifyContent="space-between"
+            >
+              <HStack space={5} justifyContent="center">
+                {features[0] && (
+                  <Text
+                    style={{
+                      flex: 0.4,
+                      marginLeft: 15,
+                    }}
+                  >
+                    -{features[0]}
+                  </Text>
+                )}
+                {features[1] && (
+                  <Text
+                    style={{
+                      flex: 0.4,
+                    }}
+                  >
+                    -{features[1]}
+                  </Text>
+                )}
+                {features[1] && (
+                  <Text
+                    style={{
+                      flex: 0.4,
+                    }}
+                  >
+                    -{features[2]}
+                  </Text>
+                )}
+              </HStack>
+            </HStack>
+          </>
+        );
+      }
+      return (
+        <>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <HStack space={5} justifyContent="center">
+              {features[0] && (
+                <Text
+                  style={{
+                    flex: 1,
+                    marginLeft: 15,
+                  }}
+                >
+                  -{features[0]}
+                </Text>
+              )}
+            </HStack>
+          </HStack>
+        </>
+      );
+    }
+  };
 
   return (
     <Box border="1" borderRadius="md">
@@ -203,13 +203,13 @@ export function PropertyView({ route }) {
               //   })
               // }
               style={{ flex: 0.4, marginLeft: 15 }}
-              // leftIcon={
-              //   <MaterialCommunityIcons
-              //     name="map-marker-radius"
-              //     size={24}
-              //     color="black"
-              //   />
-              // }
+              leftIcon={
+                <MaterialCommunityIcons
+                  name="map-marker-radius"
+                  size={24}
+                  color="black"
+                />
+              }
             >
               View Map
             </Button>
@@ -217,9 +217,9 @@ export function PropertyView({ route }) {
               title="Get Directions"
               onPress={() => handleGetDirections()}
               style={{ flex: 0.5 }}
-              // leftIcon={
-              //   <FontAwesome5 name="directions" size={24} color="black" />
-              // }
+              leftIcon={
+                <FontAwesome5 name="directions" size={24} color="black" />
+              }
             >
               Get Directions
             </Button>
@@ -227,7 +227,7 @@ export function PropertyView({ route }) {
               title="Uber"
               onPress={() => initiateUber()}
               style={{ flex: 0.4, marginRight: 15 }}
-              // leftIcon={<FontAwesome5 name="uber" size={24} color="black" />}
+              leftIcon={<FontAwesome5 name="uber" size={24} color="black" />}
             >
               Uber
             </Button>
@@ -258,7 +258,7 @@ export function PropertyView({ route }) {
               Features
             </Text>
           </HStack>
-          {/* {handleFeatures()} */}
+          {handleFeatures()}
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
@@ -293,13 +293,13 @@ export function PropertyView({ route }) {
           </HStack>
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <AspectRatio w="100%" ratio={16 / 14}>
-              {/* <Image
-                  style={{ paddingTop: "25px", marginTop: "25px" }}
-                  source={{
-                    uri: `${GLOBALS.TEMP_IMAGE_PATH}${property.user.picture}`,
-                  }}
-                  alt="image"
-                /> */}
+              <Image
+                style={{ paddingTop: "25px", marginTop: "25px" }}
+                source={{
+                  uri: `${GLOBALS.TEMP_IMAGE_PATH}${property.user.picture}`,
+                }}
+                alt="image"
+              />
             </AspectRatio>
           </HStack>
           <HStack alignItems="center" space={1} justifyContent="space-between">
@@ -315,7 +315,7 @@ export function PropertyView({ route }) {
                 flex: 1,
                 marginLeft: 15,
                 marginRight: 15,
-                marginBottom: 15,
+                marginBottom: 100,
               }}
             >
               Send Message

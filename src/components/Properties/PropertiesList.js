@@ -55,7 +55,12 @@ export function PropertiesList() {
         }
 
         return (
-          <Box border="1" borderRadius="md" key={index}>
+          <Box
+            border="1"
+            borderRadius="md"
+            key={index}
+            style={{ borderBottom: 100 }}
+          >
             <VStack space="0">
               <Box>
                 <ImageCarousel data={array[index]["images"]} />
@@ -94,5 +99,9 @@ export function PropertiesList() {
     }
   };
 
-  return <ScrollView>{renderProperties()}</ScrollView>;
+  return (
+    <ScrollView>
+      <Box style={{ marginBottom: 70 }}>{renderProperties()}</Box>
+    </ScrollView>
+  );
 }
