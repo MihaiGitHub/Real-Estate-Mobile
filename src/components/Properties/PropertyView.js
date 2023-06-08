@@ -26,7 +26,7 @@ import {
 } from "@expo/vector-icons";
 // import { ImageGallery } from "@georstat/react-native-image-gallery";
 import getDirections from "react-native-google-maps-directions";
-// import { SliderBox } from "react-native-image-slider-box";
+import { SliderBox } from "react-native-image-slider-box";
 import { useNavigation } from "@react-navigation/native";
 import GLOBALS from "../Common/Globals";
 
@@ -47,9 +47,9 @@ export function PropertyView({ route }) {
 
   console.log("property ", property);
 
-  //   // if (images.length === 0) {
-  //   //    imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
-  //   // }
+  if (images.length === 0) {
+    imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
+  }
 
   //   const imageURLs2 = property.images.map((image, index) => {
   //     return {
@@ -61,9 +61,9 @@ export function PropertyView({ route }) {
   //     };
   //   });
 
-  //   const imageURLs = property.images.map((image, index) => {
-  //     return image;
-  //   });
+  const imageURLs = property.images.map((image, index) => {
+    return image;
+  });
 
   //   // let agentImage = "";
 
@@ -182,15 +182,15 @@ export function PropertyView({ route }) {
       <ScrollView>
         <VStack space="4">
           <Box>
-            {/* <SliderBox
-                images={imageURLs}
-                sliderBoxHeight={200}
-                onCurrentImagePressed={(index) => {
-                  openGallery();
-                }}
-                dotColor="#FFEE58"
-                inactiveDotColor="#90A4AE"
-              /> */}
+            <SliderBox
+              images={imageURLs}
+              sliderBoxHeight={200}
+              onCurrentImagePressed={(index) => {
+                //   openGallery();
+              }}
+              dotColor="#FFEE58"
+              inactiveDotColor="#90A4AE"
+            />
           </Box>
 
           <HStack alignItems="center" space={4} justifyContent="space-between">
