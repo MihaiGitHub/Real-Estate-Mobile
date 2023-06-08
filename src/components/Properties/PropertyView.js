@@ -27,14 +27,14 @@ import {
 // import { ImageGallery } from "@georstat/react-native-image-gallery";
 import getDirections from "react-native-google-maps-directions";
 // import { SliderBox } from "react-native-image-slider-box";
-//import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import GLOBALS from "../Common/Globals";
 
 export function PropertyView({ route }) {
   // const [isOpen, setIsOpen] = useState(false);
   // const openGallery = () => setIsOpen(true);
   // const closeGallery = () => setIsOpen(false);
-  //const navigation = useNavigation();
+  const navigation = useNavigation();
 
   const { id } = route.params;
 
@@ -305,12 +305,12 @@ export function PropertyView({ route }) {
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Button
               title="Send Agent Message"
-              // onPress={() =>
-              //   navigation.navigate("Property Send Message", {
-              //     id: property.user.id,
-              //     pid: property.id,
-              //   })
-              // }
+              onPress={() =>
+                navigation.navigate("Property Send Message", {
+                  id: property.user.id,
+                  pid: property.id,
+                })
+              }
               style={{
                 flex: 1,
                 marginLeft: 15,

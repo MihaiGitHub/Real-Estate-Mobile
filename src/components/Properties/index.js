@@ -46,12 +46,11 @@ export function Properties() {
         title="Property"
         component={PropertyView}
       />
-      {/*
       <PropertiesStack.Screen
         name="Property Send Message"
         title="Message Agent"
         component={PropertySendMessage}
-      /> */}
+      />
       <PropertiesStack.Screen
         name="Property Search"
         title="Property Search"
