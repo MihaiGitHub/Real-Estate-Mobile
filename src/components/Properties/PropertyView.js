@@ -65,9 +65,11 @@ export function PropertyView({ route }) {
 
   const imageURLs = property.images.map((image, index) => {
     return {
-      id: image.id,
+      id: index.toString(),
+      thumbnail: image,
       url: image.url,
       title: image.title,
+      description: "description",
     };
     // return image;
   });

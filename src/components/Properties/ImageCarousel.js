@@ -98,7 +98,7 @@ export default function ImageCarousel({
         onContentSizeChange={() => scrollView.current.scrollToEnd()}
       >
         <View style={styles.carousalContainer}>
-          {data.map((item) => (
+          {data.map((item, index) => (
             <TouchableOpacity
               activeOpacity={0.8}
               style={[styles.imageContainer, { height: height, width: width }]}
@@ -107,6 +107,7 @@ export default function ImageCarousel({
                   ? navigation.navigate("Property Info", { id: item.id })
                   : openGallery()
               }
+              key={index}
             >
               <Image
                 source={{ uri: item.url }}
