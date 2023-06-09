@@ -63,7 +63,10 @@ export function PropertiesList() {
           >
             <VStack space="0">
               <Box>
-                <ImageCarousel data={array[index]["images"]} />
+                <ImageCarousel
+                  data={array[index]["images"]}
+                  openGallery={false}
+                />
               </Box>
               <HStack
                 alignItems="center"

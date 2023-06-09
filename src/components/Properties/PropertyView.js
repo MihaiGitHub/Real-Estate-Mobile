@@ -189,7 +189,7 @@ export function PropertyView({ route }) {
       <ScrollView>
         <VStack space="4">
           <Box>
-            <ImageCarousel data={imageURLs} />
+            <ImageCarousel data={imageURLs} openGallery={openGallery} />
 
             {/* <SliderBox
               images={imageURLs}
@@ -331,11 +331,7 @@ export function PropertyView({ route }) {
             </Button>
           </HStack>
         </VStack>
-        <ImageGallery
-          close={closeGallery}
-          isOpen={isOpen}
-          images={imageURLs2}
-        />
+        <ImageGallery close={closeGallery} isOpen={isOpen} images={imageURLs} />
       </ScrollView>
     </Box>
   );

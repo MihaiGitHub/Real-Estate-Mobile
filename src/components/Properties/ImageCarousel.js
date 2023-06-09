@@ -52,6 +52,7 @@ export default function ImageCarousel({
   delay = defaults.delay,
   // onPress = handlePress,
   // ItemElement = Item,
+  openGallery,
 }) {
   const [selectedIndex, setselectedIndex] = useState(0);
   const scrollView = useRef();
@@ -102,7 +103,9 @@ export default function ImageCarousel({
               activeOpacity={0.8}
               style={[styles.imageContainer, { height: height, width: width }]}
               onPress={() =>
-                navigation.navigate("Property Info", { id: item.id })
+                openGallery === false
+                  ? navigation.navigate("Property Info", { id: item.id })
+                  : openGallery()
               }
             >
               <Image
