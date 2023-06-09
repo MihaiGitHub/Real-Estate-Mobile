@@ -24,16 +24,18 @@ import {
   MaterialIcons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-// import { ImageGallery } from "@georstat/react-native-image-gallery";
+import { ImageGallery } from "@georstat/react-native-image-gallery";
 import getDirections from "react-native-google-maps-directions";
-import { SliderBox } from "react-native-image-slider-box";
+//import { SliderBox } from "react-native-image-slider-box";
+import ImageCarousel from "./ImageCarousel";
+
 import { useNavigation } from "@react-navigation/native";
 import GLOBALS from "../Common/Globals";
 
 export function PropertyView({ route }) {
-  // const [isOpen, setIsOpen] = useState(false);
-  // const openGallery = () => setIsOpen(true);
-  // const closeGallery = () => setIsOpen(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const openGallery = () => setIsOpen(true);
+  const closeGallery = () => setIsOpen(false);
   const navigation = useNavigation();
 
   const { id } = route.params;
@@ -47,7 +49,7 @@ export function PropertyView({ route }) {
 
   console.log("property ", property);
 
-  if (images.length === 0) {
+  if (property.images.length === 0) {
     imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
   }
 
@@ -62,7 +64,12 @@ export function PropertyView({ route }) {
   //   });
 
   const imageURLs = property.images.map((image, index) => {
-    return image;
+    return {
+      id: image.id,
+      url: image.url,
+      title: image.title,
+    };
+    // return image;
   });
 
   //   // let agentImage = "";
@@ -182,7 +189,9 @@ export function PropertyView({ route }) {
       <ScrollView>
         <VStack space="4">
           <Box>
-            <SliderBox
+            <ImageCarousel data={imageURLs} />
+
+            {/* <SliderBox
               images={imageURLs}
               sliderBoxHeight={200}
               onCurrentImagePressed={(index) => {
@@ -190,7 +199,7 @@ export function PropertyView({ route }) {
               }}
               dotColor="#FFEE58"
               inactiveDotColor="#90A4AE"
-            />
+            /> */}
           </Box>
 
           <HStack alignItems="center" space={4} justifyContent="space-between">
@@ -322,11 +331,11 @@ export function PropertyView({ route }) {
             </Button>
           </HStack>
         </VStack>
-        {/* <ImageGallery
-            close={closeGallery}
-            isOpen={isOpen}
-            images={imageURLs2}
-          /> */}
+        <ImageGallery
+          close={closeGallery}
+          isOpen={isOpen}
+          images={imageURLs2}
+        />
       </ScrollView>
     </Box>
   );
