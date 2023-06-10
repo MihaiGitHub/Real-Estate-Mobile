@@ -10,20 +10,32 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 // //import Geolocation from "react-native-geolocation-service";
 // //import GetLocation from "react-native-get-location";
 import Globals from "../Common/Globals";
-// import { useSelector, useDispatch } from "react-redux";
-// import {
-//   propertiesFiltered,
-//   udpateSearchTerm,
-// } from "../../actions/PropertiesActions";
-// import { useNavigation } from "@react-navigation/native";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  propertiesFiltered,
+  udpateSearchTerm,
+  propertiesZillow,
+} from "../../actions/PropertiesActions";
+import { useNavigation } from "@react-navigation/native";
 
 export function PropertySearch() {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   return (
     <GooglePlacesAutocomplete
       placeholder="Address, city or zip"
-      onPress={(data, details = null) => {
+      onPress={async (data, details = null) => {
         // 'details' is provided when fetchDetails = true
         console.log(data, details);
+
+        await dispatch(
+          propertiesZillow(data.terms[1].value, data.terms[0].value)
+        );
+
+        //         await dispatch(udpateSearchTerm(details.formatted_address));
+
+        navigation.navigate("Properties Main");
       }}
       query={{
         key: Globals.GOOGLE_CLOUD_SERVICES_API_KEY,

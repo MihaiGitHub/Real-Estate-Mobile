@@ -11,9 +11,16 @@ const getPropertiesFiltered = (lat, lng) => {
   );
 };
 
+const getPropertiesZillow = (state, city) => {
+  return axios.get(
+    `${GLOBALS.BASE_URL}/propertiesZillow?state_code=${state}&city=${city}`
+  );
+};
+
 const PropertiesService = {
   getProperties,
   getPropertiesFiltered,
+  getPropertiesZillow,
 };
 
 export default PropertiesService;

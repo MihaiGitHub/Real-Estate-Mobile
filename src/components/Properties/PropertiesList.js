@@ -23,7 +23,9 @@ import { useNavigation } from "@react-navigation/native";
 import ImageCarousel from "./ImageCarousel";
 
 export function PropertiesList() {
-  const properties = useSelector((state) => state.properties.listFiltered);
+  const { listFiltered, propertiesZillow } = useSelector(
+    (state) => state.properties
+  );
 
   const dispatch = useDispatch();
   // const navigation = useNavigation();
@@ -32,27 +34,27 @@ export function PropertiesList() {
     dispatch(propertiesFetch());
   }, []);
 
-  if (properties.length === 0) {
+  if (listFiltered.length === 0 && propertiesZillow.length === 0) {
     return <Spinner size="large" />;
   }
 
   const renderProperties = () => {
-    if (Array.isArray(properties) && properties.length > 0) {
-      return properties.map((item, index, array) => {
-        if (item.properties_images.length > 0) {
-          const images = item.properties_images.map((image) => {
-            return { id: item.id, url: image.url, title: item.title };
-          });
+    if (Array.isArray(listFiltered) && listFiltered.length > 0) {
+      return listFiltered.map((item, index, array) => {
+        // if (item.properties_images.length > 0) {
+        //   const images = item.properties_images.map((image) => {
+        //     return { id: item.id, url: image.url, title: item.title };
+        //   });
 
-          array[index]["images"] = images;
-        } else {
-          array[index]["images"] = [
-            {
-              url: `https://ssl.cdn-redfin.com/photo/115/bigphoto/382/22304382_0.jpg`,
-              title: item.title,
-            },
-          ];
-        }
+        //   array[index]["images"] = images;
+        // } else {
+        //   array[index]["images"] = [
+        //     {
+        //       url: `https://ssl.cdn-redfin.com/photo/115/bigphoto/382/22304382_0.jpg`,
+        //       title: item.title,
+        //     },
+        //   ];
+        // }
 
         return (
           <Box
@@ -63,10 +65,10 @@ export function PropertiesList() {
           >
             <VStack space="0">
               <Box>
-                <ImageCarousel
+                {/* <ImageCarousel
                   data={array[index]["images"]}
                   openGallery={false}
-                />
+                /> */}
               </Box>
               <HStack
                 alignItems="center"
@@ -102,9 +104,20 @@ export function PropertiesList() {
     }
   };
 
+  const renderZillowProperties = () => {
+    return <Text>Zillow Properties full</Text>;
+  };
+
+  console.log("listFiltered ", listFiltered, "Zillow ", propertiesZillow);
+
   return (
     <ScrollView>
-      <Box style={{ marginBottom: 70 }}>{renderProperties()}</Box>
+      <Box style={{ marginBottom: 70 }}>
+        {listFiltered && listFiltered.length > 0 && renderProperties()}
+        {propertiesZillow &&
+          propertiesZillow.length > 0 &&
+          renderZillowProperties()}
+      </Box>
     </ScrollView>
   );
 }
