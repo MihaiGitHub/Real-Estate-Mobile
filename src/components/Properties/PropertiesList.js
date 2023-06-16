@@ -44,13 +44,18 @@ export function PropertiesList() {
         console.log("item ", item);
         if (item.properties_images.length > 0) {
           const images = item.properties_images.map((image) => {
-            return { id: item.id, url: image.url, title: "Property Title" };
+            return {
+              id: item.id,
+              url: image.url,
+              title: "Property Title",
+            };
           });
 
           array[index]["images"] = images;
         } else {
           array[index]["images"] = [
             {
+              id: item.id,
               url: `https://ssl.cdn-redfin.com/photo/115/bigphoto/382/22304382_0.jpg`,
               title: item.title,
             },
@@ -69,6 +74,7 @@ export function PropertiesList() {
                 <ImageCarousel
                   data={array[index]["images"]}
                   openGallery={false}
+                  type="local"
                 />
               </Box>
               <HStack
@@ -128,7 +134,11 @@ export function PropertiesList() {
           >
             <VStack space="0">
               <Box>
-                <ImageCarousel data={images} openGallery={false} />
+                <ImageCarousel
+                  data={images}
+                  openGallery={false}
+                  type="zillow"
+                />
               </Box>
               <HStack
                 alignItems="center"

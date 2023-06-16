@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Globals from "../Common/Globals";
 import { PropertyView } from "./PropertyView";
+import { PropertyViewZillow } from "./PropertyViewZillow";
 import { PropertiesMap } from "./PropertiesMap";
 import { NavBarTabs } from "../Common/Tabs";
 import { NavBarSearch } from "../Common/NavBarSearch";
@@ -45,6 +46,29 @@ export function Properties() {
         name="Property Info"
         title="Property"
         component={PropertyView}
+        options={{
+          headerStyle: {
+            backgroundColor: Globals.HEADER_COLOR,
+          },
+          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTitleStyle: {
+            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+          },
+        }}
+      />
+      <PropertiesStack.Screen
+        name="Property Info Zillow"
+        title="Property"
+        component={PropertyViewZillow}
+        options={{
+          headerStyle: {
+            backgroundColor: Globals.HEADER_COLOR,
+          },
+          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTitleStyle: {
+            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+          },
+        }}
       />
       <PropertiesStack.Screen
         name="Property Send Message"

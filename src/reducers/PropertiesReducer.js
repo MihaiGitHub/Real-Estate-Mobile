@@ -4,6 +4,7 @@ import {
   PROPERTY_FETCH_SUCCESS,
   UPDATE_SEARCH_TERM,
   PROPERTIES_ZILLOW,
+  PROPERTY_ZILLOW,
   SEARCH_LAT_LNG,
 } from "../actions/types";
 
@@ -11,6 +12,7 @@ const INITIAL_STATE = {
   list: [],
   listFiltered: [],
   propertiesZillow: [],
+  propertyZillow: {},
   propertyId: "",
   loading: true,
   loadingProperty: true,
@@ -41,6 +43,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, searchTerm: action.payload };
     case PROPERTIES_ZILLOW:
       return { ...state, propertiesZillow: action.payload, listFiltered: [] };
+    case PROPERTY_ZILLOW:
+      return { ...state, propertyZillow: action.payload };
     case SEARCH_LAT_LNG:
       return { ...state, searchLatLng: action.payload };
     default:

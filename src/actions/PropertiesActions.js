@@ -4,6 +4,7 @@ import {
   PROPERTY_FETCH_SUCCESS,
   UPDATE_SEARCH_TERM,
   PROPERTIES_ZILLOW,
+  PROPERTY_ZILLOW,
   SEARCH_LAT_LNG,
 } from "./types";
 import PropertiesService from "../services/PropertiesService";
@@ -65,10 +66,23 @@ export const propertiesZillow = (state, city) => async (dispatch) => {
   try {
     const res = await PropertiesService.getPropertiesZillow(state, city);
 
-    console.log("res ", res);
-
     dispatch({
       type: PROPERTIES_ZILLOW,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const propertyZillowFetch = (zpid) => async (dispatch) => {
+  try {
+    const res = await PropertiesService.getPropertyZillow(zpid);
+
+    console.log("getPropertyZillow ", res);
+
+    dispatch({
+      type: PROPERTY_ZILLOW,
       payload: res.data,
     });
   } catch (err) {

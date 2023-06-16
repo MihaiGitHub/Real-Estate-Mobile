@@ -17,10 +17,15 @@ const getPropertiesZillow = (state, city) => {
   );
 };
 
+const getPropertyZillow = (zpid) => {
+  return axios.get(`${GLOBALS.BASE_URL}/property?zpid=${zpid}`);
+};
+
 const PropertiesService = {
   getProperties,
   getPropertiesFiltered,
   getPropertiesZillow,
+  getPropertyZillow,
 };
 
 export default PropertiesService;

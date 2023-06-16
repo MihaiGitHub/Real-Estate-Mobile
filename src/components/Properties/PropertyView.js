@@ -38,6 +38,8 @@ export function PropertyView({ route }) {
   const closeGallery = () => setIsOpen(false);
   const navigation = useNavigation();
 
+  console.log("route ", route);
+
   const { id } = route.params;
 
   const { list } = useSelector((state) => state.properties);
@@ -71,7 +73,6 @@ export function PropertyView({ route }) {
       title: image.title,
       description: "description",
     };
-    // return image;
   });
 
   //   // let agentImage = "";
@@ -192,16 +193,6 @@ export function PropertyView({ route }) {
         <VStack space="4">
           <Box>
             <ImageCarousel data={imageURLs} openGallery={openGallery} />
-
-            {/* <SliderBox
-              images={imageURLs}
-              sliderBoxHeight={200}
-              onCurrentImagePressed={(index) => {
-                //   openGallery();
-              }}
-              dotColor="#FFEE58"
-              inactiveDotColor="#90A4AE"
-            /> */}
           </Box>
 
           <HStack alignItems="center" space={4} justifyContent="space-between">
@@ -255,7 +246,7 @@ export function PropertyView({ route }) {
               ${property.price}
             </Text>
             <Text style={{ flex: 0.36 }}>
-              {property.bedrooms} Beds 2 {property.baths} Baths
+              {property.bedrooms} Beds {property.baths} Baths
             </Text>
           </HStack>
           <HStack alignItems="center" space={1} justifyContent="space-between">

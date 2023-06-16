@@ -53,6 +53,7 @@ export default function ImageCarousel({
   // onPress = handlePress,
   // ItemElement = Item,
   openGallery,
+  type,
 }) {
   const [selectedIndex, setselectedIndex] = useState(0);
   const scrollView = useRef();
@@ -102,11 +103,28 @@ export default function ImageCarousel({
             <TouchableOpacity
               activeOpacity={0.8}
               style={[styles.imageContainer, { height: height, width: width }]}
-              onPress={() =>
-                openGallery === false
-                  ? navigation.navigate("Property Info", { id: item.id })
-                  : openGallery()
-              }
+              // onPress={() =>
+              //   openGallery === false
+              //     ? navigation.navigate("Property Info", {
+              //         id: item.id,
+              //       })
+              //     : openGallery()
+              // }
+              onPress={() => {
+                if (openGallery === false) {
+                  if (type === "zillow") {
+                    navigation.navigate("Property Info Zillow", {
+                      id: item.id,
+                    });
+                  } else {
+                    navigation.navigate("Property Info", {
+                      id: item.id,
+                    });
+                  }
+                } else {
+                  openGallery();
+                }
+              }}
               key={index}
             >
               <Image
