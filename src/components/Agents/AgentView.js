@@ -61,7 +61,7 @@ export function AgentView({ route }) {
 
   return (
     <ScrollView>
-      <Box alignItems="center">
+      <Box alignItems="center" style={{ marginBottom: 70 }}>
         <Box
           maxW="500"
           rounded="lg"

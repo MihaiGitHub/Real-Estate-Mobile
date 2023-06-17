@@ -60,6 +60,79 @@ export function PropertyViewZillow({ route }) {
     },
   ];
 
+  const handleFeatures = () => {
+    if (propertyZillow.resoFacts) {
+      if (propertyZillow.resoFacts.interiorFeatures !== null) {
+        let features = propertyZillow.resoFacts.interiorFeatures;
+
+        if (features.length > 1) {
+          return (
+            <>
+              <HStack
+                alignItems="center"
+                space={1}
+                justifyContent="space-between"
+              >
+                <HStack space={5} justifyContent="center">
+                  {features[0] && (
+                    <Text
+                      style={{
+                        flex: 0.4,
+                        marginLeft: 15,
+                      }}
+                    >
+                      -{features[0]}
+                    </Text>
+                  )}
+                  {features[1] && (
+                    <Text
+                      style={{
+                        flex: 0.4,
+                      }}
+                    >
+                      -{features[1]}
+                    </Text>
+                  )}
+                  {features[1] && (
+                    <Text
+                      style={{
+                        flex: 0.4,
+                      }}
+                    >
+                      -{features[2]}
+                    </Text>
+                  )}
+                </HStack>
+              </HStack>
+            </>
+          );
+        }
+        return (
+          <>
+            <HStack
+              alignItems="center"
+              space={1}
+              justifyContent="space-between"
+            >
+              <HStack space={5} justifyContent="center">
+                {features[0] && (
+                  <Text
+                    style={{
+                      flex: 1,
+                      marginLeft: 15,
+                    }}
+                  >
+                    -{features[0]}
+                  </Text>
+                )}
+              </HStack>
+            </HStack>
+          </>
+        );
+      }
+    }
+  };
+
   return (
     <Box border="1" borderRadius="md">
       <ScrollView>
@@ -122,6 +195,20 @@ export function PropertyViewZillow({ route }) {
               {propertyZillow.bedrooms} Beds {propertyZillow.bathrooms} Baths
             </Text>
           </HStack>
+
+          <HStack alignItems="center" space={4} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                fontSize: 20,
+              }}
+            >
+              Zestimate
+            </Text>
+            <Text style={{ flex: 0.36 }}>${propertyZillow.zestimate}</Text>
+          </HStack>
+
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
@@ -133,7 +220,7 @@ export function PropertyViewZillow({ route }) {
               Features
             </Text>
           </HStack>
-          {/* {handleFeatures()} */}
+          {handleFeatures()}
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
