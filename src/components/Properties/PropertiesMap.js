@@ -5,6 +5,7 @@ import MapView from "react-native-maps";
 export function PropertiesMap() {
   return (
     <MapView
+      style={{ minHeight: "100%", minWidth: "100%" }}
       initialRegion={{
         latitude: 37.78825,
         longitude: -122.4324,
