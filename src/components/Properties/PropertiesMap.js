@@ -5,11 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 export function PropertiesMap() {
-  const { listFiltered, searchLatLng } = useSelector(
+  const { listFiltered, searchLatLng, propertiesUSRealEstate } = useSelector(
     (state) => state.properties
   );
 
-  console.log("listFiltered ", listFiltered);
+  console.log("listUSRealEstate ", listFiltered);
+  console.log("propertiesUSRealEstate ", propertiesUSRealEstate);
 
   // const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -46,6 +47,22 @@ export function PropertiesMap() {
             onCalloutPress={() =>
               navigation.navigate("Property Info", {
                 id: marker.id,
+              })
+            }
+          />
+        ))}
+      {propertiesUSRealEstate.length > 0 &&
+        propertiesUSRealEstate.map((marker, index) => (
+          <Marker
+            key={index}
+            coordinate={{
+              latitude: parseFloat(marker.location?.address?.coordinate?.lat),
+              longitude: parseFloat(marker.location?.address?.coordinate?.lon),
+            }}
+            title={"$" + marker.list_price}
+            onCalloutPress={() =>
+              navigation.navigate("Property Info", {
+                id: marker.property_id,
               })
             }
           />

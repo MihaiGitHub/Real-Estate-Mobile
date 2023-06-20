@@ -3,16 +3,16 @@ import {
   PROPERTIES_FILTERED,
   PROPERTY_FETCH_SUCCESS,
   UPDATE_SEARCH_TERM,
-  PROPERTIES_ZILLOW,
-  PROPERTY_ZILLOW,
+  PROPERTIES_USREALESTATE,
+  PROPERTY_USREALESTATE,
   SEARCH_LAT_LNG,
 } from "../actions/types";
 
 const INITIAL_STATE = {
   list: [],
   listFiltered: [],
-  propertiesZillow: [],
-  propertyZillow: {},
+  propertiesUSRealEstate: [],
+  propertyUSRealEstate: {},
   propertyId: "",
   loading: true,
   loadingProperty: true,
@@ -41,10 +41,14 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, propertyId: action.payload, loadingProperty: false };
     case UPDATE_SEARCH_TERM:
       return { ...state, searchTerm: action.payload };
-    case PROPERTIES_ZILLOW:
-      return { ...state, propertiesZillow: action.payload, listFiltered: [] };
-    case PROPERTY_ZILLOW:
-      return { ...state, propertyZillow: action.payload };
+    case PROPERTIES_USREALESTATE:
+      return {
+        ...state,
+        propertiesUSRealEstate: action.payload,
+        listFiltered: [],
+      };
+    case PROPERTY_USREALESTATE:
+      return { ...state, propertyUSRealEstate: action.payload };
     case SEARCH_LAT_LNG:
       return { ...state, searchLatLng: action.payload };
     default:

@@ -11,21 +11,21 @@ const getPropertiesFiltered = (lat, lng) => {
   );
 };
 
-const getPropertiesZillow = (state, city) => {
+const getPropertiesUSRealEstate = (state, city) => {
   return axios.get(
-    `${GLOBALS.BASE_URL}/propertiesZillow?state_code=${state}&city=${city}`
+    `${GLOBALS.BASE_URL}/propertiesUSRealEstate?state_code=${state}&city=${city}`
   );
 };
 
-const getPropertyZillow = (zpid) => {
+const getPropertyUSRealEstate = (zpid) => {
   return axios.get(`${GLOBALS.BASE_URL}/property?zpid=${zpid}`);
 };
 
 const PropertiesService = {
   getProperties,
   getPropertiesFiltered,
-  getPropertiesZillow,
-  getPropertyZillow,
+  getPropertiesUSRealEstate,
+  getPropertyUSRealEstate,
 };
 
 export default PropertiesService;

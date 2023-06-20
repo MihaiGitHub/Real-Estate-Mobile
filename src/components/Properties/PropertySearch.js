@@ -14,7 +14,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   propertiesFiltered,
   udpateSearchTerm,
-  propertiesZillow,
+  propertiesUSRealEstate,
 } from "../../actions/PropertiesActions";
 import { useNavigation } from "@react-navigation/native";
 
@@ -30,7 +30,7 @@ export function PropertySearch() {
         console.log(data, details);
 
         await dispatch(
-          propertiesZillow(data.terms[1].value, data.terms[0].value)
+          propertiesUSRealEstate(data.terms[1].value, data.terms[0].value)
         );
 
         //         await dispatch(udpateSearchTerm(details.formatted_address));

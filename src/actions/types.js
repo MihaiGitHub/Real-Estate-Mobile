@@ -6,5 +6,5 @@ export const AGENTS_FILTERED = "agents_filtered";
 export const PROPERTY_FETCH_SUCCESS = "property_fetch_success";
 export const UPDATE_SEARCH_TERM = "update_search_term";
 export const SEARCH_LAT_LNG = "search_lat_lng";
-export const PROPERTIES_ZILLOW = "properties_zillow";
-export const PROPERTY_ZILLOW = "property_zillow";
+export const PROPERTIES_USREALESTATE = "properties_usrealestate";
+export const PROPERTY_USREALESTATE = "property_usrealestate";

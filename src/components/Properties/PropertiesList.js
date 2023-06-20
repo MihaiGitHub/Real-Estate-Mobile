@@ -23,7 +23,7 @@ import { useNavigation } from "@react-navigation/native";
 import ImageCarousel from "./ImageCarousel";
 
 export function PropertiesList() {
-  const { listFiltered, propertiesZillow } = useSelector(
+  const { listFiltered, propertiesUSRealEstate } = useSelector(
     (state) => state.properties
   );
 
@@ -34,7 +34,7 @@ export function PropertiesList() {
     dispatch(propertiesFetch());
   }, []);
 
-  if (listFiltered.length === 0 && propertiesZillow.length === 0) {
+  if (listFiltered.length === 0 && propertiesUSRealEstate.length === 0) {
     return <Spinner size="large" />;
   }
 
@@ -111,11 +111,14 @@ export function PropertiesList() {
     }
   };
 
-  const renderZillowProperties = () => {
-    if (Array.isArray(propertiesZillow) && propertiesZillow.length > 0) {
-      return propertiesZillow.map((item, index, array) => {
+  const renderUSRealEstateProperties = () => {
+    if (
+      Array.isArray(propertiesUSRealEstate) &&
+      propertiesUSRealEstate.length > 0
+    ) {
+      return propertiesUSRealEstate.map((item, index, array) => {
         const { property } = item;
-        console.log("propertyZillow ", property);
+        console.log("propertyUSRealEstate ", property);
 
         const images = [
           {
@@ -174,15 +177,20 @@ export function PropertiesList() {
     }
   };
 
-  console.log("listFiltered ", listFiltered, "Zillow ", propertiesZillow);
+  console.log(
+    "listFiltered ",
+    listFiltered,
+    "USRealEstate ",
+    propertiesUSRealEstate
+  );
 
   return (
     <ScrollView>
       <Box style={{ marginBottom: 70 }}>
         {listFiltered && listFiltered.length > 0 && renderProperties()}
-        {propertiesZillow &&
-          propertiesZillow.length > 0 &&
-          renderZillowProperties()}
+        {/* {propertiesUSRealEstate &&
+          propertiesUSRealEstate.length > 0 &&
+          renderUSRealEstateProperties()} */}
       </Box>
     </ScrollView>
   );

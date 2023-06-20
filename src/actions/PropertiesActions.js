@@ -3,8 +3,8 @@ import {
   PROPERTIES_FILTERED,
   PROPERTY_FETCH_SUCCESS,
   UPDATE_SEARCH_TERM,
-  PROPERTIES_ZILLOW,
-  PROPERTY_ZILLOW,
+  PROPERTIES_USREALESTATE,
+  PROPERTY_USREALESTATE,
   SEARCH_LAT_LNG,
 } from "./types";
 import PropertiesService from "../services/PropertiesService";
@@ -62,27 +62,27 @@ export const udpateSearchTerm = (searchTerm) => async (dispatch) => {
   }
 };
 
-export const propertiesZillow = (state, city) => async (dispatch) => {
+export const propertiesUSRealEstate = (state, city) => async (dispatch) => {
   try {
-    const res = await PropertiesService.getPropertiesZillow(state, city);
+    const res = await PropertiesService.getPropertiesUSRealEstate(state, city);
 
     dispatch({
-      type: PROPERTIES_ZILLOW,
-      payload: res.data,
+      type: PROPERTIES_USREALESTATE,
+      payload: res.data?.results,
     });
   } catch (err) {
     console.log(err);
   }
 };
 
-export const propertyZillowFetch = (zpid) => async (dispatch) => {
+export const propertyUSRealEstateFetch = (zpid) => async (dispatch) => {
   try {
     const res = await PropertiesService.getPropertyZillow(zpid);
 
-    console.log("getPropertyZillow ", res);
+    console.log("getPropertyUSRealEstate ", res);
 
     dispatch({
-      type: PROPERTY_ZILLOW,
+      type: PROPERTY_USREALESTATE,
       payload: res.data,
     });
   } catch (err) {
