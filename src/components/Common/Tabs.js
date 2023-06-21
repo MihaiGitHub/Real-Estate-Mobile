@@ -5,9 +5,9 @@ import Globals from "./Globals";
 import { PropertiesList } from "../Properties/PropertiesList";
 import { PropertiesMap } from "../Properties/PropertiesMap";
 
-const SecondRoute = () => <PropertiesList />;
+const FirstRoute = () => <PropertiesList />;
 
-const FirstRoute = () => <PropertiesMap />;
+const SecondRoute = () => <PropertiesMap />;
 
 const renderScene = SceneMap({
   first: FirstRoute,

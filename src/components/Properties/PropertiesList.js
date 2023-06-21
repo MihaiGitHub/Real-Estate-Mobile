@@ -47,7 +47,7 @@ export function PropertiesList() {
             return {
               id: item.id,
               url: image.url,
-              title: "Property Title",
+              title: item.title,
             };
           });
 
@@ -117,16 +117,27 @@ export function PropertiesList() {
       propertiesUSRealEstate.length > 0
     ) {
       return propertiesUSRealEstate.map((item, index, array) => {
-        const { property } = item;
-        console.log("propertyUSRealEstate ", property);
+        console.log("item777 ", item);
 
-        const images = [
-          {
-            id: property.zpid,
-            url: property.imgSrc,
-            title: property.homeType,
-          },
-        ];
+        if (item.photos && item.photos.length > 0) {
+          const images = item.photos.map((image) => {
+            return {
+              id: item.property_id,
+              url: image.href,
+              title: item.branding[0]["name"],
+            };
+          });
+
+          array[index]["images"] = images;
+        } else {
+          array[index]["images"] = [
+            {
+              id: item.property_id,
+              url: `https://ssl.cdn-redfin.com/photo/115/bigphoto/382/22304382_0.jpg`,
+              title: item.branding?.name,
+            },
+          ];
+        }
 
         return (
           <Box
@@ -138,7 +149,7 @@ export function PropertiesList() {
             <VStack space="0">
               <Box>
                 <ImageCarousel
-                  data={images}
+                  data={array[index]["images"]}
                   openGallery={false}
                   type="zillow"
                 />
@@ -156,14 +167,15 @@ export function PropertiesList() {
                     paddingTop: 10,
                   }}
                 >
-                  ${property.price}
+                  ${item.list_price}
                 </Text>
                 <Text style={{ flex: 0.36 }}>
-                  {property.bedrooms} Beds {property.bathrooms} Baths
+                  {item.description?.beds} Beds
+                  {item.description?.baths} Baths
                 </Text>
               </HStack>
               <Box px="4" pb="1" pt={0}>
-                {property.address.streetAddress}
+                {item.location?.address?.line}
               </Box>
             </VStack>
           </Box>
@@ -188,9 +200,9 @@ export function PropertiesList() {
     <ScrollView>
       <Box style={{ marginBottom: 70 }}>
         {listFiltered && listFiltered.length > 0 && renderProperties()}
-        {/* {propertiesUSRealEstate &&
+        {propertiesUSRealEstate &&
           propertiesUSRealEstate.length > 0 &&
-          renderUSRealEstateProperties()} */}
+          renderUSRealEstateProperties()}
       </Box>
     </ScrollView>
   );
