@@ -2,8 +2,8 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Globals from "../Common/Globals";
 import { PropertyView } from "./PropertyView";
-import { PropertyViewZillow } from "./PropertyViewZillow";
 import { PropertiesMap } from "./PropertiesMap";
+import { PropertyMap } from "./PropertyMap";
 import { NavBarTabs } from "../Common/Tabs";
 import { NavBarSearch } from "../Common/NavBarSearch";
 import { PropertySendMessage } from "./PropertySendMessage";
@@ -43,9 +43,9 @@ export function Properties() {
         }}
       />
       <PropertiesStack.Screen
-        name="Property Info"
-        title="Property"
-        component={PropertyView}
+        name="Property Map"
+        title="Property Map"
+        component={PropertyMap}
         options={{
           headerStyle: {
             backgroundColor: Globals.HEADER_COLOR,
@@ -57,9 +57,9 @@ export function Properties() {
         }}
       />
       <PropertiesStack.Screen
-        name="Property Info Zillow"
+        name="Property Info"
         title="Property"
-        component={PropertyViewZillow}
+        component={PropertyView}
         options={{
           headerStyle: {
             backgroundColor: Globals.HEADER_COLOR,

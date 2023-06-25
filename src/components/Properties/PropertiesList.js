@@ -74,7 +74,7 @@ export function PropertiesList() {
                 <ImageCarousel
                   data={array[index]["images"]}
                   openGallery={false}
-                  type="local"
+                  //   type="DB"
                 />
               </Box>
               <HStack
@@ -151,7 +151,7 @@ export function PropertiesList() {
                 <ImageCarousel
                   data={array[index]["images"]}
                   openGallery={false}
-                  type="zillow"
+                  //    type="USRealEstate"
                 />
               </Box>
               <HStack

@@ -46,6 +46,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         propertiesUSRealEstate: action.payload,
         listFiltered: [],
+        list: [],
       };
     case PROPERTY_USREALESTATE:
       return { ...state, propertyUSRealEstate: action.payload };

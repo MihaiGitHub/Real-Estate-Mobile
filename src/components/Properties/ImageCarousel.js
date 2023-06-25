@@ -53,7 +53,7 @@ export default function ImageCarousel({
   // onPress = handlePress,
   // ItemElement = Item,
   openGallery,
-  type,
+  // type,
 }) {
   const [selectedIndex, setselectedIndex] = useState(0);
   const scrollView = useRef();
@@ -112,15 +112,19 @@ export default function ImageCarousel({
               // }
               onPress={() => {
                 if (openGallery === false) {
-                  if (type === "zillow") {
-                    navigation.navigate("Property Info Zillow", {
-                      id: item.id,
-                    });
-                  } else {
-                    navigation.navigate("Property Info", {
-                      id: item.id,
-                    });
-                  }
+                  navigation.navigate("Property Info", {
+                    id: item.id,
+                    //   type,
+                  });
+                  // if (type === "zillow") {
+                  //   navigation.navigate("Property Info Zillow", {
+                  //     id: item.id,
+                  //   });
+                  // } else {
+                  //   navigation.navigate("Property Info", {
+                  //     id: item.id,
+                  //   });
+                  // }
                 } else {
                   openGallery();
                 }
