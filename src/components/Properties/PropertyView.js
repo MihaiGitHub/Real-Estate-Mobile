@@ -91,39 +91,48 @@ export function PropertyView({ route }) {
   //   useEffect(() => {
   //     // dispatch(findPropertyById(id));
   //   }, []);
+  const mapLatitude =
+    propertiesUSRealEstate.length > 0
+      ? parseFloat(property.location?.address?.coordinate?.lat, 10)
+      : parseFloat(property.lat, 10);
 
-  // const initiateUber = () => {
-  //   let url = `uber://?action=setPickup&dropoff[latitude]=${property.lat}&dropoff[longitude]=${property.lng}`;
+  const mapLongitude =
+    propertiesUSRealEstate.length > 0
+      ? parseFloat(property.location?.address?.coordinate?.lat, 10)
+      : parseFloat(property.lng, 10);
 
-  //   Linking.openURL(url)
-  //     .then((data) => {
-  //       console.log("Uber Opened");
-  //     })
-  //     .catch(() => {
-  //       alert("Make sure Uber installed on your device");
-  //     });
-  // };
+  const initiateUber = () => {
+    let url = `uber://?action=setPickup&dropoff[latitude]=${mapLatitude}&dropoff[longitude]=${mapLongitude}`;
 
-  // const handleGetDirections = () => {
-  //   const data = {
-  //     destination: {
-  //       latitude: parseFloat(property.lat, 10),
-  //       longitude: parseFloat(property.lng, 10),
-  //     },
-  //     params: [
-  //       {
-  //         key: "travelmode",
-  //         value: "driving", // may be "walking", "bicycling" or "transit" as well
-  //       },
-  //       {
-  //         key: "dir_action",
-  //         value: "navigate", // this instantly initializes navigation using the given travel mode
-  //       },
-  //     ],
-  //   };
+    Linking.openURL(url)
+      .then((data) => {
+        console.log("Uber Opened");
+      })
+      .catch(() => {
+        alert("Make sure Uber installed on your device");
+      });
+  };
 
-  //   getDirections(data);
-  // };
+  const handleGetDirections = () => {
+    const data = {
+      destination: {
+        latitude: mapLatitude,
+        longitude: mapLongitude,
+      },
+      params: [
+        {
+          key: "travelmode",
+          value: "driving", // may be "walking", "bicycling" or "transit" as well
+        },
+        {
+          key: "dir_action",
+          value: "navigate", // this instantly initializes navigation using the given travel mode
+        },
+      ],
+    };
+
+    getDirections(data);
+  };
 
   const handleFeatures = () => {
     if (property.features) {
@@ -291,7 +300,7 @@ export function PropertyView({ route }) {
             </Button>
             <Button
               title="Get Directions"
-              //    onPress={() => handleGetDirections()}
+              onPress={() => handleGetDirections()}
               style={{ flex: 0.5 }}
               leftIcon={
                 <FontAwesome5 name="directions" size={24} color="black" />
@@ -301,7 +310,7 @@ export function PropertyView({ route }) {
             </Button>
             <Button
               title="Uber"
-              //   onPress={() => initiateUber()}
+              onPress={() => initiateUber()}
               style={{ flex: 0.4, marginRight: 15 }}
               leftIcon={<FontAwesome5 name="uber" size={24} color="black" />}
             >
