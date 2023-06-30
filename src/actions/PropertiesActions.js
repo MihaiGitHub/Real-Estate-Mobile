@@ -75,9 +75,9 @@ export const propertiesUSRealEstate = (state, city) => async (dispatch) => {
   }
 };
 
-export const propertyUSRealEstateFetch = (zpid) => async (dispatch) => {
+export const propertyUSRealEstateFetch = (pid) => async (dispatch) => {
   try {
-    const res = await PropertiesService.getPropertyZillow(zpid);
+    const res = await PropertiesService.getPropertyUSRealEstate(pid);
 
     console.log("getPropertyUSRealEstate ", res);
 

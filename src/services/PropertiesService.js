@@ -17,8 +17,8 @@ const getPropertiesUSRealEstate = (state, city) => {
   );
 };
 
-const getPropertyUSRealEstate = (zpid) => {
-  return axios.get(`${GLOBALS.BASE_URL}/property?zpid=${zpid}`);
+const getPropertyUSRealEstate = (pid) => {
+  return axios.get(`${GLOBALS.BASE_URL}/propertyUSRealEstate?pid=${pid}`);
 };
 
 const PropertiesService = {
