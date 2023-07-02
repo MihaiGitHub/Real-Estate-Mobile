@@ -79,11 +79,11 @@ export const propertyUSRealEstateFetch = (pid) => async (dispatch) => {
   try {
     const res = await PropertiesService.getPropertyUSRealEstate(pid);
 
-    console.log("getPropertyUSRealEstate ", res);
+    console.log("getPropertyUSRealEstate ", res.data.data.property_detail);
 
     dispatch({
       type: PROPERTY_USREALESTATE,
-      payload: res.data,
+      payload: res.data?.data?.property_detail,
     });
   } catch (err) {
     console.log(err);
