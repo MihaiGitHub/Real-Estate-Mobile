@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Globals from "../Common/Globals";
 import { PropertyView } from "./PropertyView";
+import { PropertyViewUSRealEstate } from "./PropertyViewUSRealEstate";
 import { PropertiesMap } from "./PropertiesMap";
 import { PropertyMap } from "./PropertyMap";
 import { NavBarTabs } from "../Common/Tabs";
@@ -60,6 +61,20 @@ export function Properties() {
         name="Property Info"
         title="Property"
         component={PropertyView}
+        options={{
+          headerStyle: {
+            backgroundColor: Globals.HEADER_COLOR,
+          },
+          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTitleStyle: {
+            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+          },
+        }}
+      />
+      <PropertiesStack.Screen
+        name="Property Info USRealEstate"
+        title="Property"
+        component={PropertyViewUSRealEstate}
         options={{
           headerStyle: {
             backgroundColor: Globals.HEADER_COLOR,

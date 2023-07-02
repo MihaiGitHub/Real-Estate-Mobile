@@ -28,7 +28,7 @@ export function PropertiesList() {
   );
 
   const dispatch = useDispatch();
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
   useEffect(() => {
     dispatch(propertiesFetch());
@@ -74,7 +74,7 @@ export function PropertiesList() {
                 <ImageCarousel
                   data={array[index]["images"]}
                   openGallery={false}
-                  //   type="DB"
+                  type="DB"
                 />
               </Box>
               <HStack
@@ -124,7 +124,7 @@ export function PropertiesList() {
             return {
               id: item.property_id,
               url: image.href,
-              title: item.branding[0]["name"],
+              title: item.branding[0]?.name,
             };
           });
 
@@ -134,11 +134,11 @@ export function PropertiesList() {
             {
               id: item.property_id,
               url: `https://ssl.cdn-redfin.com/photo/115/bigphoto/382/22304382_0.jpg`,
-              title: item.branding?.name,
+              title: item.branding[0]?.name,
             },
           ];
         }
-
+        console.log("IMAGES ", array[index]["images"]);
         return (
           <Box
             border="1"
@@ -151,7 +151,7 @@ export function PropertiesList() {
                 <ImageCarousel
                   data={array[index]["images"]}
                   openGallery={false}
-                  //    type="USRealEstate"
+                  type="USRealEstate"
                 />
               </Box>
               <HStack
