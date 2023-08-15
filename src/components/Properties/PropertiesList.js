@@ -19,7 +19,7 @@ import {
   ScrollView,
 } from "native-base";
 import { Spinner } from "../Common/Spinner";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import ImageCarousel from "./ImageCarousel";
 
 export function PropertiesList() {
@@ -28,7 +28,7 @@ export function PropertiesList() {
   );
 
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   useEffect(() => {
     dispatch(propertiesFetch());

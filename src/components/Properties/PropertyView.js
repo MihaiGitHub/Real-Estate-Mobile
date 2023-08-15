@@ -29,11 +29,11 @@ import getDirections from "react-native-google-maps-directions";
 //import { SliderBox } from "react-native-image-slider-box";
 import ImageCarousel from "./ImageCarousel";
 import { useNavigation } from "@react-navigation/native";
-//import { propertyUSRealEstateFetch } from "../../actions/PropertiesActions";
+import { propertyUSRealEstateFetch } from "../../actions/PropertiesActions";
 import GLOBALS from "../Common/Globals";
 
 export function PropertyView({ route }) {
-  // const [propertyDB, setPropertyDB] = useState({});
+  const [propertyDB, setPropertyDB] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const openGallery = () => setIsOpen(true);
   const closeGallery = () => setIsOpen(false);

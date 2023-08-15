@@ -2,7 +2,7 @@
   "expo": {
     "name": "Century Homes",
     "slug": "century-homes",
-    "version": "1.6.4",
+    "version": "1.9.8",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -11,20 +11,43 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": ["sentry-expo"],
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "SENTRY_ORG",
+            "project": "CENTURY-HOMES"
+          }
+        }
+      ]
+    },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/3534908b-8d1d-4088-9879-1a0c781c8178"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.century.homes",
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "XXXX"
+        }
+      },
       "package": "com.century.homes",
-      "versionCode": 71,
+      "versionCode": 117,
       "adaptiveIcon": {
         "foregroundImage": "./assets/splash.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"

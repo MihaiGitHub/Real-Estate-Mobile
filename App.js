@@ -15,6 +15,13 @@ import { Properties } from "./src/components/Properties";
 import { Agents } from "./src/components/Agents";
 import { Profile } from "./src/components/Profile";
 import { NativeBaseProvider } from "native-base";
+import * as Sentry from "sentry-expo";
+
+Sentry.init({
+  dsn: "https://96d2de02f989e68615676640a2ecc97d@o4505683492012032.ingest.sentry.io/4505683514621952",
+  enableInExpoDevelopment: true,
+  debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+});
 
 const Tab = createBottomTabNavigator();
 

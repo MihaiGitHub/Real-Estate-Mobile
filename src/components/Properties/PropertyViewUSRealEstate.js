@@ -28,7 +28,7 @@ import { ImageGallery } from "@georstat/react-native-image-gallery";
 import getDirections from "react-native-google-maps-directions";
 //import { SliderBox } from "react-native-image-slider-box";
 import ImageCarousel from "./ImageCarousel";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import { propertyUSRealEstateFetch } from "../../actions/PropertiesActions";
 import { Spinner } from "../Common/Spinner";
 
@@ -39,10 +39,10 @@ export function PropertyViewUSRealEstate({ route }) {
   const [isOpen, setIsOpen] = useState(false);
   const openGallery = () => setIsOpen(true);
   const closeGallery = () => setIsOpen(false);
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  console.log("route ", route);
+  // console.log("route ", route);
 
   const { id } = route.params;
 
@@ -58,19 +58,21 @@ export function PropertyViewUSRealEstate({ route }) {
 
   console.log("propertyUSRealEstate ", propertyUSRealEstate);
 
-  // if (property.images.length === 0) {
-  //   imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
-  // }
+  let imageURLs = [];
 
-  const imageURLs = propertyUSRealEstate.photos.map((image, index) => {
-    return {
-      id: index.toString(),
-      thumbnail: image,
-      url: image.href,
-      title: image.description,
-      description: "description",
-    };
-  });
+  if (propertyUSRealEstate.photos) {
+    imageURLs = propertyUSRealEstate.photos.map((image, index) => {
+      return {
+        id: index.toString(),
+        thumbnail: image,
+        url: image.href,
+        title: image.description,
+        description: "description",
+      };
+    });
+  } else {
+    imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
+  }
 
   //   // let agentImage = "";
 
@@ -98,7 +100,7 @@ export function PropertyViewUSRealEstate({ route }) {
         console.log("Uber Opened");
       })
       .catch(() => {
-        alert("Make sure Uber installed on your device");
+        alert("Make sure Uber is installed on your device");
       });
   };
 
@@ -123,135 +125,74 @@ export function PropertyViewUSRealEstate({ route }) {
     getDirections(data);
   };
 
-  // const handleFeatures = () => {
-  //   if (property.features) {
-  //     let features = property.features.split(",");
+  const handleFeatures = () => {
+    if (propertyUSRealEstate.search_tags) {
+      //  let features = property.features.split(",");
+      let features = propertyUSRealEstate.search_tags;
 
-  //     if (features.length > 1) {
-  //       return (
-  //         <>
-  //           <HStack
-  //             alignItems="center"
-  //             space={1}
-  //             justifyContent="space-between"
-  //           >
-  //             <HStack space={5} justifyContent="center">
-  //               {features[0] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                     marginLeft: 15,
-  //                   }}
-  //                 >
-  //                   - {features[0]}
-  //                 </Text>
-  //               )}
-  //               {features[1] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                   }}
-  //                 >
-  //                   - {features[1]}
-  //                 </Text>
-  //               )}
-  //               {features[1] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                   }}
-  //                 >
-  //                   - {features[2]}
-  //                 </Text>
-  //               )}
-  //             </HStack>
-  //           </HStack>
-  //         </>
-  //       );
-  //     }
-  //     return (
-  //       <>
-  //         <HStack alignItems="center" space={1} justifyContent="space-between">
-  //           <HStack space={5} justifyContent="center">
-  //             {features[0] && (
-  //               <Text
-  //                 style={{
-  //                   flex: 1,
-  //                   marginLeft: 15,
-  //                 }}
-  //               >
-  //                 - {features[0]}
-  //               </Text>
-  //             )}
-  //           </HStack>
-  //         </HStack>
-  //       </>
-  //     );
-  //   }
-
-  //   if (property.tags) {
-  //     if (property.tags.length > 1) {
-  //       return (
-  //         <>
-  //           <HStack
-  //             alignItems="center"
-  //             space={1}
-  //             justifyContent="space-between"
-  //           >
-  //             <HStack space={5} justifyContent="center">
-  //               {property.tags[0] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                     marginLeft: 15,
-  //                   }}
-  //                 >
-  //                   - {property.tags[0].replaceAll("_", " ")}
-  //                 </Text>
-  //               )}
-  //               {property.tags[1] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                   }}
-  //                 >
-  //                   - {property.tags[1].replaceAll("_", " ")}
-  //                 </Text>
-  //               )}
-  //               {property.tags[1] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                   }}
-  //                 >
-  //                   - {property.tags[2].replaceAll("_", " ")}
-  //                 </Text>
-  //               )}
-  //             </HStack>
-  //           </HStack>
-  //         </>
-  //       );
-  //     }
-  //     return (
-  //       <>
-  //         <HStack alignItems="center" space={1} justifyContent="space-between">
-  //           <HStack space={5} justifyContent="center">
-  //             {features[0] && (
-  //               <Text
-  //                 style={{
-  //                   flex: 1,
-  //                   marginLeft: 15,
-  //                 }}
-  //               >
-  //                 - {property.tags[0]}
-  //               </Text>
-  //             )}
-  //           </HStack>
-  //         </HStack>
-  //       </>
-  //     );
-  //   }
-  // };
+      if (features.length > 1) {
+        return (
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <HStack space={5} justifyContent="center">
+              {features.map((feature, index) => {
+                <Text
+                  key={index}
+                  style={{
+                    flex: 0.4,
+                    marginLeft: 15,
+                  }}
+                >
+                  - {feature.replaceAll("_", " ")}
+                </Text>;
+              })}
+              {/* {features[0] && (
+                <Text
+                  style={{
+                    flex: 0.4,
+                    marginLeft: 15,
+                  }}
+                >
+                  - {features[0].replaceAll("_", " ")}
+                </Text>
+              )} */}
+              {/* {features[1] && (
+                  <Text
+                    style={{
+                      flex: 0.4,
+                    }}
+                  >
+                    - {features[1].replaceAll("_", " ")}
+                  </Text>
+                )}
+                {features[2] && (
+                  <Text
+                    style={{
+                      flex: 0.4,
+                    }}
+                  >
+                    - {features[2].replaceAll("_", " ")}
+                  </Text>
+                )} */}
+            </HStack>
+          </HStack>
+        );
+      }
+      return (
+        <HStack alignItems="center" space={1} justifyContent="space-between">
+          <HStack space={5} justifyContent="center">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+              }}
+            >
+              No features to display
+            </Text>
+          </HStack>
+        </HStack>
+      );
+    }
+  };
 
   return (
     <Box border="1" borderRadius="md">
@@ -264,12 +205,12 @@ export function PropertyViewUSRealEstate({ route }) {
           <HStack alignItems="center" space={4} justifyContent="space-between">
             <Button
               title="View Map"
-              onPress={() =>
-                navigation.navigate("Property Map", {
-                  latitude: mapLatitude,
-                  longitude: mapLongitude,
-                })
-              }
+              // onPress={() =>
+              //   navigation.navigate("Property Map", {
+              //     latitude: mapLatitude,
+              //     longitude: mapLongitude,
+              //   })
+              // }
               style={{ flex: 0.4, marginLeft: 15 }}
               leftIcon={
                 <MaterialCommunityIcons
@@ -316,7 +257,7 @@ export function PropertyViewUSRealEstate({ route }) {
               {propertyUSRealEstate.prop_common?.bath} Baths
             </Text>
           </HStack>
-          <HStack alignItems="center" space={1} justifyContent="space-between">
+          {/* <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
                 flex: 1,
@@ -326,7 +267,7 @@ export function PropertyViewUSRealEstate({ route }) {
             >
               Features
             </Text>
-          </HStack>
+          </HStack> */}
           {/* {handleFeatures()} */}
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
@@ -349,61 +290,49 @@ export function PropertyViewUSRealEstate({ route }) {
               {propertyUSRealEstate.prop_common?.description}
             </Text>
           </HStack>
-          {/* <HStack
-              alignItems="center"
-              space={1}
-              justifyContent="space-between"
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                fontSize: 20,
+              }}
             >
-              <Text
-                style={{
-                  flex: 1,
-                  marginLeft: 15,
-                  fontSize: 20,
+              {/* Contact Agent - {property.user.fname} {property.user.lname} */}
+            </Text>
+          </HStack>
+
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            {/* <AspectRatio w="100%" ratio={16 / 14}>
+              <Image
+                style={{ paddingTop: "25px", marginTop: "25px" }}
+                source={{
+                  uri: `${GLOBALS.TEMP_IMAGE_PATH}${property.user.picture}`,
                 }}
-              >
-                Contact Agent - {property.user.fname} {property.user.lname}
-              </Text>
-            </HStack> */}
+                alt="image"
+              />
+            </AspectRatio> */}
+          </HStack>
 
-          {/* <HStack
-              alignItems="center"
-              space={1}
-              justifyContent="space-between"
+          {/*No send message to API agent yet <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Button
+              title="Send Agent Message"
+              onPress={() =>
+                navigation.navigate("Property Send Message", {
+                  id: property.user.id,
+                  pid: property.id,
+                })
+              }
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                marginRight: 15,
+                marginBottom: 100,
+              }}
             >
-              <AspectRatio w="100%" ratio={16 / 14}>
-                <Image
-                  style={{ paddingTop: "25px", marginTop: "25px" }}
-                  source={{
-                    uri: `${GLOBALS.TEMP_IMAGE_PATH}${property.user.picture}`,
-                  }}
-                  alt="image"
-                />
-              </AspectRatio>
-            </HStack> */}
-
-          {/* // <HStack
-            //   alignItems="center"
-            //   space={1}
-            //   justifyContent="space-between"
-            // >
-            //   <Button
-            //     title="Send Agent Message"
-            //     // onPress={() =>
-            //     //   navigation.navigate("Property Send Message", {
-            //     //     id: property.user.id,
-            //     //     pid: property.id,
-            //     //   })
-            //     // }
-            //     style={{
-            //       flex: 1,
-            //       marginLeft: 15,
-            //       marginRight: 15,
-            //       marginBottom: 100,
-            //     }}
-            //   >
-            //     Send Message
-            //   </Button>
-            // </HStack> */}
+              Send Message
+            </Button>
+          </HStack> */}
         </VStack>
         <ImageGallery close={closeGallery} isOpen={isOpen} images={imageURLs} />
       </ScrollView>

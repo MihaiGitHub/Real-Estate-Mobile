@@ -16,6 +16,7 @@ Ensure a device, or emulated Android image is connected (i.e. Android Studio). R
 
 Update the following files with the correct Google Maps API key
 
+`android\app\src\main\AndroidManifest.xml`<br>
 `src\components\common\Globals.js`<br>
 `app.json`
 
@@ -26,3 +27,7 @@ Update the following files with the correct Google Maps API key
 # Running Tests
 
 `npm test`
+
+# Deploy to Google Playstore
+
+`eas build`
