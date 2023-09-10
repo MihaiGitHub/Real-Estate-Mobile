@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Globals from "../Common/Globals";
+import GLOBALS from "../Common/Globals";
 import { AgentsList } from "./AgentsList";
 import { AgentView } from "./AgentView";
 import { AgentSearch } from "./AgentSearch";
@@ -17,11 +17,11 @@ export function Agents() {
         options={{
           headerTitle: (props) => <NavBarSearch {...props} type="agents" />,
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -31,11 +31,11 @@ export function Agents() {
         component={AgentView}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -45,11 +45,11 @@ export function Agents() {
         component={AgentSearch}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />

@@ -48,6 +48,8 @@ export function PropertyViewUSRealEstate({ route }) {
 
   const { propertyUSRealEstate } = useSelector((state) => state.properties);
 
+  console.log("propertyUSRealEstate ", propertyUSRealEstate);
+
   useEffect(() => {
     dispatch(propertyUSRealEstateFetch(id));
   }, []);
@@ -250,11 +252,11 @@ export function PropertyViewUSRealEstate({ route }) {
                 paddingTop: 10,
               }}
             >
-              ${propertyUSRealEstate.prop_common?.price}
+              ${propertyUSRealEstate.list_price}
             </Text>
             <Text style={{ flex: 0.36 }}>
-              {propertyUSRealEstate.prop_common?.bed} Beds{" "}
-              {propertyUSRealEstate.prop_common?.bath} Baths
+              {propertyUSRealEstate.description?.beds} Beds{" "}
+              {propertyUSRealEstate.description?.baths} Baths
             </Text>
           </HStack>
           {/* <HStack alignItems="center" space={1} justifyContent="space-between">
@@ -287,7 +289,7 @@ export function PropertyViewUSRealEstate({ route }) {
                 marginLeft: 15,
               }}
             >
-              {propertyUSRealEstate.prop_common?.description}
+              {propertyUSRealEstate.description?.text}
             </Text>
           </HStack>
           <HStack alignItems="center" space={1} justifyContent="space-between">

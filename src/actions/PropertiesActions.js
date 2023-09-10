@@ -64,7 +64,9 @@ export const udpateSearchTerm = (searchTerm) => async (dispatch) => {
 
 export const propertiesUSRealEstate = (state, city) => async (dispatch) => {
   try {
+    console.log("propertiesUSRealEstate ", state, city);
     const res = await PropertiesService.getPropertiesUSRealEstate(state, city);
+    console.log("result ", res);
 
     dispatch({
       type: PROPERTIES_USREALESTATE,
@@ -79,11 +81,11 @@ export const propertyUSRealEstateFetch = (pid) => async (dispatch) => {
   try {
     const res = await PropertiesService.getPropertyUSRealEstate(pid);
 
-    console.log("getPropertyUSRealEstate ", res.data.data.property_detail);
+    console.log("getPropertyUSRealEstate 888", res.data.data);
 
     dispatch({
       type: PROPERTY_USREALESTATE,
-      payload: res.data?.data?.property_detail,
+      payload: res.data?.data,
     });
   } catch (err) {
     console.log(err);

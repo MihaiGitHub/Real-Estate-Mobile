@@ -22,7 +22,7 @@ Update the following files with the correct Google Maps API key
 
 # Running the client
 
-`expo start --tunnel`
+`npx expo start --tunnel`
 
 # Running Tests
 
@@ -30,4 +30,23 @@ Update the following files with the correct Google Maps API key
 
 # Deploy to Google Playstore
 
-`eas build`
+Increment the versionCode and versionName in the following file
+
+`android\app\build.gradle`<br>
+
+Increment the version and versionCode in the following file
+
+`app.json`<br>
+
+Update to the latest target Android version (targetSdkVersion) in the following file
+
+`android\build.gradle`
+
+Build the app binary file
+
+Create project in Expo Go, then
+
+`npm install --global eas-cli && \
+ eas init --id <expo_go_project_id>`
+
+`npx eas build`

@@ -10,7 +10,7 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 // //import * as Location from "expo-location";
 // //import Geolocation from "react-native-geolocation-service";
 // //import GetLocation from "react-native-get-location";
-import Globals from "../Common/Globals";
+import GLOBALS from "../Common/Globals";
 import { useSelector, useDispatch } from "react-redux";
 import {
   agentsFiltered,
@@ -38,7 +38,7 @@ export function AgentSearch() {
         navigation.navigate("Agent List");
       }}
       query={{
-        key: Globals.GOOGLE_CLOUD_SERVICES_API_KEY,
+        key: GLOBALS.GOOGLE_CLOUD_SERVICES_API_KEY,
         language: "en",
       }}
     />

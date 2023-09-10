@@ -16,9 +16,16 @@ import { Agents } from "./src/components/Agents";
 import { Profile } from "./src/components/Profile";
 import { NativeBaseProvider } from "native-base";
 import * as Sentry from "sentry-expo";
+import GLOBALS from "./src/components/Common/Globals";
+
+// https://docs.expo.dev/versions/latest/sdk/splash-screen/
+//import * as SplashScreen from "expo-splash-screen";
+
+//SplashScreen.preventAutoHideAsync();
+// hide splashscreen below?
 
 Sentry.init({
-  dsn: "https://96d2de02f989e68615676640a2ecc97d@o4505683492012032.ingest.sentry.io/4505683514621952",
+  dsn: GLOBALS.SENTRY_DSN,
   enableInExpoDevelopment: true,
   debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
@@ -87,6 +94,9 @@ const store = (preloadedState) =>
 // });
 
 export default function App() {
+  // hide spashscreen
+  // SplashScreen.hideAsync();
+
   return (
     <Provider store={store()}>
       <NavigationContainer>

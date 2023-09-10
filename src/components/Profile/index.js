@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Globals from "../Common/Globals";
+import GLOBALS from "../Common/Globals";
 import { PaymentCalculator } from "./PaymentCalculator";
 import { AffordabilityCalculator } from "./AffordabilityCalculator";
 import { PrivacyPolicy } from "./PrivacyPolicy";
@@ -19,11 +19,11 @@ export function Profile() {
         options={{
           title: "Profile",
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -32,11 +32,11 @@ export function Profile() {
         component={PaymentCalculator}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -45,11 +45,11 @@ export function Profile() {
         component={AffordabilityCalculator}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -58,11 +58,11 @@ export function Profile() {
         component={PrivacyPolicy}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -71,11 +71,11 @@ export function Profile() {
         component={TermsUse}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -84,11 +84,11 @@ export function Profile() {
         component={About}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />

@@ -59,7 +59,8 @@ export function AffordabilityCalculator() {
           <Box px="3">
             <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
               <VictoryPie
-                colorScale={["tomato", "orange", "gold", "cyan", "navy"]}
+                //   colorScale={["tomato", "orange", "gold", "cyan", "navy"]}
+                colorScale="qualitative"
                 standalone={false}
                 width={400}
                 height={400}

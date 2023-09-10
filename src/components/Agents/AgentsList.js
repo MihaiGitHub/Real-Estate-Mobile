@@ -15,8 +15,9 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { agentsFetch } from "../../actions/AgentsActions";
 //import GLOBALS from "../Common/Globals";
-import Globals from "../Common/Globals";
+import GLOBALS from "../Common/Globals";
 import { useNavigation } from "@react-navigation/native";
+import { Spinner } from "../Common/Spinner";
 
 export function AgentsList() {
   const agents = useSelector((state) => state.agents.agentsFiltered);
@@ -31,6 +32,10 @@ export function AgentsList() {
   useEffect(() => {
     dispatch(agentsFetch());
   }, []);
+
+  if (agentsDB.length === 0 && agents.length === 0) {
+    return <Spinner size="large" />;
+  }
 
   return (
     <Box>
@@ -62,7 +67,7 @@ export function AgentsList() {
                   <Avatar
                     size="48px"
                     source={{
-                      uri: `${Globals.TEMP_IMAGE_PATH}${item.picture}`,
+                      uri: `${GLOBALS.TEMP_IMAGE_PATH}${item.picture}`,
                     }}
                   />
                   <VStack>

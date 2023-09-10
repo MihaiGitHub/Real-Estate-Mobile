@@ -4,7 +4,7 @@ import MapView, { Marker } from "react-native-maps";
 //import { useSelector, useDispatch } from "react-redux";
 //import { useNavigation } from "@react-navigation/native";
 
-export function PropertiesMap() {
+export function PropertiesMap111() {
   // return <Text>PropertiesMap</Text>;
   // const { listFiltered, searchLatLng, propertiesUSRealEstate } = useSelector(
   //   (state) => state.properties

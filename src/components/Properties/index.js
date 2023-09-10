@@ -1,6 +1,6 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Globals from "../Common/Globals";
+import GLOBALS from "../Common/Globals";
 import { PropertyView } from "./PropertyView";
 import { PropertyViewUSRealEstate } from "./PropertyViewUSRealEstate";
 import { PropertiesMap } from "./PropertiesMap";
@@ -21,11 +21,11 @@ export function Properties() {
         options={{
           headerTitle: (props) => <NavBarSearch {...props} type="properties" />,
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -35,11 +35,11 @@ export function Properties() {
         component={PropertiesMap}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -49,11 +49,11 @@ export function Properties() {
         component={PropertyMap}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -63,11 +63,11 @@ export function Properties() {
         component={PropertyView}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -77,11 +77,11 @@ export function Properties() {
         component={PropertyViewUSRealEstate}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />
@@ -96,11 +96,11 @@ export function Properties() {
         component={PropertySearch}
         options={{
           headerStyle: {
-            backgroundColor: Globals.HEADER_COLOR,
+            backgroundColor: GLOBALS.HEADER_COLOR,
           },
-          headerTintColor: Globals.HEADER_TINT_COLOR,
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
           headerTitleStyle: {
-            fontWeight: Globals.HEADER_TITLE_FONTWEIGHT,
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
           },
         }}
       />

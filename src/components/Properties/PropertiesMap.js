@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //import { Text } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import { useSelector, useDispatch } from "react-redux";
-//import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
 export function PropertiesMap() {
   const { listFiltered, searchLatLng, propertiesUSRealEstate } = useSelector(
@@ -13,7 +13,7 @@ export function PropertiesMap() {
   console.log("propertiesUSRealEstate ", propertiesUSRealEstate);
 
   //const dispatch = useDispatch();
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
 
   if (Array.isArray(listFiltered) && listFiltered.length > 0) {
     var { lat, lng } = listFiltered[0];
@@ -61,7 +61,7 @@ export function PropertiesMap() {
             }}
             title={"$" + marker.list_price}
             onCalloutPress={() =>
-              navigation.navigate("Property Info", {
+              navigation.navigate("Property Info USRealEstate", {
                 id: marker.property_id,
               })
             }

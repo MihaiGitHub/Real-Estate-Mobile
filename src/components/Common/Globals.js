@@ -6,4 +6,5 @@ export default {
   HEADER_COLOR: "#5D1049",
   HEADER_TINT_COLOR: "#fff",
   HEADER_TITLE_FONTWEIGHT: "500",
+  SENTRY_DSN: "XXXX",
 };
