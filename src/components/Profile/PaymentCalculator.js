@@ -93,9 +93,9 @@ export function PaymentCalculator() {
           px="6"
           style={{
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
+            // flexDirection: "row",
+            // justifyContent: "flex-start",
+            // alignItems: "flex-start",
           }}
         >
           <Text>Price: {dollarUSLocale.format(price)}</Text>

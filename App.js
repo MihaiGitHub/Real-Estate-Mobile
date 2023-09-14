@@ -19,9 +19,9 @@ import * as Sentry from "sentry-expo";
 import GLOBALS from "./src/components/Common/Globals";
 
 // https://docs.expo.dev/versions/latest/sdk/splash-screen/
-//import * as SplashScreen from "expo-splash-screen";
+import * as SplashScreen from "expo-splash-screen";
 
-//SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync();
 // hide splashscreen below?
 
 Sentry.init({
@@ -95,7 +95,9 @@ const store = (preloadedState) =>
 
 export default function App() {
   // hide spashscreen
-  // SplashScreen.hideAsync();
+  setTimeout(() => {
+    SplashScreen.hideAsync();
+  }, 2000);
 
   return (
     <Provider store={store()}>
