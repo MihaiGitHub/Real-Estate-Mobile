@@ -28,7 +28,7 @@ export function Profile() {
         }}
       />
       <AccountStack.Screen
-        name="PaymentCalculator"
+        name="Payment Calculator"
         component={PaymentCalculator}
         options={{
           headerStyle: {
@@ -41,7 +41,7 @@ export function Profile() {
         }}
       />
       <AccountStack.Screen
-        name="AffordabilityCalculator"
+        name="Affordability Calculator"
         component={AffordabilityCalculator}
         options={{
           headerStyle: {

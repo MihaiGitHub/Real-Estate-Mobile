@@ -53,9 +53,9 @@ export function AffordabilityCalculator() {
     <ScrollView>
       <Box border="1" borderRadius="md">
         <VStack space="4" divider={<Divider />}>
-          <Box px="4" pt="4">
+          {/* <Box px="4" pt="4">
             Affordability Calculator
-          </Box>
+          </Box> */}
           <Box px="3">
             <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
               <VictoryPie
@@ -99,6 +99,16 @@ export function AffordabilityCalculator() {
 ${dollarUSLocale.format(youcanafford)}`}
               />
             </Svg>
+          </Box>
+          <Box
+            px="6"
+            style={{
+              display: "flex",
+              // flexDirection: "row",
+              // justifyContent: "flex-start",
+              // alignItems: "flex-start",
+            }}
+          >
             <Text>Income: {dollarUSLocale.format(income)}</Text>
 
             <Slider

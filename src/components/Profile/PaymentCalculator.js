@@ -40,9 +40,9 @@ export function PaymentCalculator() {
   return (
     <Box border="1" borderRadius="md">
       <VStack space="4" divider={<Divider />}>
-        <Box px="4" pt="4">
+        {/* <Box px="4" pt="4">
           Payment Calculator
-        </Box>
+        </Box> */}
         <Box
           px="6"
           style={{

@@ -28,12 +28,12 @@ export function Main() {
     {
       id: "1",
       title: "Payment Calculator",
-      nav: "PaymentCalculator",
+      nav: "Payment Calculator",
     },
     {
       id: "2",
       title: "Affordability Calculator",
-      nav: "AffordabilityCalculator",
+      nav: "Affordability Calculator",
     },
   ];
 
