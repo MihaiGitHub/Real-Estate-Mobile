@@ -66,7 +66,6 @@ export const propertiesUSRealEstate = (state, city) => async (dispatch) => {
   try {
     console.log("propertiesUSRealEstate ", state, city);
     const res = await PropertiesService.getPropertiesUSRealEstate(state, city);
-    console.log("result ", res);
 
     dispatch({
       type: PROPERTIES_USREALESTATE,

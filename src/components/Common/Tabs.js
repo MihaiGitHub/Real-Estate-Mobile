@@ -5,10 +5,6 @@ import GLOBALS from "./Globals";
 import { PropertiesList } from "../Properties/PropertiesList";
 import { PropertiesMap } from "../Properties/PropertiesMap";
 
-// const SecondRoute = () => <PropertiesList />;
-
-// const FirstRoute = () => <PropertiesMap />;
-
 const FirstRoute = () => <PropertiesList />;
 const SecondRoute = () => <PropertiesMap />;
 

@@ -21,6 +21,8 @@ import {
 import { Spinner } from "../Common/Spinner";
 // import { useNavigation } from "@react-navigation/native";
 import ImageCarousel from "./ImageCarousel";
+import "intl";
+import "intl/locale-data/jsonp/en"; // or any other locale you need
 
 export function PropertiesList() {
   const { listFiltered, propertiesUSRealEstate } = useSelector(
@@ -29,6 +31,8 @@ export function PropertiesList() {
 
   const dispatch = useDispatch();
   // const navigation = useNavigation();
+  console.log("loggingMessage");
+  //logMessage("dispatching propertiesFetch");
 
   useEffect(() => {
     dispatch(propertiesFetch());
@@ -37,6 +41,12 @@ export function PropertiesList() {
   if (listFiltered.length === 0 && propertiesUSRealEstate.length === 0) {
     return <Spinner size="large" />;
   }
+
+  const dollarUSLocale = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+  });
 
   const renderProperties = () => {
     if (Array.isArray(listFiltered) && listFiltered.length > 0) {
@@ -90,10 +100,10 @@ export function PropertiesList() {
                     paddingTop: 10,
                   }}
                 >
-                  ${item.price}
+                  {dollarUSLocale.format(item.price)}
                 </Text>
                 <Text style={{ flex: 0.36 }}>
-                  {item.bedrooms} Beds 2 {item.baths} Baths
+                  {item.bedrooms} Beds / {item.bathrooms} Baths
                 </Text>
               </HStack>
               <Box px="4" pb="1" pt={0}>
@@ -167,11 +177,11 @@ export function PropertiesList() {
                     paddingTop: 10,
                   }}
                 >
-                  ${item.list_price}
+                  {dollarUSLocale.format(item.list_price)}
                 </Text>
                 <Text style={{ flex: 0.36 }}>
-                  {item.description?.beds} Beds
-                  {item.description?.baths} Baths
+                  {item.description?.beds} Beds / {item.description?.baths}{" "}
+                  Baths
                 </Text>
               </HStack>
               <Box px="4" pb="1" pt={0}>
@@ -189,12 +199,12 @@ export function PropertiesList() {
     }
   };
 
-  console.log(
-    "listFiltered ",
-    listFiltered,
-    "USRealEstate ",
-    propertiesUSRealEstate
-  );
+  // console.log(
+  //   "listFiltered ",
+  //   listFiltered,
+  //   "USRealEstate ",
+  //   propertiesUSRealEstate
+  // );
 
   return (
     <ScrollView>

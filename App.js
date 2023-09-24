@@ -93,6 +93,14 @@ const store = (preloadedState) =>
 //   reducer: reducers,
 // });
 
+// export default function App() {
+//   setTimeout(() => {
+//     SplashScreen.hideAsync();
+//   }, 2000);
+
+//   return <Home />;
+// }
+
 export default function App() {
   // hide spashscreen
   setTimeout(() => {
@@ -109,3 +117,20 @@ export default function App() {
     </Provider>
   );
 }
+
+// export default function App() {
+//   // hide spashscreen
+//   setTimeout(() => {
+//     SplashScreen.hideAsync();
+//   }, 2000);
+
+//   return (
+//     <Provider store={store()}>
+//       <NavigationContainer>
+//         <NativeBaseProvider>
+//           <Home />
+//         </NativeBaseProvider>
+//       </NavigationContainer>
+//     </Provider>
+//   );
+// }

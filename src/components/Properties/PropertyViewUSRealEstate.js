@@ -31,8 +31,9 @@ import ImageCarousel from "./ImageCarousel";
 // import { useNavigation } from "@react-navigation/native";
 import { propertyUSRealEstateFetch } from "../../actions/PropertiesActions";
 import { Spinner } from "../Common/Spinner";
-
 import GLOBALS from "../Common/Globals";
+import "intl";
+import "intl/locale-data/jsonp/en"; // or any other locale you need
 
 export function PropertyViewUSRealEstate({ route }) {
   // const [propertyDB, setPropertyDB] = useState({});
@@ -57,6 +58,12 @@ export function PropertyViewUSRealEstate({ route }) {
   if (Object.entries(propertyUSRealEstate).length === 0) {
     return <Spinner size="large" />;
   }
+
+  const dollarUSLocale = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+  });
 
   console.log("propertyUSRealEstate ", propertyUSRealEstate);
 
@@ -203,9 +210,25 @@ export function PropertyViewUSRealEstate({ route }) {
           <Box>
             <ImageCarousel data={imageURLs} openGallery={openGallery} />
           </Box>
-
+          <HStack alignItems="center" space={4} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 0.36,
+                marginLeft: 15,
+                fontSize: 24,
+                paddingTop: 10,
+              }}
+            >
+              {dollarUSLocale.format(propertyUSRealEstate.list_price)}
+            </Text>
+            <Text style={{ flex: 0.36 }}>
+              {propertyUSRealEstate.description?.beds} Beds /{" "}
+              {propertyUSRealEstate.description?.baths} Baths
+            </Text>
+          </HStack>
           <HStack alignItems="center" space={4} justifyContent="space-between">
             <Button
+              variant="outline"
               title="View Map"
               // onPress={() =>
               //   navigation.navigate("Property Map", {
@@ -225,6 +248,7 @@ export function PropertyViewUSRealEstate({ route }) {
               View Map
             </Button>
             <Button
+              variant="outline"
               title="Get Directions"
               onPress={() => handleGetDirections()}
               style={{ flex: 0.5 }}
@@ -235,6 +259,7 @@ export function PropertyViewUSRealEstate({ route }) {
               Get Directions
             </Button>
             <Button
+              variant="outline"
               title="Uber"
               onPress={() => initiateUber()}
               style={{ flex: 0.4, marginRight: 15 }}
@@ -243,22 +268,7 @@ export function PropertyViewUSRealEstate({ route }) {
               Uber
             </Button>
           </HStack>
-          <HStack alignItems="center" space={4} justifyContent="space-between">
-            <Text
-              style={{
-                flex: 0.36,
-                marginLeft: 15,
-                fontSize: 24,
-                paddingTop: 10,
-              }}
-            >
-              ${propertyUSRealEstate.list_price}
-            </Text>
-            <Text style={{ flex: 0.36 }}>
-              {propertyUSRealEstate.description?.beds} Beds{" "}
-              {propertyUSRealEstate.description?.baths} Baths
-            </Text>
-          </HStack>
+
           {/* <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{

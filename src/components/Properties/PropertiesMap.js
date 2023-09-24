@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import "intl";
+import "intl/locale-data/jsonp/en"; // or any other locale you need
 
 export function PropertiesMap() {
   const { listFiltered, searchLatLng, propertiesUSRealEstate } = useSelector(
@@ -11,6 +13,12 @@ export function PropertiesMap() {
 
   console.log("listUSRealEstate ", listFiltered);
   console.log("propertiesUSRealEstate ", propertiesUSRealEstate);
+
+  const dollarUSLocale = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+  });
 
   //const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -43,7 +51,7 @@ export function PropertiesMap() {
               latitude: parseFloat(marker.lat),
               longitude: parseFloat(marker.lng),
             }}
-            title={"$" + marker.price}
+            title={dollarUSLocale.format(marker.price)}
             onCalloutPress={() =>
               navigation.navigate("Property Info", {
                 id: marker.id,
@@ -59,7 +67,7 @@ export function PropertiesMap() {
               latitude: parseFloat(marker.location?.address?.coordinate?.lat),
               longitude: parseFloat(marker.location?.address?.coordinate?.lon),
             }}
-            title={"$" + marker.list_price}
+            title={dollarUSLocale.format(marker.list_price)}
             onCalloutPress={() =>
               navigation.navigate("Property Info USRealEstate", {
                 id: marker.property_id,

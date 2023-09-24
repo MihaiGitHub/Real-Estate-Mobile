@@ -1,6 +1,6 @@
 {
   "name": "century-homes",
-  "version": "2.3.2",
+  "version": "2.5.1",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
