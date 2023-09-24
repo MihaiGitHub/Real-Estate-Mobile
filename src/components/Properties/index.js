@@ -72,7 +72,7 @@ export function Properties() {
         }}
       />
       <PropertiesStack.Screen
-        name="Property Info USRealEstate"
+        name="Property Info US Real Estate"
         title="Property"
         component={PropertyViewUSRealEstate}
         options={{

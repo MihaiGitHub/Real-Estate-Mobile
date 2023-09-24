@@ -117,7 +117,7 @@ export default function ImageCarousel({
                   //   //   type,
                   // });
                   if (type === "USRealEstate") {
-                    navigation.navigate("Property Info USRealEstate", {
+                    navigation.navigate("Property Info US Real Estate", {
                       id: item.id,
                     });
                   } else {
@@ -135,11 +135,11 @@ export default function ImageCarousel({
                 source={{ uri: item.url }}
                 style={[styles.image, { height: height }]}
               />
-              <View style={styles.titleContainer}>
-                <Text style={styles.title}>{item.title}</Text>
-                {/* {title && <Text style={styles.title}>{title} </Text>}
-                      {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>} */}
-              </View>
+              {openGallery === false && (
+                <View style={styles.titleContainer}>
+                  <Text style={styles.title}>{item.title}</Text>
+                </View>
+              )}
             </TouchableOpacity>
           ))}
         </View>

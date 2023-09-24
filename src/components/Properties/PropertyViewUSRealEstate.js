@@ -210,20 +210,40 @@ export function PropertyViewUSRealEstate({ route }) {
           <Box>
             <ImageCarousel data={imageURLs} openGallery={openGallery} />
           </Box>
-          <HStack alignItems="center" space={4} justifyContent="space-between">
+          <HStack
+            alignItems="center"
+            space={4}
+            justifyContent="space-between"
+            style={{ display: "flex", flexWrap: "wrap" }}
+          >
             <Text
               style={{
-                flex: 0.36,
                 marginLeft: 15,
                 fontSize: 24,
                 paddingTop: 10,
+                width: "40%",
               }}
             >
               {dollarUSLocale.format(propertyUSRealEstate.list_price)}
             </Text>
-            <Text style={{ flex: 0.36 }}>
+            <Text
+              style={{
+                width: "50%",
+                textAlign: "right",
+                marginRight: 10,
+              }}
+            >
               {propertyUSRealEstate.description?.beds} Beds /{" "}
               {propertyUSRealEstate.description?.baths} Baths
+            </Text>
+            <Text
+              style={{
+                color: "grey",
+                marginLeft: 15,
+                width: "100%",
+              }}
+            >
+              {propertyUSRealEstate.location.address.line}
             </Text>
           </HStack>
           <HStack alignItems="center" space={4} justifyContent="space-between">

@@ -69,7 +69,7 @@ export function PropertiesMap() {
             }}
             title={dollarUSLocale.format(marker.list_price)}
             onCalloutPress={() =>
-              navigation.navigate("Property Info USRealEstate", {
+              navigation.navigate("Property Info US Real Estate", {
                 id: marker.property_id,
               })
             }
