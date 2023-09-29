@@ -212,43 +212,43 @@ export function PropertyViewUSRealEstate({ route }) {
           <Box>
             <ImageCarousel data={imageURLs} openGallery={openGallery} />
           </Box>
-          <HStack
-            alignItems="center"
-            space={4}
-            justifyContent="space-between"
-            style={{ display: "flex", flexWrap: "wrap" }}
-          >
+          <HStack alignItems="center" space={4} justifyContent="space-between">
             <Text
               style={{
-                marginLeft: 15,
+                marginLeft: 10,
                 fontSize: 24,
                 paddingTop: 10,
-                width: "40%",
               }}
             >
               {dollarUSLocale.format(propertyUSRealEstate.list_price)}
             </Text>
             <Text
               style={{
-                width: "50%",
-                textAlign: "right",
                 marginRight: 10,
               }}
             >
               {propertyUSRealEstate.description?.beds} Beds /{" "}
               {propertyUSRealEstate.description?.baths} Baths
             </Text>
+          </HStack>
+          <HStack
+            alignItems="center"
+            space={4}
+            justifyContent="space-between"
+            mt="-4"
+            p="0"
+          >
             <Text
               style={{
                 color: "grey",
-                marginLeft: 15,
-                width: "100%",
+                marginLeft: 10,
+                width: "30%",
               }}
             >
               {propertyUSRealEstate.location.address.line}
             </Text>
           </HStack>
-          <HStack alignItems="center" space={4} justifyContent="space-between">
+          <HStack alignItems="center" space={1} justifyContent="space-between">
             <Button
               variant="outline"
               title="View Map"
@@ -258,7 +258,7 @@ export function PropertyViewUSRealEstate({ route }) {
               //     longitude: mapLongitude,
               //   })
               // }
-              style={{ flex: 0.4, marginLeft: 15 }}
+              style={{ flex: 1, marginLeft: 10 }}
               leftIcon={
                 <MaterialCommunityIcons
                   name="map-marker-radius"
@@ -273,7 +273,7 @@ export function PropertyViewUSRealEstate({ route }) {
               variant="outline"
               title="Get Directions"
               onPress={() => handleGetDirections()}
-              style={{ flex: 0.5 }}
+              style={{ flex: 1 }}
               leftIcon={
                 <FontAwesome5 name="directions" size={24} color="black" />
               }
@@ -284,7 +284,7 @@ export function PropertyViewUSRealEstate({ route }) {
               variant="outline"
               title="Uber"
               onPress={() => initiateUber()}
-              style={{ flex: 0.4, marginRight: 15 }}
+              style={{ flex: 1, marginRight: 10 }}
               leftIcon={<FontAwesome5 name="uber" size={24} color="black" />}
             >
               Uber
@@ -306,8 +306,7 @@ export function PropertyViewUSRealEstate({ route }) {
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
-                flex: 1,
-                marginLeft: 15,
+                marginLeft: 10,
                 fontSize: 20,
               }}
             >
@@ -318,7 +317,7 @@ export function PropertyViewUSRealEstate({ route }) {
             justifyContent="space-between"
             m="0"
             p="0"
-            style={{ marginLeft: 15, marginRight: 15 }}
+            style={{ marginLeft: 10, marginRight: 10 }}
           >
             <Text>Zestimate</Text>
             <Text>
@@ -341,7 +340,7 @@ export function PropertyViewUSRealEstate({ route }) {
             justifyContent="space-between"
             mt="-3"
             p="0"
-            style={{ marginLeft: 15, marginRight: 15 }}
+            style={{ marginLeft: 10, marginRight: 10 }}
           >
             <Text>Price/Sq.Ft.</Text>
             <Text>
@@ -352,7 +351,7 @@ export function PropertyViewUSRealEstate({ route }) {
             justifyContent="space-between"
             mt="-3"
             p="0"
-            style={{ marginLeft: 15, marginRight: 15 }}
+            style={{ marginLeft: 10, marginRight: 10 }}
           >
             <Text>Last sold price</Text>
             <Text>
@@ -363,7 +362,7 @@ export function PropertyViewUSRealEstate({ route }) {
             justifyContent="space-between"
             mt="-3"
             p="0"
-            style={{ marginLeft: 15, marginRight: 15 }}
+            style={{ marginLeft: 10, marginRight: 10 }}
           >
             <Text>Style</Text>
             <Text>{propertyUSRealEstate.source?.raw?.style}</Text>
@@ -372,7 +371,7 @@ export function PropertyViewUSRealEstate({ route }) {
             justifyContent="space-between"
             mt="-3"
             p="0"
-            style={{ marginLeft: 15, marginRight: 15 }}
+            style={{ marginLeft: 10, marginRight: 10 }}
           >
             <Text>Lot Sq.Ft.</Text>
             <Text>{propertyUSRealEstate.description?.lot_sqft}</Text>
@@ -381,7 +380,7 @@ export function PropertyViewUSRealEstate({ route }) {
             justifyContent="space-between"
             mt="-3"
             p="0"
-            style={{ marginLeft: 15, marginRight: 15 }}
+            style={{ marginLeft: 10, marginRight: 10 }}
           >
             <Text>Year built</Text>
             <Text>{propertyUSRealEstate.description?.year_built}</Text>
@@ -389,8 +388,7 @@ export function PropertyViewUSRealEstate({ route }) {
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
-                flex: 1,
-                marginLeft: 15,
+                marginLeft: 10,
                 fontSize: 20,
               }}
             >
@@ -400,8 +398,7 @@ export function PropertyViewUSRealEstate({ route }) {
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
-                flex: 1,
-                marginLeft: 15,
+                marginLeft: 10,
                 marginRight: 5,
               }}
             >
@@ -411,8 +408,7 @@ export function PropertyViewUSRealEstate({ route }) {
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
-                flex: 1,
-                marginLeft: 15,
+                marginLeft: 10,
                 fontSize: 20,
               }}
             >

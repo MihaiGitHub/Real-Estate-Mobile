@@ -138,135 +138,135 @@ export function PropertyView({ route }) {
     getDirections(data);
   };
 
-  const handleFeatures = () => {
-    if (property.features) {
-      let features = property.features.split(",");
+  // const handleFeatures = () => {
+  //   if (property.features) {
+  //     let features = property.features.split(",");
 
-      if (features.length > 1) {
-        return (
-          <>
-            <HStack
-              alignItems="center"
-              space={1}
-              justifyContent="space-between"
-            >
-              <HStack space={5} justifyContent="center">
-                {features[0] && (
-                  <Text
-                    style={{
-                      flex: 0.4,
-                      marginLeft: 15,
-                    }}
-                  >
-                    - {features[0]}
-                  </Text>
-                )}
-                {features[1] && (
-                  <Text
-                    style={{
-                      flex: 0.4,
-                    }}
-                  >
-                    - {features[1]}
-                  </Text>
-                )}
-                {features[1] && (
-                  <Text
-                    style={{
-                      flex: 0.4,
-                    }}
-                  >
-                    - {features[2]}
-                  </Text>
-                )}
-              </HStack>
-            </HStack>
-          </>
-        );
-      }
-      return (
-        <>
-          <HStack alignItems="center" space={1} justifyContent="space-between">
-            <HStack space={5} justifyContent="center">
-              {features[0] && (
-                <Text
-                  style={{
-                    flex: 1,
-                    marginLeft: 15,
-                  }}
-                >
-                  - {features[0]}
-                </Text>
-              )}
-            </HStack>
-          </HStack>
-        </>
-      );
-    }
+  //     if (features.length > 1) {
+  //       return (
+  //         <>
+  //           <HStack
+  //             alignItems="center"
+  //             space={1}
+  //             justifyContent="space-between"
+  //           >
+  //             <HStack space={5} justifyContent="center">
+  //               {features[0] && (
+  //                 <Text
+  //                   style={{
+  //                     flex: 0.4,
+  //                     marginLeft: 15,
+  //                   }}
+  //                 >
+  //                   - {features[0]}
+  //                 </Text>
+  //               )}
+  //               {features[1] && (
+  //                 <Text
+  //                   style={{
+  //                     flex: 0.4,
+  //                   }}
+  //                 >
+  //                   - {features[1]}
+  //                 </Text>
+  //               )}
+  //               {features[1] && (
+  //                 <Text
+  //                   style={{
+  //                     flex: 0.4,
+  //                   }}
+  //                 >
+  //                   - {features[2]}
+  //                 </Text>
+  //               )}
+  //             </HStack>
+  //           </HStack>
+  //         </>
+  //       );
+  //     }
+  //     return (
+  //       <>
+  //         <HStack alignItems="center" space={1} justifyContent="space-between">
+  //           <HStack space={5} justifyContent="center">
+  //             {features[0] && (
+  //               <Text
+  //                 style={{
+  //                   flex: 1,
+  //                   marginLeft: 15,
+  //                 }}
+  //               >
+  //                 - {features[0]}
+  //               </Text>
+  //             )}
+  //           </HStack>
+  //         </HStack>
+  //       </>
+  //     );
+  //   }
 
-    if (property.tags) {
-      if (property.tags.length > 1) {
-        return (
-          <>
-            <HStack
-              alignItems="center"
-              space={1}
-              justifyContent="space-between"
-            >
-              <HStack space={5} justifyContent="center">
-                {property.tags[0] && (
-                  <Text
-                    style={{
-                      flex: 0.4,
-                      marginLeft: 15,
-                    }}
-                  >
-                    - {property.tags[0].replaceAll("_", " ")}
-                  </Text>
-                )}
-                {property.tags[1] && (
-                  <Text
-                    style={{
-                      flex: 0.4,
-                    }}
-                  >
-                    - {property.tags[1].replaceAll("_", " ")}
-                  </Text>
-                )}
-                {property.tags[1] && (
-                  <Text
-                    style={{
-                      flex: 0.4,
-                    }}
-                  >
-                    - {property.tags[2].replaceAll("_", " ")}
-                  </Text>
-                )}
-              </HStack>
-            </HStack>
-          </>
-        );
-      }
-      return (
-        <>
-          <HStack alignItems="center" space={1} justifyContent="space-between">
-            <HStack space={5} justifyContent="center">
-              {features[0] && (
-                <Text
-                  style={{
-                    flex: 1,
-                    marginLeft: 15,
-                  }}
-                >
-                  - {property.tags[0]}
-                </Text>
-              )}
-            </HStack>
-          </HStack>
-        </>
-      );
-    }
-  };
+  //   if (property.tags) {
+  //     if (property.tags.length > 1) {
+  //       return (
+  //         <>
+  //           <HStack
+  //             alignItems="center"
+  //             space={1}
+  //             justifyContent="space-between"
+  //           >
+  //             <HStack space={5} justifyContent="center">
+  //               {property.tags[0] && (
+  //                 <Text
+  //                   style={{
+  //                     flex: 0.4,
+  //                     marginLeft: 15,
+  //                   }}
+  //                 >
+  //                   - {property.tags[0].replaceAll("_", " ")}
+  //                 </Text>
+  //               )}
+  //               {property.tags[1] && (
+  //                 <Text
+  //                   style={{
+  //                     flex: 0.4,
+  //                   }}
+  //                 >
+  //                   - {property.tags[1].replaceAll("_", " ")}
+  //                 </Text>
+  //               )}
+  //               {property.tags[1] && (
+  //                 <Text
+  //                   style={{
+  //                     flex: 0.4,
+  //                   }}
+  //                 >
+  //                   - {property.tags[2].replaceAll("_", " ")}
+  //                 </Text>
+  //               )}
+  //             </HStack>
+  //           </HStack>
+  //         </>
+  //       );
+  //     }
+  //     return (
+  //       <>
+  //         <HStack alignItems="center" space={1} justifyContent="space-between">
+  //           <HStack space={5} justifyContent="center">
+  //             {features[0] && (
+  //               <Text
+  //                 style={{
+  //                   flex: 1,
+  //                   marginLeft: 15,
+  //                 }}
+  //               >
+  //                 - {property.tags[0]}
+  //               </Text>
+  //             )}
+  //           </HStack>
+  //         </HStack>
+  //       </>
+  //     );
+  //   }
+  // };
 
   return (
     <Box border="1" borderRadius="md">
@@ -275,42 +275,42 @@ export function PropertyView({ route }) {
           <Box>
             <ImageCarousel data={imageURLs} openGallery={openGallery} />
           </Box>
-          <HStack
-            alignItems="center"
-            space={4}
-            justifyContent="space-between"
-            style={{ display: "flex", flexWrap: "wrap" }}
-          >
+          <HStack alignItems="center" space={4} justifyContent="space-between">
             <Text
               style={{
-                marginLeft: 15,
+                marginLeft: 10,
                 fontSize: 24,
                 paddingTop: 10,
-                width: "40%",
               }}
             >
               {dollarUSLocale.format(property.price)}
             </Text>
             <Text
               style={{
-                width: "50%",
                 textAlign: "right",
                 marginRight: 10,
               }}
             >
               {property.bedrooms} Beds / {property.bathrooms} Baths
             </Text>
+          </HStack>
+          <HStack
+            alignItems="center"
+            space={4}
+            justifyContent="space-between"
+            mt="-4"
+            p="0"
+          >
             <Text
               style={{
                 color: "grey",
-                marginLeft: 15,
-                width: "100%",
+                marginLeft: 10,
               }}
             >
               {property.address}
             </Text>
           </HStack>
-          <HStack alignItems="center" space={4} justifyContent="space-between">
+          <HStack alignItems="center" space={1} justifyContent="space-between">
             <Button
               variant="outline"
               title="View Map"
@@ -320,7 +320,10 @@ export function PropertyView({ route }) {
                   longitude: mapLongitude,
                 })
               }
-              style={{ flex: 0.4, marginLeft: 15 }}
+              style={{
+                marginLeft: 10,
+                flex: 1,
+              }}
               leftIcon={
                 <MaterialCommunityIcons
                   name="map-marker-radius"
@@ -335,7 +338,9 @@ export function PropertyView({ route }) {
               variant="outline"
               title="Get Directions"
               onPress={() => handleGetDirections()}
-              style={{ flex: 0.5 }}
+              style={{
+                flex: 1,
+              }}
               leftIcon={
                 <FontAwesome5 name="directions" size={24} color="black" />
               }
@@ -346,14 +351,63 @@ export function PropertyView({ route }) {
               variant="outline"
               title="Uber"
               onPress={() => initiateUber()}
-              style={{ flex: 0.4, marginRight: 15 }}
+              style={{
+                marginRight: 10,
+                flex: 1,
+              }}
               leftIcon={<FontAwesome5 name="uber" size={24} color="black" />}
             >
               Uber
             </Button>
           </HStack>
-
           <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Text
+              style={{
+                marginLeft: 10,
+                fontSize: 20,
+              }}
+            >
+              Key Details
+            </Text>
+          </HStack>
+          <HStack
+            justifyContent="space-between"
+            m="0"
+            p="0"
+            style={{ marginLeft: 10, marginRight: 10 }}
+          >
+            <Text>Property Status</Text>
+            <Text>{property.property_status}</Text>
+          </HStack>
+          <HStack
+            justifyContent="space-between"
+            mt="-3"
+            p="0"
+            style={{ marginLeft: 10, marginRight: 10 }}
+          >
+            <Text>Property Type</Text>
+            <Text>{property.property_type}</Text>
+          </HStack>
+          <HStack
+            justifyContent="space-between"
+            mt="-3"
+            p="0"
+            style={{ marginLeft: 10, marginRight: 10 }}
+          >
+            <Text>Land Area</Text>
+            <Text>{property.land_area}</Text>
+          </HStack>
+          <HStack
+            justifyContent="space-between"
+            mt="-3"
+            p="0"
+            style={{ marginLeft: 10, marginRight: 10 }}
+          >
+            <Text>Build Size</Text>
+            <Text>{property.build_size}</Text>
+          </HStack>
+
+          {/* <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
                 flex: 1,
@@ -363,13 +417,13 @@ export function PropertyView({ route }) {
             >
               Features
             </Text>
-          </HStack>
-          {handleFeatures()}
+          </HStack> */}
+          {/* {handleFeatures()} */}
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
                 flex: 1,
-                marginLeft: 15,
+                marginLeft: 10,
                 fontSize: 20,
               }}
             >
@@ -379,8 +433,7 @@ export function PropertyView({ route }) {
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
-                flex: 1,
-                marginLeft: 15,
+                marginLeft: 10,
               }}
             >
               {property.description}
@@ -389,8 +442,7 @@ export function PropertyView({ route }) {
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
-                flex: 1,
-                marginLeft: 15,
+                marginLeft: 10,
                 fontSize: 20,
               }}
             >
@@ -421,8 +473,8 @@ export function PropertyView({ route }) {
               // }
               style={{
                 flex: 1,
-                marginLeft: 15,
-                marginRight: 15,
+                marginLeft: 10,
+                marginRight: 10,
                 marginBottom: 100,
               }}
             >
