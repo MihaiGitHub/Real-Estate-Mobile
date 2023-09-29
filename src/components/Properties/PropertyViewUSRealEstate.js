@@ -17,6 +17,8 @@ import {
   Center,
   NativeBaseProvider,
   ScrollView,
+  Divider,
+  Icon,
 } from "native-base";
 import {
   Ionicons,
@@ -309,6 +311,89 @@ export function PropertyViewUSRealEstate({ route }) {
                 fontSize: 20,
               }}
             >
+              Key Details
+            </Text>
+          </HStack>
+          <HStack
+            justifyContent="space-between"
+            m="0"
+            p="0"
+            style={{ marginLeft: 15, marginRight: 15 }}
+          >
+            <Text>Zestimate</Text>
+            <Text>
+              {dollarUSLocale.format(
+                propertyUSRealEstate.estimates?.forecast_values[0]?.estimates[0]
+                  ?.estimate
+              )}
+            </Text>
+          </HStack>
+          {/* <HStack
+            justifyContent="space-between"
+            mt="-3"
+            p="0"
+            style={{ marginLeft: 15, marginRight: 15 }}
+          >
+            <Text>Days on the market</Text>
+            <Text>{propertyUSRealEstate.days_on_market}</Text>
+          </HStack> */}
+          <HStack
+            justifyContent="space-between"
+            mt="-3"
+            p="0"
+            style={{ marginLeft: 15, marginRight: 15 }}
+          >
+            <Text>Price/Sq.Ft.</Text>
+            <Text>
+              {dollarUSLocale.format(propertyUSRealEstate.price_per_sqft)}
+            </Text>
+          </HStack>
+          <HStack
+            justifyContent="space-between"
+            mt="-3"
+            p="0"
+            style={{ marginLeft: 15, marginRight: 15 }}
+          >
+            <Text>Last sold price</Text>
+            <Text>
+              {dollarUSLocale.format(propertyUSRealEstate.last_sold_price)}
+            </Text>
+          </HStack>
+          <HStack
+            justifyContent="space-between"
+            mt="-3"
+            p="0"
+            style={{ marginLeft: 15, marginRight: 15 }}
+          >
+            <Text>Style</Text>
+            <Text>{propertyUSRealEstate.source?.raw?.style}</Text>
+          </HStack>
+          <HStack
+            justifyContent="space-between"
+            mt="-3"
+            p="0"
+            style={{ marginLeft: 15, marginRight: 15 }}
+          >
+            <Text>Lot Sq.Ft.</Text>
+            <Text>{propertyUSRealEstate.description?.lot_sqft}</Text>
+          </HStack>
+          <HStack
+            justifyContent="space-between"
+            mt="-3"
+            p="0"
+            style={{ marginLeft: 15, marginRight: 15 }}
+          >
+            <Text>Year built</Text>
+            <Text>{propertyUSRealEstate.description?.year_built}</Text>
+          </HStack>
+          <HStack alignItems="center" space={1} justifyContent="space-between">
+            <Text
+              style={{
+                flex: 1,
+                marginLeft: 15,
+                fontSize: 20,
+              }}
+            >
               About this home
             </Text>
           </HStack>
@@ -317,6 +402,7 @@ export function PropertyViewUSRealEstate({ route }) {
               style={{
                 flex: 1,
                 marginLeft: 15,
+                marginRight: 5,
               }}
             >
               {propertyUSRealEstate.description?.text}
