@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-//import { Text } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import { View, Text } from "react-native";
+import MapView, { Marker, Callout } from "react-native-maps";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import "intl";

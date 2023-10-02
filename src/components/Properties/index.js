@@ -89,6 +89,15 @@ export function Properties() {
         name="Property Send Message"
         title="Message Agent"
         component={PropertySendMessage}
+        options={{
+          headerStyle: {
+            backgroundColor: GLOBALS.HEADER_COLOR,
+          },
+          headerTintColor: GLOBALS.HEADER_TINT_COLOR,
+          headerTitleStyle: {
+            fontWeight: GLOBALS.HEADER_TITLE_FONTWEIGHT,
+          },
+        }}
       />
       <PropertiesStack.Screen
         name="Property Search"

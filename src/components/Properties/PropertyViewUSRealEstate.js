@@ -30,22 +30,37 @@ import { ImageGallery } from "@georstat/react-native-image-gallery";
 import getDirections from "react-native-google-maps-directions";
 //import { SliderBox } from "react-native-image-slider-box";
 import ImageCarousel from "./ImageCarousel";
-// import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { propertyUSRealEstateFetch } from "../../actions/PropertiesActions";
 import { Spinner } from "../Common/Spinner";
+import Svg, { G, Circle } from "react-native-svg";
+
+import {
+  VictoryChart,
+  VictoryLine,
+  VictoryPie,
+  VictoryLabel,
+  VictoryTheme,
+  VictoryVoronoiContainer,
+  VictoryScatter,
+  //  VictoryToolTip,
+  VictoryTooltip,
+  VictoryAxis,
+  VictoryZoomContainer,
+} from "victory-native";
+
 import GLOBALS from "../Common/Globals";
 import "intl";
 import "intl/locale-data/jsonp/en"; // or any other locale you need
 
 export function PropertyViewUSRealEstate({ route }) {
-  // const [propertyDB, setPropertyDB] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const openGallery = () => setIsOpen(true);
   const closeGallery = () => setIsOpen(false);
-  // const navigation = useNavigation();
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  // console.log("route ", route);
+  const size = 400;
 
   const { id } = route.params;
 
@@ -84,14 +99,6 @@ export function PropertyViewUSRealEstate({ route }) {
   } else {
     imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
   }
-
-  //   // let agentImage = "";
-
-  //   // if (props.property.user.picture) {
-  //   //   agentImage = `${GLOBALS.TEMP_IMAGE_PATH}/${props.property.user.picture}`;
-  //   // } else {
-  //   //   agentImage = `${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/profile.jpg`;
-  //   // }
 
   const mapLatitude = parseFloat(
     propertyUSRealEstate.address?.boundary?.coordinates[1],
@@ -136,74 +143,36 @@ export function PropertyViewUSRealEstate({ route }) {
     getDirections(data);
   };
 
-  const handleFeatures = () => {
-    if (propertyUSRealEstate.search_tags) {
-      //  let features = property.features.split(",");
-      let features = propertyUSRealEstate.search_tags;
+  //   estimates: Object
+  // current_values: null
+  // forecast_values: Array(3)
+  // historical_values: Array(3)
+  // 0: Object
+  // estimates: Array(61)
+  // 0: Object
+  // date: "2023-09-14"
+  // estimate: 325000
 
-      if (features.length > 1) {
-        return (
-          <HStack alignItems="center" space={1} justifyContent="space-between">
-            <HStack space={5} justifyContent="center">
-              {features.map((feature, index) => {
-                <Text
-                  key={index}
-                  style={{
-                    flex: 0.4,
-                    marginLeft: 15,
-                  }}
-                >
-                  - {feature.replaceAll("_", " ")}
-                </Text>;
-              })}
-              {/* {features[0] && (
-                <Text
-                  style={{
-                    flex: 0.4,
-                    marginLeft: 15,
-                  }}
-                >
-                  - {features[0].replaceAll("_", " ")}
-                </Text>
-              )} */}
-              {/* {features[1] && (
-                  <Text
-                    style={{
-                      flex: 0.4,
-                    }}
-                  >
-                    - {features[1].replaceAll("_", " ")}
-                  </Text>
-                )}
-                {features[2] && (
-                  <Text
-                    style={{
-                      flex: 0.4,
-                    }}
-                  >
-                    - {features[2].replaceAll("_", " ")}
-                  </Text>
-                )} */}
-            </HStack>
-          </HStack>
-        );
-      }
-      return (
-        <HStack alignItems="center" space={1} justifyContent="space-between">
-          <HStack space={5} justifyContent="center">
-            <Text
-              style={{
-                flex: 1,
-                marginLeft: 15,
-              }}
-            >
-              No features to display
-            </Text>
-          </HStack>
-        </HStack>
-      );
-    }
-  };
+  // estimates.historical_values[0].estimates[0].date
+  // estimates.historical_values[0].estimates[0].estimate
+
+  const data = propertyUSRealEstate.estimates.historical_values[0].estimates
+    //  .reverse()
+    .map((item, index) => {
+      return { x: item.date, y: item.estimate };
+      //    return { x: new Date(item.date), y: item.estimate };
+    });
+
+  // console.log("DATA3 ", data3);
+
+  const data4 = [
+    { x: new Date("2016-06-03"), y: 100000 },
+    { x: new Date("2017-06-03"), y: 150000 },
+    { x: new Date("2018-06-03"), y: 200000 },
+    { x: new Date("2019-06-03"), y: 210000 },
+    { x: new Date("2021-06-03"), y: 220000 },
+    { x: new Date("2025-06-03"), y: 320000 },
+  ];
 
   return (
     <Box border="1" borderRadius="md">
@@ -242,7 +211,6 @@ export function PropertyViewUSRealEstate({ route }) {
               style={{
                 color: "grey",
                 marginLeft: 10,
-                width: "30%",
               }}
             >
               {propertyUSRealEstate.location.address.line}
@@ -327,15 +295,6 @@ export function PropertyViewUSRealEstate({ route }) {
               )}
             </Text>
           </HStack>
-          {/* <HStack
-            justifyContent="space-between"
-            mt="-3"
-            p="0"
-            style={{ marginLeft: 15, marginRight: 15 }}
-          >
-            <Text>Days on the market</Text>
-            <Text>{propertyUSRealEstate.days_on_market}</Text>
-          </HStack> */}
           <HStack
             justifyContent="space-between"
             mt="-3"
@@ -412,31 +371,78 @@ export function PropertyViewUSRealEstate({ route }) {
                 fontSize: 20,
               }}
             >
-              {/* Contact Agent - {property.user.fname} {property.user.lname} */}
+              Price History
+            </Text>
+          </HStack>
+          <HStack
+            mt="-10"
+            p="0"
+            alignItems="center"
+            space={1}
+            justifyContent="space-between"
+          >
+            <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+              <VictoryChart theme={VictoryTheme.material}>
+                <VictoryAxis fixLabelOverlap />
+                <VictoryAxis
+                  dependentAxis
+                  tickFormat={(t) => {
+                    if (t.toString().length > 5) {
+                      return `${t.toString().slice(0, -3)}k`;
+                    }
+
+                    return t;
+                  }}
+                />
+                <VictoryLine
+                  style={{
+                    data: { stroke: "#c43a31" },
+                    parent: { border: "1px solid #ccc" },
+                  }}
+                  data={data.reverse()}
+                />
+              </VictoryChart>
+            </Svg>
+          </HStack>
+          <HStack
+            mt="-10"
+            p="0"
+            alignItems="center"
+            space={1}
+            justifyContent="space-between"
+          >
+            <Text
+              style={{
+                marginLeft: 10,
+                fontSize: 20,
+              }}
+            >
+              Contact Agent - {propertyUSRealEstate.advertisers[0]?.name}
             </Text>
           </HStack>
 
-          <HStack alignItems="center" space={1} justifyContent="space-between">
-            {/* <AspectRatio w="100%" ratio={16 / 14}>
-              <Image
-                style={{ paddingTop: "25px", marginTop: "25px" }}
-                source={{
-                  uri: `${GLOBALS.TEMP_IMAGE_PATH}${property.user.picture}`,
-                }}
-                alt="image"
-              />
-            </AspectRatio> */}
-          </HStack>
+          {propertyUSRealEstate.advertisers[0]?.photo?.href && (
+            <HStack
+              alignItems="center"
+              space={1}
+              justifyContent="space-between"
+            >
+              <AspectRatio w="100%" ratio={16 / 14}>
+                <Image
+                  style={{ paddingTop: "25px", marginTop: "25px" }}
+                  source={{
+                    uri: `${propertyUSRealEstate.advertisers[0]?.photo?.href}`,
+                  }}
+                  alt="image"
+                />
+              </AspectRatio>
+            </HStack>
+          )}
 
-          {/*No send message to API agent yet <HStack alignItems="center" space={1} justifyContent="space-between">
+          <HStack alignItems="center" space={1} justifyContent="space-between">
             <Button
               title="Send Agent Message"
-              onPress={() =>
-                navigation.navigate("Property Send Message", {
-                  id: property.user.id,
-                  pid: property.id,
-                })
-              }
+              onPress={() => navigation.navigate("Property Send Message")}
               style={{
                 flex: 1,
                 marginLeft: 15,
@@ -446,7 +452,7 @@ export function PropertyViewUSRealEstate({ route }) {
             >
               Send Message
             </Button>
-          </HStack> */}
+          </HStack>
         </VStack>
         <ImageGallery close={closeGallery} isOpen={isOpen} images={imageURLs} />
       </ScrollView>
