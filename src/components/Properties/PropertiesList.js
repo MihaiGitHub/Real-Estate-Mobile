@@ -127,7 +127,7 @@ export function PropertiesList() {
       propertiesUSRealEstate.length > 0
     ) {
       return propertiesUSRealEstate.map((item, index, array) => {
-        console.log("item777 ", item);
+        //  console.log("item777 ", item);
 
         if (item.photos && item.photos.length > 0) {
           const images = item.photos.map((image) => {

@@ -54,25 +54,41 @@ import "intl";
 import "intl/locale-data/jsonp/en"; // or any other locale you need
 
 export function PropertyViewUSRealEstate({ route }) {
+  const [pid, setPid] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const openGallery = () => setIsOpen(true);
   const closeGallery = () => setIsOpen(false);
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  //const { propertyUSRealEstate } = useSelector((state) => state.properties);
+  const propertyData = useSelector(
+    (state) => state.properties.propertyUSRealEstate
+  );
 
   const size = 400;
 
   const { id } = route.params;
 
-  const { propertyUSRealEstate } = useSelector((state) => state.properties);
-
-  console.log("propertyUSRealEstate ", propertyUSRealEstate);
-
   useEffect(() => {
     dispatch(propertyUSRealEstateFetch(id));
   }, []);
 
-  if (Object.entries(propertyUSRealEstate).length === 0) {
+  useEffect(() => {
+    console.log("property data changed to ", propertyData);
+    setTimeout(() => {
+      setPid(id);
+    }, 3000);
+  }, [propertyData]);
+
+  // console.log("propertyUSRealEstate ", propertyData);
+
+  console.log("Object entries777 ", Object.entries(propertyData).length);
+
+  // if (Object.entries(propertyUSRealEstate).length === 0) {
+  //   return <Spinner size="large" />;
+  // }
+  console.log(pid, id);
+  if (pid === 0 || id !== pid) {
     return <Spinner size="large" />;
   }
 
@@ -82,12 +98,12 @@ export function PropertyViewUSRealEstate({ route }) {
     minimumFractionDigits: 0,
   });
 
-  console.log("propertyUSRealEstate ", propertyUSRealEstate);
+  console.log("propertyUSRealEstate ", propertyData);
 
   let imageURLs = [];
 
-  if (propertyUSRealEstate.photos) {
-    imageURLs = propertyUSRealEstate.photos.map((image, index) => {
+  if (propertyData?.photos) {
+    imageURLs = propertyData.photos.map((image, index) => {
       return {
         id: index.toString(),
         thumbnail: image,
@@ -100,79 +116,66 @@ export function PropertyViewUSRealEstate({ route }) {
     imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
   }
 
-  const mapLatitude = parseFloat(
-    propertyUSRealEstate.address?.boundary?.coordinates[1],
-    10
-  );
+  let mapLatitude = undefined;
+  let mapLongitude = undefined;
 
-  const mapLongitude = parseFloat(
-    propertyUSRealEstate.address?.boundary?.coordinates[0],
-    10
-  );
+  if (propertyData?.location?.address?.coordinate?.lat) {
+    mapLatitude = parseFloat(propertyData.location.address.coordinate.lat, 10);
+  }
+
+  if (propertyData?.location?.address?.coordinate?.lon) {
+    mapLongitude = parseFloat(propertyData.location.address.coordinate.lon, 10);
+  }
 
   const initiateUber = () => {
-    let url = `uber://?action=setPickup&dropoff[latitude]=${mapLatitude}&dropoff[longitude]=${mapLongitude}`;
+    if (mapLatitude && mapLongitude) {
+      let url = `uber://?action=setPickup&dropoff[latitude]=${mapLatitude}&dropoff[longitude]=${mapLongitude}`;
 
-    Linking.openURL(url)
-      .then((data) => {
-        console.log("Uber Opened");
-      })
-      .catch(() => {
-        alert("Make sure Uber is installed on your device");
-      });
+      Linking.openURL(url)
+        .then((data) => {
+          console.log("Uber Opened");
+        })
+        .catch(() => {
+          alert("Make sure Uber is installed on your device");
+        });
+    } else {
+      return false;
+    }
   };
 
   const handleGetDirections = () => {
-    const data = {
-      destination: {
-        latitude: mapLatitude,
-        longitude: mapLongitude,
-      },
-      params: [
-        {
-          key: "travelmode",
-          value: "driving", // may be "walking", "bicycling" or "transit" as well
+    if (mapLatitude && mapLongitude) {
+      const data = {
+        destination: {
+          latitude: mapLatitude,
+          longitude: mapLongitude,
         },
-        {
-          key: "dir_action",
-          value: "navigate", // this instantly initializes navigation using the given travel mode
-        },
-      ],
-    };
+        params: [
+          {
+            key: "travelmode",
+            value: "driving", // may be "walking", "bicycling" or "transit" as well
+          },
+          {
+            key: "dir_action",
+            value: "navigate", // this instantly initializes navigation using the given travel mode
+          },
+        ],
+      };
 
-    getDirections(data);
+      getDirections(data);
+    } else {
+      return false;
+    }
   };
 
-  //   estimates: Object
-  // current_values: null
-  // forecast_values: Array(3)
-  // historical_values: Array(3)
-  // 0: Object
-  // estimates: Array(61)
-  // 0: Object
-  // date: "2023-09-14"
-  // estimate: 325000
-
-  // estimates.historical_values[0].estimates[0].date
-  // estimates.historical_values[0].estimates[0].estimate
-
-  const data = propertyUSRealEstate.estimates.historical_values[0].estimates
-    //  .reverse()
-    .map((item, index) => {
-      return { x: item.date, y: item.estimate };
-      //    return { x: new Date(item.date), y: item.estimate };
-    });
-
-  // console.log("DATA3 ", data3);
-
-  const data4 = [
-    { x: new Date("2016-06-03"), y: 100000 },
-    { x: new Date("2017-06-03"), y: 150000 },
-    { x: new Date("2018-06-03"), y: 200000 },
-    { x: new Date("2019-06-03"), y: 210000 },
-    { x: new Date("2021-06-03"), y: 220000 },
-    { x: new Date("2025-06-03"), y: 320000 },
-  ];
+  let data = [];
+  if (propertyData?.estimates?.historical_values[0]?.estimates) {
+    data = propertyData?.estimates?.historical_values[0]?.estimates?.map(
+      (item, index) => {
+        return { x: item.date, y: item.estimate };
+      }
+    );
+  }
 
   return (
     <Box border="1" borderRadius="md">
@@ -189,15 +192,15 @@ export function PropertyViewUSRealEstate({ route }) {
                 paddingTop: 10,
               }}
             >
-              {dollarUSLocale.format(propertyUSRealEstate.list_price)}
+              {dollarUSLocale.format(propertyData?.list_price)}
             </Text>
             <Text
               style={{
                 marginRight: 10,
               }}
             >
-              {propertyUSRealEstate.description?.beds} Beds /{" "}
-              {propertyUSRealEstate.description?.baths} Baths
+              {propertyData?.description?.beds} Beds /{" "}
+              {propertyData?.description?.baths} Baths
             </Text>
           </HStack>
           <HStack
@@ -213,30 +216,32 @@ export function PropertyViewUSRealEstate({ route }) {
                 marginLeft: 10,
               }}
             >
-              {propertyUSRealEstate.location.address.line}
+              {propertyData?.location?.address.line}
             </Text>
           </HStack>
           <HStack alignItems="center" space={1} justifyContent="space-between">
-            <Button
-              variant="outline"
-              title="View Map"
-              // onPress={() =>
-              //   navigation.navigate("Property Map", {
-              //     latitude: mapLatitude,
-              //     longitude: mapLongitude,
-              //   })
-              // }
-              style={{ flex: 1, marginLeft: 10 }}
-              leftIcon={
-                <MaterialCommunityIcons
-                  name="map-marker-radius"
-                  size={24}
-                  color="black"
-                />
-              }
-            >
-              View Map
-            </Button>
+            {mapLatitude && mapLongitude && (
+              <Button
+                variant="outline"
+                title="View Map"
+                onPress={() =>
+                  navigation.navigate("Property Map", {
+                    latitude: mapLatitude,
+                    longitude: mapLongitude,
+                  })
+                }
+                style={{ flex: 1, marginLeft: 10 }}
+                leftIcon={
+                  <MaterialCommunityIcons
+                    name="map-marker-radius"
+                    size={24}
+                    color="black"
+                  />
+                }
+              >
+                View Map
+              </Button>
+            )}
             <Button
               variant="outline"
               title="Get Directions"
@@ -259,18 +264,6 @@ export function PropertyViewUSRealEstate({ route }) {
             </Button>
           </HStack>
 
-          {/* <HStack alignItems="center" space={1} justifyContent="space-between">
-            <Text
-              style={{
-                flex: 1,
-                marginLeft: 15,
-                fontSize: 20,
-              }}
-            >
-              Features
-            </Text>
-          </HStack> */}
-          {/* {handleFeatures()} */}
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{
@@ -290,7 +283,7 @@ export function PropertyViewUSRealEstate({ route }) {
             <Text>Zestimate</Text>
             <Text>
               {dollarUSLocale.format(
-                propertyUSRealEstate.estimates?.forecast_values[0]?.estimates[0]
+                propertyData?.estimates?.forecast_values[0]?.estimates[0]
                   ?.estimate
               )}
             </Text>
@@ -302,20 +295,7 @@ export function PropertyViewUSRealEstate({ route }) {
             style={{ marginLeft: 10, marginRight: 10 }}
           >
             <Text>Price/Sq.Ft.</Text>
-            <Text>
-              {dollarUSLocale.format(propertyUSRealEstate.price_per_sqft)}
-            </Text>
-          </HStack>
-          <HStack
-            justifyContent="space-between"
-            mt="-3"
-            p="0"
-            style={{ marginLeft: 10, marginRight: 10 }}
-          >
-            <Text>Last sold price</Text>
-            <Text>
-              {dollarUSLocale.format(propertyUSRealEstate.last_sold_price)}
-            </Text>
+            <Text>{dollarUSLocale.format(propertyData?.price_per_sqft)}</Text>
           </HStack>
           <HStack
             justifyContent="space-between"
@@ -324,7 +304,7 @@ export function PropertyViewUSRealEstate({ route }) {
             style={{ marginLeft: 10, marginRight: 10 }}
           >
             <Text>Style</Text>
-            <Text>{propertyUSRealEstate.source?.raw?.style}</Text>
+            <Text>{propertyData?.source?.raw?.style}</Text>
           </HStack>
           <HStack
             justifyContent="space-between"
@@ -333,8 +313,9 @@ export function PropertyViewUSRealEstate({ route }) {
             style={{ marginLeft: 10, marginRight: 10 }}
           >
             <Text>Lot Sq.Ft.</Text>
-            <Text>{propertyUSRealEstate.description?.lot_sqft}</Text>
+            <Text>{propertyData?.description?.lot_sqft}</Text>
           </HStack>
+
           <HStack
             justifyContent="space-between"
             mt="-3"
@@ -342,7 +323,7 @@ export function PropertyViewUSRealEstate({ route }) {
             style={{ marginLeft: 10, marginRight: 10 }}
           >
             <Text>Year built</Text>
-            <Text>{propertyUSRealEstate.description?.year_built}</Text>
+            <Text>{propertyData?.description?.year_built}</Text>
           </HStack>
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
@@ -361,7 +342,7 @@ export function PropertyViewUSRealEstate({ route }) {
                 marginRight: 5,
               }}
             >
-              {propertyUSRealEstate.description?.text}
+              {propertyData?.description?.text}
             </Text>
           </HStack>
           <HStack alignItems="center" space={1} justifyContent="space-between">
@@ -404,6 +385,7 @@ export function PropertyViewUSRealEstate({ route }) {
               </VictoryChart>
             </Svg>
           </HStack>
+
           <HStack
             mt="-10"
             p="0"
@@ -417,11 +399,10 @@ export function PropertyViewUSRealEstate({ route }) {
                 fontSize: 20,
               }}
             >
-              Contact Agent - {propertyUSRealEstate.advertisers[0]?.name}
+              Contact Agent - {propertyData?.advertisers[0]?.name}
             </Text>
           </HStack>
-
-          {propertyUSRealEstate.advertisers[0]?.photo?.href && (
+          {propertyData?.advertisers[0]?.photo?.href && (
             <HStack
               alignItems="center"
               space={1}
@@ -431,14 +412,13 @@ export function PropertyViewUSRealEstate({ route }) {
                 <Image
                   style={{ paddingTop: "25px", marginTop: "25px" }}
                   source={{
-                    uri: `${propertyUSRealEstate.advertisers[0]?.photo?.href}`,
+                    uri: `${propertyData?.advertisers[0]?.photo?.href}`,
                   }}
                   alt="image"
                 />
               </AspectRatio>
             </HStack>
           )}
-
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Button
               title="Send Agent Message"

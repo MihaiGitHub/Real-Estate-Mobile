@@ -59,7 +59,7 @@ export function PropertiesMap() {
             }
           />
         ))}
-      {propertiesUSRealEstate.length > 0 &&
+      {/* {propertiesUSRealEstate.length > 0 &&
         propertiesUSRealEstate.map((marker, index) => (
           <Marker
             key={index}
@@ -74,7 +74,7 @@ export function PropertiesMap() {
               })
             }
           />
-        ))}
+        ))} */}
     </MapView>
   );
 }

@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 // import { saveMessage } from "../../actions/AgentsActions";
 
 export function PropertySendMessage({ route }) {
-  // return <Text>PropertySendMessage</Text>;
   // const { id, pid } = route.params;
   const navigation = useNavigation();
   const [message, setMessage] = useState("");
