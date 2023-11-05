@@ -14,7 +14,6 @@ import {
 } from "native-base";
 import { useSelector, useDispatch } from "react-redux";
 import { agentsFetch } from "../../actions/AgentsActions";
-//import GLOBALS from "../Common/Globals";
 import GLOBALS from "../Common/Globals";
 import { useNavigation } from "@react-navigation/native";
 import { Spinner } from "../Common/Spinner";

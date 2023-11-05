@@ -4,7 +4,7 @@ import GLOBALS from "../Common/Globals";
 import { AgentsList } from "./AgentsList";
 import { AgentView } from "./AgentView";
 import { AgentSearch } from "./AgentSearch";
-import { NavBarSearch } from "../Common/NavBarSearch";
+import { NavBarSearchAgents } from "../Common/NavBarSearchAgents";
 
 const AgentsStack = createNativeStackNavigator();
 
@@ -15,7 +15,7 @@ export function Agents() {
         name="Agent List"
         component={AgentsList}
         options={{
-          headerTitle: (props) => <NavBarSearch {...props} type="agents" />,
+          headerTitle: (props) => <NavBarSearchAgents {...props} />,
           headerStyle: {
             backgroundColor: GLOBALS.HEADER_COLOR,
           },

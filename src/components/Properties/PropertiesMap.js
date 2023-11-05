@@ -44,37 +44,52 @@ export function PropertiesMap() {
       //   onRegionChangeComplete={(region) => setRegion(region)}
     >
       {listFiltered.length > 0 &&
-        listFiltered.map((marker, index) => (
-          <Marker
-            key={index}
-            coordinate={{
-              latitude: parseFloat(marker.lat),
-              longitude: parseFloat(marker.lng),
-            }}
-            title={dollarUSLocale.format(marker.price)}
-            onCalloutPress={() =>
-              navigation.navigate("Property Info", {
-                id: marker.id,
-              })
-            }
-          />
-        ))}
-      {/* {propertiesUSRealEstate.length > 0 &&
-        propertiesUSRealEstate.map((marker, index) => (
-          <Marker
-            key={index}
-            coordinate={{
-              latitude: parseFloat(marker.location?.address?.coordinate?.lat),
-              longitude: parseFloat(marker.location?.address?.coordinate?.lon),
-            }}
-            title={dollarUSLocale.format(marker.list_price)}
-            onCalloutPress={() =>
-              navigation.navigate("Property Info US Real Estate", {
-                id: marker.property_id,
-              })
-            }
-          />
-        ))} */}
+        listFiltered.map((marker, index) => {
+          if (marker?.lat && marker?.lng) {
+            return (
+              <Marker
+                key={index}
+                coordinate={{
+                  latitude: parseFloat(marker.lat),
+                  longitude: parseFloat(marker.lng),
+                }}
+                title={dollarUSLocale.format(marker.price)}
+                onCalloutPress={() =>
+                  navigation.navigate("Property Info", {
+                    id: marker.id,
+                  })
+                }
+              />
+            );
+          }
+        })}
+      {propertiesUSRealEstate.length > 0 &&
+        propertiesUSRealEstate.map((marker, index) => {
+          if (
+            marker?.location?.address?.coordinate?.lat &&
+            marker?.location?.address?.coordinate?.lon
+          ) {
+            return (
+              <Marker
+                key={index}
+                coordinate={{
+                  latitude: parseFloat(
+                    marker.location?.address?.coordinate?.lat
+                  ),
+                  longitude: parseFloat(
+                    marker.location?.address?.coordinate?.lon
+                  ),
+                }}
+                title={dollarUSLocale.format(marker.list_price)}
+                onCalloutPress={() =>
+                  navigation.navigate("Property Info US Real Estate", {
+                    id: marker.property_id,
+                  })
+                }
+              />
+            );
+          }
+        })}
     </MapView>
   );
 }

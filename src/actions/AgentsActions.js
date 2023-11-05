@@ -56,3 +56,45 @@ export const agentsFiltered = (city, state) => async (dispatch) => {
     console.log(err);
   }
 };
+
+// export const agentsFiltered = (city, state) => async (dispatch) => {
+//   console.log("Agent city ", city, state);
+//   try {
+//     // let promise = new Promise((resolve, reject) => {
+//     AgentsService.getAgentsFiltered(city, state).then((response) => {
+//       console.log("AGENTS ", response);
+
+//       dispatch({
+//         type: AGENTS_FILTERED,
+//         payload: response.data,
+//       });
+//     });
+//     //  });
+
+//     //   let result = await promise; // wait until the promise resolves (*)
+
+//     // alert(result); // "done!"
+
+//     // console.log("AGENTS ", res);
+
+//     // dispatch({
+//     //   type: SEARCH_LAT_LNG,
+//     //   payload: { lat, lng },
+//     // });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+// async function f() {
+
+//   let promise = new Promise((resolve, reject) => {
+//     setTimeout(() => resolve("done!"), 1000)
+//   });
+
+//   let result = await promise; // wait until the promise resolves (*)
+
+//   alert(result); // "done!"
+// }
+
+// f();

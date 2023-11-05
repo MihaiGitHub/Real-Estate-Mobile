@@ -19,7 +19,7 @@ export function Properties() {
         name="Properties Main"
         component={NavBarTabs}
         options={{
-          headerTitle: (props) => <NavBarSearch {...props} type="properties" />,
+          headerTitle: (props) => <NavBarSearch {...props} />,
           headerStyle: {
             backgroundColor: GLOBALS.HEADER_COLOR,
           },

@@ -14,22 +14,20 @@ import {
 } from "native-base";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector, useDispatch } from "react-redux";
 
-export function NavBarSearch() {
+export function NavBarSearchAgents() {
   const navigation = useNavigation();
-  const { searchTerm } = useSelector((state) => state.properties);
 
   return (
     <VStack w="100%" minWidth={"100%"}>
       <Input
         onFocus={async () => {
-          navigation.navigate("Property Search");
+          navigation.navigate("Agent Search");
         }}
-        placeholder={searchTerm !== "" ? searchTerm : "Search properties"}
+        placeholder={"Search agents"}
         width="92%"
         borderRadius="4"
-        variant={"underlined"}
+        variant={"unstyled"}
         fontSize="14"
         InputLeftElement={
           <Icon

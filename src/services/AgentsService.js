@@ -18,7 +18,7 @@ const saveMessage = (id, message) => {
   });
 };
 
-const getAgentsFiltered = async (city, state) => {
+const getAgentsFiltered = (city, state) => {
   return axios
     .get(
       `${GLOBALS.BASE_URL}/agentsUSRealEstate?city=${city}&state_code=${state}`

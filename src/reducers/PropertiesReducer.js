@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   propertyId: "",
   loading: true,
   loadingProperty: true,
-  searchTerm: "Search",
+  searchTerm: "",
   searchLatLng: {},
   filtered: false,
 };
