@@ -28,7 +28,6 @@ import {
 } from "@expo/vector-icons";
 import { ImageGallery } from "@georstat/react-native-image-gallery";
 import getDirections from "react-native-google-maps-directions";
-//import { SliderBox } from "react-native-image-slider-box";
 import ImageCarousel from "./ImageCarousel";
 import { useNavigation } from "@react-navigation/native";
 import { propertyUSRealEstateFetch } from "../../actions/PropertiesActions";
@@ -43,7 +42,6 @@ import {
   VictoryTheme,
   VictoryVoronoiContainer,
   VictoryScatter,
-  //  VictoryToolTip,
   VictoryTooltip,
   VictoryAxis,
   VictoryZoomContainer,
@@ -60,13 +58,11 @@ export function PropertyViewUSRealEstate({ route }) {
   const closeGallery = () => setIsOpen(false);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  //const { propertyUSRealEstate } = useSelector((state) => state.properties);
   const propertyData = useSelector(
     (state) => state.properties.propertyUSRealEstate
   );
 
   const size = 400;
-
   const { id } = route.params;
 
   useEffect(() => {
@@ -80,14 +76,10 @@ export function PropertyViewUSRealEstate({ route }) {
     }, 3000);
   }, [propertyData]);
 
-  // console.log("propertyUSRealEstate ", propertyData);
-
-  console.log("Object entries777 ", Object.entries(propertyData).length);
-
   // if (Object.entries(propertyUSRealEstate).length === 0) {
   //   return <Spinner size="large" />;
   // }
-  console.log(pid, id);
+
   if (pid === 0 || id !== pid) {
     return <Spinner size="large" />;
   }
@@ -97,8 +89,6 @@ export function PropertyViewUSRealEstate({ route }) {
     currency: "USD",
     minimumFractionDigits: 0,
   });
-
-  console.log("propertyUSRealEstate ", propertyData);
 
   let imageURLs = [];
 

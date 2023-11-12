@@ -19,7 +19,6 @@ import {
   ScrollView,
 } from "native-base";
 import { Spinner } from "../Common/Spinner";
-// import { useNavigation } from "@react-navigation/native";
 import ImageCarousel from "./ImageCarousel";
 import "intl";
 import "intl/locale-data/jsonp/en"; // or any other locale you need
@@ -30,9 +29,6 @@ export function PropertiesList() {
   );
 
   const dispatch = useDispatch();
-  // const navigation = useNavigation();
-  console.log("loggingMessage");
-  //logMessage("dispatching propertiesFetch");
 
   useEffect(() => {
     dispatch(propertiesFetch());
@@ -127,8 +123,6 @@ export function PropertiesList() {
       propertiesUSRealEstate.length > 0
     ) {
       return propertiesUSRealEstate.map((item, index, array) => {
-        //  console.log("item777 ", item);
-
         if (item.photos && item.photos.length > 0) {
           const images = item.photos.map((image) => {
             return {
@@ -148,7 +142,7 @@ export function PropertiesList() {
             },
           ];
         }
-        console.log("IMAGES ", array[index]["images"]);
+
         return (
           <Box
             border="1"
@@ -198,13 +192,6 @@ export function PropertiesList() {
       );
     }
   };
-
-  // console.log(
-  //   "listFiltered ",
-  //   listFiltered,
-  //   "USRealEstate ",
-  //   propertiesUSRealEstate
-  // );
 
   return (
     <ScrollView>

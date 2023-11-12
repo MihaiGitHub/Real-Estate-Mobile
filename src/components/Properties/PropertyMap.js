@@ -5,16 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 export function PropertyMap({ route }) {
-  console.log("ROUTE ", route);
   const { latitude, longitude } = route.params;
 
   const { listFiltered } = useSelector((state) => state.properties);
   const dispatch = useDispatch();
   const navigation = useNavigation();
-
-  // useEffect(() => {
-  //   dispatch(findPropertyById());
-  // }, []);
 
   if (Array.isArray(listFiltered) && listFiltered.length > 0) {
     var { lat, lng } = listFiltered[0];

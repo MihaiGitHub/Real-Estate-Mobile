@@ -26,10 +26,8 @@ import {
 } from "@expo/vector-icons";
 import { ImageGallery } from "@georstat/react-native-image-gallery";
 import getDirections from "react-native-google-maps-directions";
-//import { SliderBox } from "react-native-image-slider-box";
 import ImageCarousel from "./ImageCarousel";
 import { useNavigation } from "@react-navigation/native";
-import { propertyUSRealEstateFetch } from "../../actions/PropertiesActions";
 import GLOBALS from "../Common/Globals";
 import "intl";
 import "intl/locale-data/jsonp/en"; // or any other locale you need
@@ -40,7 +38,6 @@ export function PropertyView({ route }) {
   const openGallery = () => setIsOpen(true);
   const closeGallery = () => setIsOpen(false);
   const navigation = useNavigation();
-  // const dispatch = useDispatch();
 
   const dollarUSLocale = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -48,32 +45,9 @@ export function PropertyView({ route }) {
     minimumFractionDigits: 0,
   });
 
-  console.log("route ", route);
-
   const { id } = route.params;
-
   const { list } = useSelector((state) => state.properties);
-
   const property = list.find((x) => x.id === id);
-
-  console.log("PROPERTIES ", list);
-
-  // useEffect(() => {
-  //   if (list.length > 0) {
-  //     const property = list.find((x) => x.id === id);
-  //     setPropertyDB(property);
-  //   } else {
-  //     dispatch(propertyUSRealEstateFetch(id));
-  //   }
-  // }, []);
-
-  // const property =
-  //   list.length > 0
-  //     ? list.find((x) => x.id === id)
-  //     : propertiesUSRealEstate.find((x) => x.property_id === id);
-
-  console.log("property ", property);
-  // console.log("propertyUSRealEstate ", propertyUSRealEstate);
 
   // if (property.images.length === 0) {
   //   imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
@@ -137,136 +111,6 @@ export function PropertyView({ route }) {
 
     getDirections(data);
   };
-
-  // const handleFeatures = () => {
-  //   if (property.features) {
-  //     let features = property.features.split(",");
-
-  //     if (features.length > 1) {
-  //       return (
-  //         <>
-  //           <HStack
-  //             alignItems="center"
-  //             space={1}
-  //             justifyContent="space-between"
-  //           >
-  //             <HStack space={5} justifyContent="center">
-  //               {features[0] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                     marginLeft: 15,
-  //                   }}
-  //                 >
-  //                   - {features[0]}
-  //                 </Text>
-  //               )}
-  //               {features[1] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                   }}
-  //                 >
-  //                   - {features[1]}
-  //                 </Text>
-  //               )}
-  //               {features[1] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                   }}
-  //                 >
-  //                   - {features[2]}
-  //                 </Text>
-  //               )}
-  //             </HStack>
-  //           </HStack>
-  //         </>
-  //       );
-  //     }
-  //     return (
-  //       <>
-  //         <HStack alignItems="center" space={1} justifyContent="space-between">
-  //           <HStack space={5} justifyContent="center">
-  //             {features[0] && (
-  //               <Text
-  //                 style={{
-  //                   flex: 1,
-  //                   marginLeft: 15,
-  //                 }}
-  //               >
-  //                 - {features[0]}
-  //               </Text>
-  //             )}
-  //           </HStack>
-  //         </HStack>
-  //       </>
-  //     );
-  //   }
-
-  //   if (property.tags) {
-  //     if (property.tags.length > 1) {
-  //       return (
-  //         <>
-  //           <HStack
-  //             alignItems="center"
-  //             space={1}
-  //             justifyContent="space-between"
-  //           >
-  //             <HStack space={5} justifyContent="center">
-  //               {property.tags[0] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                     marginLeft: 15,
-  //                   }}
-  //                 >
-  //                   - {property.tags[0].replaceAll("_", " ")}
-  //                 </Text>
-  //               )}
-  //               {property.tags[1] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                   }}
-  //                 >
-  //                   - {property.tags[1].replaceAll("_", " ")}
-  //                 </Text>
-  //               )}
-  //               {property.tags[1] && (
-  //                 <Text
-  //                   style={{
-  //                     flex: 0.4,
-  //                   }}
-  //                 >
-  //                   - {property.tags[2].replaceAll("_", " ")}
-  //                 </Text>
-  //               )}
-  //             </HStack>
-  //           </HStack>
-  //         </>
-  //       );
-  //     }
-  //     return (
-  //       <>
-  //         <HStack alignItems="center" space={1} justifyContent="space-between">
-  //           <HStack space={5} justifyContent="center">
-  //             {features[0] && (
-  //               <Text
-  //                 style={{
-  //                   flex: 1,
-  //                   marginLeft: 15,
-  //                 }}
-  //               >
-  //                 - {property.tags[0]}
-  //               </Text>
-  //             )}
-  //           </HStack>
-  //         </HStack>
-  //       </>
-  //     );
-  //   }
-  // };
 
   return (
     <Box border="1" borderRadius="md">
@@ -406,19 +250,6 @@ export function PropertyView({ route }) {
             <Text>Build Size</Text>
             <Text>{property.build_size}</Text>
           </HStack>
-
-          {/* <HStack alignItems="center" space={1} justifyContent="space-between">
-            <Text
-              style={{
-                flex: 1,
-                marginLeft: 15,
-                fontSize: 20,
-              }}
-            >
-              Features
-            </Text>
-          </HStack> */}
-          {/* {handleFeatures()} */}
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Text
               style={{

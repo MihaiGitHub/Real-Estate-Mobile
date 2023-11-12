@@ -2,7 +2,7 @@
   "expo": {
     "name": "Century Homes",
     "slug": "century-homes",
-    "version": "2.5.1",
+    "version": "2.7.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -25,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "versionCode": 169,
+      "versionCode": 195,
       "package": "com.century.homes"
     },
     "web": {
@@ -35,6 +35,14 @@
       "eas": {
         "projectId": "XXXX"
       }
-    }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]
+    ]
   }
 }

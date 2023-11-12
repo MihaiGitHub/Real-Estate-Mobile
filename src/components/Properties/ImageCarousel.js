@@ -10,48 +10,17 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-// Default Props
 const defaults = {
   height: 200,
   width: Dimensions.get("window").width,
   delay: 5000,
 };
 
-// // Default Image Item
-// const Item = ({ title, url, height, width, onPress }) => {
-//   return (
-//     <TouchableOpacity
-//       activeOpacity={0.8}
-//       style={[styles.imageContainer, { height: height, width: width }]}
-//       onPress={onPress}
-//     >
-//       <Image source={{ uri: url }} style={[styles.image, { height: height }]} />
-//       <View style={styles.titleContainer}>
-//         <Text style={styles.title}>{title}</Text>
-//         {/* {title && <Text style={styles.title}>{title} </Text>}
-//             {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>} */}
-//       </View>
-//     </TouchableOpacity>
-//   );
-// };
-
-// // Default On Press Action
-// const handlePress = (item) => {
-//   console.log("Pressed", item);
-
-//   navigation.navigate("Property Info", {
-//     item,
-//   });
-// };
-
-// Carousal Component
 export default function ImageCarousel({
   data,
   height = defaults.height,
   width = defaults.width,
   delay = defaults.delay,
-  // onPress = handlePress,
-  // ItemElement = Item,
   openGallery,
   type,
 }) {
@@ -59,9 +28,7 @@ export default function ImageCarousel({
   const scrollView = useRef();
   const navigation = useNavigation();
 
-  // Script which will only executed when component initilizes
   useEffect(() => {
-    // console.log("DATA ", data);
     const fn = setInterval(() => {
       setselectedIndex((oldCount) =>
         oldCount === data.length - 1 ? 0 : oldCount + 1
@@ -103,19 +70,8 @@ export default function ImageCarousel({
             <TouchableOpacity
               activeOpacity={0.8}
               style={[styles.imageContainer, { height: height, width: width }]}
-              // onPress={() =>
-              //   openGallery === false
-              //     ? navigation.navigate("Property Info", {
-              //         id: item.id,
-              //       })
-              //     : openGallery()
-              // }
               onPress={() => {
                 if (openGallery === false) {
-                  // navigation.navigate("Property Info", {
-                  //   id: item.id,
-                  //   //   type,
-                  // });
                   if (type === "USRealEstate") {
                     navigation.navigate("Property Info US Real Estate", {
                       id: item.id,

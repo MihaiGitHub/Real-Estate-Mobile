@@ -25,9 +25,6 @@ export function AgentsList() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  console.log("Agents ", agents);
-  console.log("AgentsDB ", agentsDB);
-
   useEffect(() => {
     dispatch(agentsFetch());
   }, []);

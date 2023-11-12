@@ -21,28 +21,17 @@ export function PaymentCalculator() {
   });
 
   const downPaymentTotal = (price * downPayment) / 100;
-
   const finalPrice = price - downPaymentTotal;
-
   const monthlyInterestRateTotal = (finalPrice * interestRate) / 100 / 12;
-
   const monthlyPrincipalTotal = Math.round(finalPrice / 360);
-
   const monthlyTaxesTotal = (monthlyInterestRateTotal + finalPrice / 360) / 12;
 
   const totalMonthlyPayment =
     monthlyInterestRateTotal + monthlyPrincipalTotal + monthlyTaxesTotal;
 
-  // flexbox react native
-  // https://reactnative.dev/docs/flexbox?language=javascript
-
-  //color scales: "grayscale", "qualitative", "heatmap", "warm", "cool", "red", "green", "blue"
   return (
     <Box border="1" borderRadius="md">
       <VStack space="4" divider={<Divider />}>
-        {/* <Box px="4" pt="4">
-          Payment Calculator
-        </Box> */}
         <Box
           px="6"
           style={{
@@ -54,7 +43,6 @@ export function PaymentCalculator() {
         >
           <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
             <VictoryPie
-              //    colorScale={["tomato", "orange", "gold", "cyan", "navy"]}
               colorScale="qualitative"
               standalone={false}
               width={400}
@@ -93,9 +81,6 @@ export function PaymentCalculator() {
           px="6"
           style={{
             display: "flex",
-            // flexDirection: "row",
-            // justifyContent: "flex-start",
-            // alignItems: "flex-start",
           }}
         >
           <Text>Price: {dollarUSLocale.format(price)}</Text>

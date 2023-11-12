@@ -20,16 +20,9 @@ import GLOBALS from "../Common/Globals";
 export function AgentView({ route }) {
   const { item } = route.params;
 
-  console.log("item ", item);
-
   const initiateWhatsApp = (message, number) => {
-    // Check for perfect 10 digit length
-    // if (mobileNumber.length != 10) {
-    //   alert("Please insert correct WhatsApp number");
-    //   return;
-    // }
-
     let url = "whatsapp://send?text=" + message + "&phone=1" + number;
+
     Linking.openURL(url)
       .then((data) => {
         console.log("WhatsApp Opened");
@@ -40,12 +33,6 @@ export function AgentView({ route }) {
   };
 
   const initiatePhoneCall = (number) => {
-    // Check for perfect 10 digit length
-    // if (mobileNumber.length != 10) {
-    //   alert("Please insert correct WhatsApp number");
-    //   return;
-    // }
-
     let url = "tel:" + number;
 
     Linking.openURL(url)
