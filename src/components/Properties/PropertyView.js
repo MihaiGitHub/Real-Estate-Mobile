@@ -63,6 +63,8 @@ export function PropertyView({ route }) {
     };
   });
 
+  console.log("imageURLs ", imageURLs);
+
   //   // let agentImage = "";
 
   //   // if (props.property.user.picture) {

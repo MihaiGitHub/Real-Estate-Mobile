@@ -100,7 +100,7 @@ export function AgentView({ route }) {
           <Stack p="4" space={3}>
             <Stack space={2}>
               <Heading size="md" ml="-1">
-                {item.first_name ? item.first_name : item.fname}
+                {item.first_name ? item.first_name : item.fname}{" "}
                 {item.last_name ? item.last_name : item.lname}
               </Heading>
               <Text

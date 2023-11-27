@@ -92,12 +92,12 @@ export function PropertyViewUSRealEstate({ route }) {
 
   let imageURLs = [];
 
-  if (propertyData?.photos) {
+  if (propertyData.photos) {
     imageURLs = propertyData.photos.map((image, index) => {
       return {
         id: index.toString(),
         thumbnail: image,
-        url: image.href,
+        url: image.href.replace("http://", "https://"),
         title: image.description,
         description: "description",
       };
@@ -105,6 +105,8 @@ export function PropertyViewUSRealEstate({ route }) {
   } else {
     imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
   }
+
+  console.log("propertyData7777 ", propertyData);
 
   let mapLatitude = undefined;
   let mapLongitude = undefined;
@@ -399,13 +401,19 @@ export function PropertyViewUSRealEstate({ route }) {
               justifyContent="space-between"
             >
               <AspectRatio w="100%" ratio={16 / 14}>
-                <Image
-                  style={{ paddingTop: "25px", marginTop: "25px" }}
-                  source={{
-                    uri: `${propertyData?.advertisers[0]?.photo?.href}`,
-                  }}
-                  alt="image"
-                />
+                {propertyData.advertisers[0].photo.href && (
+                  <Image
+                    style={{ paddingTop: "25px", marginTop: "25px" }}
+                    source={{
+                      //   uri: `${propertyData?.advertisers[0]?.photo?.href}`,
+                      uri: propertyData.advertisers[0].photo.href.replace(
+                        "http://",
+                        "https://"
+                      ),
+                    }}
+                    alt="image"
+                  />
+                )}
               </AspectRatio>
             </HStack>
           )}
