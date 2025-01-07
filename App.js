@@ -24,11 +24,13 @@ import * as SplashScreen from "expo-splash-screen";
 SplashScreen.preventAutoHideAsync();
 // hide splashscreen below?
 
+/*
 Sentry.init({
   dsn: GLOBALS.SENTRY_DSN,
   enableInExpoDevelopment: true,
   debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
+*/
 
 const Tab = createBottomTabNavigator();
 

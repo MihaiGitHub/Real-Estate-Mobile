@@ -63,7 +63,15 @@ export function PropertyView({ route }) {
     };
   });
 
-  console.log("imageURLs ", imageURLs);
+  const imageURLsGallery = property.images.map((image, index) => {
+    return {
+      id: index.toString(),
+      thumbnail: image,
+      url: GLOBALS.IMAGE_PATH_AWS + image.url,
+      title: image.title,
+      description: "description",
+    };
+  });
 
   //   // let agentImage = "";
 
@@ -288,7 +296,7 @@ export function PropertyView({ route }) {
               <Image
                 style={{ paddingTop: "25px", marginTop: "25px" }}
                 source={{
-                  uri: `${GLOBALS.TEMP_IMAGE_PATH}${property.user.picture}`,
+                  uri: `${GLOBALS.IMAGE_PATH_AWS}${property.user.picture}`,
                 }}
                 alt="image"
               />
@@ -315,7 +323,7 @@ export function PropertyView({ route }) {
             </Button>
           </HStack>
         </VStack>
-        <ImageGallery close={closeGallery} isOpen={isOpen} images={imageURLs} />
+        <ImageGallery close={closeGallery} isOpen={isOpen} images={imageURLsGallery} />
       </ScrollView>
     </Box>
   );

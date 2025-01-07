@@ -13,9 +13,11 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "newArchEnabled": true,
       "supportsTablet": true
     },
     "android": {
+      "newArchEnabled": true,
       "config": {
         "googleMaps": {
           "apiKey": "XXXX"

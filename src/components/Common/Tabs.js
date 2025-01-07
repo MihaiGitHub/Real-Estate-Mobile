@@ -22,13 +22,16 @@ export function NavBarTabs() {
     { key: "second", title: "Map" },
   ]);
 
-  const renderTabBar = (props) => (
-    <TabBar
-      {...props}
-      indicatorStyle={{ backgroundColor: "white" }}
-      style={{ backgroundColor: GLOBALS.HEADER_COLOR }}
-    />
-  );
+  const renderTabBar = (props) => {
+    const { key, ...restProps } = props; // Ignore the key prop
+    return (
+      <TabBar
+        {...restProps}
+        indicatorStyle={{ backgroundColor: "white" }}
+        style={{ backgroundColor: GLOBALS.HEADER_COLOR }}
+      />
+    );
+  };
 
   return (
     <TabView

@@ -9,6 +9,7 @@ import {
   Text,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import GLOBALS from "../Common/Globals";
 
 const defaults = {
   height: 200,
@@ -66,8 +67,8 @@ export default function ImageCarousel({
         onContentSizeChange={() => scrollView.current.scrollToEnd()}
       >
         <View style={styles.carousalContainer}>
-          {data.map((item, index) => (
-            <TouchableOpacity
+          {data.map((item, index) => {
+            return <TouchableOpacity
               activeOpacity={0.8}
               style={[styles.imageContainer, { height: height, width: width }]}
               onPress={() => {
@@ -86,9 +87,9 @@ export default function ImageCarousel({
                 }
               }}
               key={index}
-            >
+            >              
               <Image
-                source={{ uri: item.url }}
+                source={{ uri: GLOBALS.IMAGE_PATH_AWS + item.url }}
                 style={[styles.image, { height: height }]}
               />
               {openGallery === false && (
@@ -97,7 +98,7 @@ export default function ImageCarousel({
                 </View>
               )}
             </TouchableOpacity>
-          ))}
+          })}
         </View>
       </ScrollView>
     </View>

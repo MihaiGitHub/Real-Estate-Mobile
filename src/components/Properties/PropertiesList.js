@@ -22,6 +22,7 @@ import { Spinner } from "../Common/Spinner";
 import ImageCarousel from "./ImageCarousel";
 import "intl";
 import "intl/locale-data/jsonp/en"; // or any other locale you need
+import GLOBALS from "../Common/Globals";
 
 export function PropertiesList() {
   const { listFiltered, propertiesUSRealEstate } = useSelector(
@@ -47,7 +48,7 @@ export function PropertiesList() {
   const renderProperties = () => {
     if (Array.isArray(listFiltered) && listFiltered.length > 0) {
       return listFiltered.map((item, index, array) => {
-        console.log("item ", item);
+        
         if (item.properties_images.length > 0) {
           const images = item.properties_images.map((image) => {
             return {

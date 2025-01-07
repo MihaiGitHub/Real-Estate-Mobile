@@ -16,7 +16,7 @@ export const propertiesFetch = () => async (dispatch) => {
     dispatch({
       type: PROPERTIES_FETCH_SUCCESS,
       payload: res.data,
-    });
+    }); 
   } catch (err) {
     console.log(err);
   }

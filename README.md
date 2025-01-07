@@ -25,7 +25,7 @@ Update the following file with the Sentry DSN
 
 # Running the client
 
-`npx expo start --tunnel`
+`npx expo start --tunnel` or `npm start --lan`
 
 # Running Tests
 
