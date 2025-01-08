@@ -49,11 +49,13 @@ export function PropertyView({ route }) {
   const { list } = useSelector((state) => state.properties);
   const property = list.find((x) => x.id === id);
 
+  console.log('property ', property)
+
   // if (property.images.length === 0) {
   //   imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
   // }
 
-  const imageURLs = property.images.map((image, index) => {
+  const imageURLs = property.properties_images.map((image, index) => {
     return {
       id: index.toString(),
       thumbnail: image,
@@ -63,7 +65,7 @@ export function PropertyView({ route }) {
     };
   });
 
-  const imageURLsGallery = property.images.map((image, index) => {
+  const imageURLsGallery = property.properties_images.map((image, index) => {
     return {
       id: index.toString(),
       thumbnail: image,

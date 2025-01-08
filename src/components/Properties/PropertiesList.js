@@ -46,77 +46,79 @@ export function PropertiesList() {
   });
 
   const renderProperties = () => {
+
     if (Array.isArray(listFiltered) && listFiltered.length > 0) {
-      return listFiltered.map((item, index, array) => {
-        
-        if (item.properties_images.length > 0) {
-          const images = item.properties_images.map((image) => {
-            return {
-              id: item.id,
-              url: image.url,
-              title: item.title,
+          console.log('Have properties ', listFiltered)
+
+          return listFiltered.map((item) => {
+            const updatedListFiltered = {
+              ...item, // Spread the original item properties
+              properties_images: item.properties_images.length > 0
+                ? item.properties_images.map((image) => ({
+                    id: item.id,
+                    url: image.url,
+                    title: item.title,
+                  }))
+                : [], // Return an empty array if properties_images is empty
             };
-          });
 
-          array[index]["images"] = images;
-        } else {
-          array[index]["images"] = [
-            {
-              id: item.id,
-              url: `https://ssl.cdn-redfin.com/photo/115/bigphoto/382/22304382_0.jpg`,
-              title: item.title,
-            },
-          ];
-        }
+            console.log('ITEM ', updatedListFiltered['properties_images'])
 
-        return (
-          <Box
-            border="1"
-            borderRadius="md"
-            key={index}
-            style={{ borderBottom: 100 }}
-          >
-            <VStack space="0">
-              <Box>
-                <ImageCarousel
-                  data={array[index]["images"]}
-                  openGallery={false}
-                  type="DB"
-                />
-              </Box>
-              <HStack
-                alignItems="center"
-                space={0}
-                justifyContent="space-between"
-              >
-                <Text
-                  style={{
-                    flex: 0.36,
-                    marginLeft: 15,
-                    fontSize: 24,
-                    paddingTop: 10,
-                  }}
+            return (
+                <Box
+                  border="1"
+                  borderRadius="md"
+                  key={item.id}
+                  style={{ borderBottom: 100 }}
                 >
-                  {dollarUSLocale.format(item.price)}
-                </Text>
-                <Text style={{ flex: 0.36 }}>
-                  {item.bedrooms} Beds / {item.bathrooms} Baths
-                </Text>
-              </HStack>
-              <Box px="4" pb="1" pt={0}>
-                {item.address}
-              </Box>
-            </VStack>
-          </Box>
-        );
-      });
-    } else {
-      ToastAndroid.show(
-        "No properties found near this location!",
-        ToastAndroid.LONG
-      );
-    }
+                  <VStack space="0">
+                    <Box>
+                      <ImageCarousel
+                      data={updatedListFiltered['properties_images']}
+                    //    data={array[index]["images"]}
+                        openGallery={false}
+                        type="DB"
+                      />
+                    </Box>
+                    <HStack
+                      alignItems="center"
+                      space={0}
+                      justifyContent="space-between"
+                    >
+                      <Text
+                        style={{
+                          flex: 0.36,
+                          marginLeft: 15,
+                          fontSize: 24,
+                          paddingTop: 10,
+                        }}
+                      >
+                        {dollarUSLocale.format(item.price)}
+                      </Text>
+                      <Text style={{ flex: 0.36 }}>
+                        {item.bedrooms} Beds / {item.bathrooms} Baths
+                      </Text>
+                    </HStack>
+                    <Box px="4" pb="1" pt={0}>
+                      {item.address}
+                    </Box>
+                  </VStack>
+                </Box>
+              );
+          });
+          
+
+            // console.log("updatedListFiltered ", updatedListFiltered)
+            // console.log("updatedListFiltered777 images ", updatedListFiltered[0]['properties_images'])
+
+        } else {
+          ToastAndroid.show(
+            "No properties found near this location!",
+            ToastAndroid.LONG
+          );
+        }
   };
+
 
   const renderUSRealEstateProperties = () => {
     if (
