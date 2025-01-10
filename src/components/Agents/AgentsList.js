@@ -33,6 +33,8 @@ export function AgentsList() {
     return <Spinner size="large" />;
   }
 
+  console.log('agentsDB ', agentsDB)
+
   return (
     <Box>
       {agentsDB && agentsDB.length > 0 && (
@@ -63,7 +65,7 @@ export function AgentsList() {
                   <Avatar
                     size="48px"
                     source={{
-                      uri: `${GLOBALS.TEMP_IMAGE_PATH}${item.picture}`,
+                      uri: `${GLOBALS.IMAGE_PATH_AWS}${item.picture}`,
                     }}
                   />
                   <VStack>

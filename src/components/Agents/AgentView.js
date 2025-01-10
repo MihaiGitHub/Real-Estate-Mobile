@@ -74,7 +74,7 @@ export function AgentView({ route }) {
                 source={{
                   uri: item.advertiser_id
                     ? `${item.photo.href}`
-                    : `${GLOBALS.TEMP_IMAGE_PATH}${item.picture}`,
+                    : `${GLOBALS.IMAGE_PATH_AWS}${item.picture}`,
                 }}
                 alt="image"
               />
