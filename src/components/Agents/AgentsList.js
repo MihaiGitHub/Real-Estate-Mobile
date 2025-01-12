@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import { TouchableHighlight } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
   FlatList,
-  Heading,
   Avatar,
   HStack,
   VStack,
   Text,
   Spacer,
-  Center,
-  NativeBaseProvider,
 } from "native-base";
-import { useSelector, useDispatch } from "react-redux";
 import { agentsFetch } from "../../actions/AgentsActions";
 import GLOBALS from "../Common/Globals";
 import { useNavigation } from "@react-navigation/native";
@@ -33,10 +30,8 @@ export function AgentsList() {
     return <Spinner size="large" />;
   }
 
-  console.log('agentsDB ', agentsDB)
-
   return (
-    <Box>
+    <Box style={{ marginBottom: 70 }}>
       {agentsDB && agentsDB.length > 0 && (
         <FlatList
           data={agentsDB}

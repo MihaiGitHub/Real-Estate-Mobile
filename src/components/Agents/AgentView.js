@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Linking } from "react-native";
 import {
   Box,
@@ -10,7 +10,6 @@ import {
   Center,
   HStack,
   Stack,
-  NativeBaseProvider,
   ScrollView,
 } from "native-base";
 import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
