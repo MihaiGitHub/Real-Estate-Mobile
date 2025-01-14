@@ -2,27 +2,11 @@ import React, { useEffect } from "react";
 import { ToastAndroid } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { propertiesFetch } from "../../actions/PropertiesActions";
-import {
-  Box,
-  FlatList,
-  Heading,
-  Avatar,
-  HStack,
-  VStack,
-  AspectRatio,
-  Text,
-  Stack,
-  Image,
-  Spacer,
-  Center,
-  NativeBaseProvider,
-  ScrollView,
-} from "native-base";
+import { Box, HStack, VStack, Text, ScrollView } from "native-base";
 import { Spinner } from "../Common/Spinner";
 import ImageCarousel from "./ImageCarousel";
 import "intl";
 import "intl/locale-data/jsonp/en"; // or any other locale you need
-import GLOBALS from "../Common/Globals";
 
 export function PropertiesList() {
   const { listFiltered, propertiesUSRealEstate } = useSelector(
@@ -46,79 +30,68 @@ export function PropertiesList() {
   });
 
   const renderProperties = () => {
-
     if (Array.isArray(listFiltered) && listFiltered.length > 0) {
-          console.log('Have properties ', listFiltered)
+      return listFiltered.map((item) => {
+        const updatedListFiltered = {
+          ...item, // Spread the original item properties
+          properties_images:
+            item.properties_images.length > 0
+              ? item.properties_images.map((image) => ({
+                  id: item.id,
+                  url: image.url,
+                  title: item.title,
+                }))
+              : [], // Return an empty array if properties_images is empty
+        };
 
-          return listFiltered.map((item) => {
-            const updatedListFiltered = {
-              ...item, // Spread the original item properties
-              properties_images: item.properties_images.length > 0
-                ? item.properties_images.map((image) => ({
-                    id: item.id,
-                    url: image.url,
-                    title: item.title,
-                  }))
-                : [], // Return an empty array if properties_images is empty
-            };
-
-            console.log('ITEM ', updatedListFiltered['properties_images'])
-
-            return (
-                <Box
-                  border="1"
-                  borderRadius="md"
-                  key={item.id}
-                  style={{ borderBottom: 100 }}
+        return (
+          <Box
+            border="1"
+            borderRadius="md"
+            key={item.id}
+            style={{ borderBottom: 100 }}
+          >
+            <VStack space="0">
+              <Box>
+                <ImageCarousel
+                  data={updatedListFiltered["properties_images"]}
+                  openGallery={false}
+                  type="DB"
+                />
+              </Box>
+              <HStack
+                alignItems="center"
+                space={0}
+                justifyContent="space-between"
+              >
+                <Text
+                  style={{
+                    flex: 0.36,
+                    marginLeft: 15,
+                    fontSize: 24,
+                    paddingTop: 10,
+                  }}
                 >
-                  <VStack space="0">
-                    <Box>
-                      <ImageCarousel
-                      data={updatedListFiltered['properties_images']}
-                    //    data={array[index]["images"]}
-                        openGallery={false}
-                        type="DB"
-                      />
-                    </Box>
-                    <HStack
-                      alignItems="center"
-                      space={0}
-                      justifyContent="space-between"
-                    >
-                      <Text
-                        style={{
-                          flex: 0.36,
-                          marginLeft: 15,
-                          fontSize: 24,
-                          paddingTop: 10,
-                        }}
-                      >
-                        {dollarUSLocale.format(item.price)}
-                      </Text>
-                      <Text style={{ flex: 0.36 }}>
-                        {item.bedrooms} Beds / {item.bathrooms} Baths
-                      </Text>
-                    </HStack>
-                    <Box px="4" pb="1" pt={0}>
-                      {item.address}
-                    </Box>
-                  </VStack>
-                </Box>
-              );
-          });
-          
-
-            // console.log("updatedListFiltered ", updatedListFiltered)
-            // console.log("updatedListFiltered777 images ", updatedListFiltered[0]['properties_images'])
-
-        } else {
-          ToastAndroid.show(
-            "No properties found near this location!",
-            ToastAndroid.LONG
-          );
-        }
+                  {dollarUSLocale.format(item.price)}
+                </Text>
+                <Text style={{ flex: 0.36 }}>
+                  {item.bedrooms} Beds / {item.bathrooms} Baths
+                </Text>
+              </HStack>
+              <Box px="4" pb="1" pt={0}>
+                {item.address}
+              </Box>
+            </VStack>
+          </Box>
+        );
+      });
+    } else {
+      ToastAndroid.show(
+        "No properties found near this location!",
+        ToastAndroid.LONG
+      );
+    }
   };
-
 
   const renderUSRealEstateProperties = () => {
     if (
@@ -177,7 +150,7 @@ export function PropertiesList() {
                   {dollarUSLocale.format(item.list_price)}
                 </Text>
                 <Text style={{ flex: 0.36 }}>
-                  {item.description?.beds} Beds / {item.description?.baths}{" "}
+                  {item.description?.beds} Beds / {item.description?.baths}
                   Baths
                 </Text>
               </HStack>

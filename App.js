@@ -1,16 +1,11 @@
-import { Provider, useSelector, useDispatch } from "react-redux";
-//import { applyMiddleware } from "redux";
+import "react-native-get-random-values";
+import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-
-//import thunk from "redux-thunk";
-//import reducers from "./src/reducers";
 import PropertiesReducer from "./src/reducers/PropertiesReducer";
 import AgentsReducer from "./src/reducers/AgentsReducer";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
-
 import { Properties } from "./src/components/Properties";
 import { Agents } from "./src/components/Agents";
 import { Profile } from "./src/components/Profile";
@@ -89,19 +84,13 @@ const store = (preloadedState) =>
       properties: PropertiesReducer,
       agents: AgentsReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        immutableCheck: false, // Disable immutability check
+        serializableCheck: false, // Optionally disable serializability check if not needed
+      }),
     preloadedState,
   });
-// const store = configureStore({
-//   reducer: reducers,
-// });
-
-// export default function App() {
-//   setTimeout(() => {
-//     SplashScreen.hideAsync();
-//   }, 2000);
-
-//   return <Home />;
-// }
 
 export default function App() {
   // hide spashscreen
@@ -119,20 +108,3 @@ export default function App() {
     </Provider>
   );
 }
-
-// export default function App() {
-//   // hide spashscreen
-//   setTimeout(() => {
-//     SplashScreen.hideAsync();
-//   }, 2000);
-
-//   return (
-//     <Provider store={store()}>
-//       <NavigationContainer>
-//         <NativeBaseProvider>
-//           <Home />
-//         </NativeBaseProvider>
-//       </NavigationContainer>
-//     </Provider>
-//   );
-// }

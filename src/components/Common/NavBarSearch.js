@@ -1,31 +1,20 @@
 import React from "react";
-import {
-  VStack,
-  Input,
-  Button,
-  IconButton,
-  Icon,
-  Text,
-  NativeBaseProvider,
-  Center,
-  Box,
-  Divider,
-  Heading,
-} from "native-base";
+import { VStack, Input, Icon } from "native-base";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 export function NavBarSearch() {
   const navigation = useNavigation();
   const { searchTerm } = useSelector((state) => state.properties);
 
+  console.log("Navbar");
+
   return (
     <VStack w="100%" minWidth={"100%"}>
       <Input
-        onFocus={async () => {
-          navigation.navigate("Property Search");
-        }}
+        bg="transparent"
+        onPressIn={() => navigation.navigate("Property Search")}
         placeholder={searchTerm !== "" ? searchTerm : "Search properties"}
         width="92%"
         borderRadius="4"

@@ -68,36 +68,45 @@ export default function ImageCarousel({
       >
         <View style={styles.carousalContainer}>
           {data.map((item, index) => {
-            return <TouchableOpacity
-              activeOpacity={0.8}
-              style={[styles.imageContainer, { height: height, width: width }]}
-              onPress={() => {
-                if (openGallery === false) {
-                  if (type === "USRealEstate") {
-                    navigation.navigate("Property Info US Real Estate", {
-                      id: item.id,
-                    });
+            const imgUrl = item.url.includes("https")
+              ? item.url
+              : GLOBALS.IMAGE_PATH_AWS + item.url;
+
+            return (
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={[
+                  styles.imageContainer,
+                  { height: height, width: width },
+                ]}
+                onPress={() => {
+                  if (openGallery === false) {
+                    if (type === "USRealEstate") {
+                      navigation.navigate("Property Info US Real Estate", {
+                        id: item.id,
+                      });
+                    } else {
+                      navigation.navigate("Property Info", {
+                        id: item.id,
+                      });
+                    }
                   } else {
-                    navigation.navigate("Property Info", {
-                      id: item.id,
-                    });
+                    openGallery();
                   }
-                } else {
-                  openGallery();
-                }
-              }}
-              key={index}
-            >              
-              <Image
-                source={{ uri: GLOBALS.IMAGE_PATH_AWS + item.url }}
-                style={[styles.image, { height: height }]}
-              />
-              {openGallery === false && (
-                <View style={styles.titleContainer}>
-                  <Text style={styles.title}>{item.title}</Text>
-                </View>
-              )}
-            </TouchableOpacity>
+                }}
+                key={index}
+              >
+                <Image
+                  source={{ uri: imgUrl }}
+                  style={[styles.image, { height: height }]}
+                />
+                {openGallery === false && (
+                  <View style={styles.titleContainer}>
+                    <Text style={styles.title}>{item.title}</Text>
+                  </View>
+                )}
+              </TouchableOpacity>
+            );
           })}
         </View>
       </ScrollView>
