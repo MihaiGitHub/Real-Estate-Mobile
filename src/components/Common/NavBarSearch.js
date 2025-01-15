@@ -8,8 +8,6 @@ export function NavBarSearch() {
   const navigation = useNavigation();
   const { searchTerm } = useSelector((state) => state.properties);
 
-  console.log("Navbar");
-
   return (
     <VStack w="100%" minWidth={"100%"}>
       <Input

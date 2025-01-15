@@ -16,7 +16,7 @@ export const propertiesFetch = () => async (dispatch) => {
     dispatch({
       type: PROPERTIES_FETCH_SUCCESS,
       payload: res.data,
-    }); 
+    });
   } catch (err) {
     console.log(err);
   }
@@ -64,7 +64,6 @@ export const udpateSearchTerm = (searchTerm) => async (dispatch) => {
 
 export const propertiesUSRealEstate = (state, city) => async (dispatch) => {
   try {
-    console.log("propertiesUSRealEstate ", state, city);
     const res = await PropertiesService.getPropertiesUSRealEstate(state, city);
 
     dispatch({

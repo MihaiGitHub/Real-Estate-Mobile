@@ -49,8 +49,6 @@ export function PropertyView({ route }) {
   const { list } = useSelector((state) => state.properties);
   const property = list.find((x) => x.id === id);
 
-  console.log('property ', property)
-
   // if (property.images.length === 0) {
   //   imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
   // }
@@ -308,12 +306,12 @@ export function PropertyView({ route }) {
           <HStack alignItems="center" space={1} justifyContent="space-between">
             <Button
               title="Send Agent Message"
-              // onPress={() =>
-              //   navigation.navigate("Property Send Message", {
-              //     id: property.user.id,
-              //     pid: property.id,
-              //   })
-              // }
+              onPress={() =>
+                navigation.navigate("Property Send Message", {
+                  id: property.user.id,
+                  pid: property.id,
+                })
+              }
               style={{
                 flex: 1,
                 marginLeft: 10,
@@ -325,7 +323,11 @@ export function PropertyView({ route }) {
             </Button>
           </HStack>
         </VStack>
-        <ImageGallery close={closeGallery} isOpen={isOpen} images={imageURLsGallery} />
+        <ImageGallery
+          close={closeGallery}
+          isOpen={isOpen}
+          images={imageURLsGallery}
+        />
       </ScrollView>
     </Box>
   );

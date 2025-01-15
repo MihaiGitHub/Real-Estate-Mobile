@@ -2,21 +2,21 @@
   "expo": {
     "name": "Century Homes",
     "slug": "century-homes",
-    "version": "2.7.2",
+    "version": "3.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "newArchEnabled": true,
       "supportsTablet": true
     },
     "android": {
+      "splash": {
+        "image": "./assets/splash.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#ffffff"
+      },
       "newArchEnabled": true,
       "config": {
         "googleMaps": {

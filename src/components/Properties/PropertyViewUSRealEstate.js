@@ -106,8 +106,6 @@ export function PropertyViewUSRealEstate({ route }) {
     imageURLs = [`${GLOBALS.TEMP_IMAGE_PATH}/dashboard/img/house.gif`];
   }
 
-  console.log("propertyData7777 ", propertyData);
-
   let mapLatitude = undefined;
   let mapLongitude = undefined;
 

@@ -54,7 +54,7 @@ export function PropertySearch() {
       placeholder="Address, city or zip"
       onPress={async (data, details = null) => {
         // 'details' is provided when fetchDetails = true
-        console.log(777, data, details);
+        // console.log(data, details);
 
         await dispatch(
           propertiesUSRealEstate(data.terms[1].value, data.terms[0].value)

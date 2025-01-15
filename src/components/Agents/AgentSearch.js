@@ -50,7 +50,7 @@ export function AgentSearch() {
       placeholder="Address, city or zip"
       onPress={async (data, details = null) => {
         // 'details' is provided when fetchDetails = true
-        console.log("data ", data);
+        // console.log("data agents ", data);
 
         await dispatch(
           agentsFiltered(data.terms[0].value, data.terms[1].value)

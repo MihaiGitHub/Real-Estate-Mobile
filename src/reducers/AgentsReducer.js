@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   loading: true,
   loadingAgent: true,
   filtered: false,
-  agentsFiltered: [],
+  agentsUSRealEstate: [],
   agentsDB: [],
 };
 
@@ -22,7 +22,7 @@ export default (state = INITIAL_STATE, action) => {
     case AGENTS_FILTERED:
       return {
         ...state,
-        agentsFiltered: action.payload,
+        agentsUSRealEstate: action.payload,
         loading: false,
         filtered: true,
         agentsDB: [],

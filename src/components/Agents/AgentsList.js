@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { TouchableHighlight } from "react-native";
+import { TouchableHighlight, ToastAndroid } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
@@ -16,9 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Spinner } from "../Common/Spinner";
 
 export function AgentsList() {
-  const agents = useSelector((state) => state.agents.agentsFiltered);
-  const agentsDB = useSelector((state) => state.agents.agentsDB);
-
+  const { agentsUSRealEstate, agentsDB } = useSelector((state) => state.agents);
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
@@ -26,13 +24,13 @@ export function AgentsList() {
     dispatch(agentsFetch());
   }, []);
 
-  if (agentsDB.length === 0 && agents.length === 0) {
+  if (agentsDB.length === 0 && agentsUSRealEstate.length === 0) {
     return <Spinner size="large" />;
   }
 
-  return (
-    <Box style={{ marginBottom: 70 }}>
-      {agentsDB && agentsDB.length > 0 && (
+  const renderAgentsDB = () => {
+    if (Array.isArray(agentsDB) && agentsDB.length > 0) {
+      return (
         <FlatList
           data={agentsDB}
           renderItem={({ item, index, separators }) => (
@@ -89,11 +87,20 @@ export function AgentsList() {
           )}
           keyExtractor={(item) => item.id.toString()}
         />
-      )}
+      );
+    } else {
+      ToastAndroid.show(
+        "No agents found near this location!",
+        ToastAndroid.LONG
+      );
+    }
+  };
 
-      {agents && agents.length > 0 && (
+  const renderAgentsUSRealEstate = () => {
+    if (Array.isArray(agentsUSRealEstate) && agentsUSRealEstate.length > 0) {
+      return (
         <FlatList
-          data={agents}
+          data={agentsUSRealEstate}
           renderItem={({ item, index, separators }) => (
             <TouchableHighlight
               key={item.id}
@@ -148,7 +155,21 @@ export function AgentsList() {
           )}
           keyExtractor={(item) => item.advertiser_id.toString()}
         />
-      )}
+      );
+    } else {
+      ToastAndroid.show(
+        "No agents found near this location!",
+        ToastAndroid.LONG
+      );
+    }
+  };
+
+  return (
+    <Box style={{ marginBottom: 70 }}>
+      {agentsDB && agentsDB.length > 0 && renderAgentsDB()}
+      {agentsUSRealEstate &&
+        agentsUSRealEstate.length > 0 &&
+        renderAgentsUSRealEstate()}
     </Box>
   );
 }

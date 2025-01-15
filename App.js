@@ -1,4 +1,5 @@
 import "react-native-get-random-values";
+import { useState, useEffect, useCallback } from "react";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import PropertiesReducer from "./src/reducers/PropertiesReducer";
@@ -16,16 +17,20 @@ import GLOBALS from "./src/components/Common/Globals";
 // https://docs.expo.dev/versions/latest/sdk/splash-screen/
 import * as SplashScreen from "expo-splash-screen";
 
+// Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
-// hide splashscreen below?
 
-/*
+// Set the animation options. This is optional.
+SplashScreen.setOptions({
+  duration: 1000,
+  fade: true,
+});
+
 Sentry.init({
   dsn: GLOBALS.SENTRY_DSN,
   enableInExpoDevelopment: true,
   debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
 });
-*/
 
 const Tab = createBottomTabNavigator();
 
